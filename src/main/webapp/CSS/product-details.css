@@ -102,9 +102,9 @@
 	background-color: #FFFFFF;
 	width: 60%;
 	float: left;
-	font-family: "Source Sans Pro";
+	font-family: "Roboto";
 	color: #343434;
-	padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 .noDisplay {
 	display: none;
@@ -113,7 +113,7 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	margin-top: 5%;
-	color: #717070;
+	color: #000000;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -198,6 +198,75 @@
 	padding-top: 25px;
 	padding-bottom: 25px;
 }
+.wood_select_buttons {
+	height: 50px;
+	width: 50px;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+}
+.design_select_buttons {
+	height: 100px;
+	width: 100px;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+}
+.oak {
+	background-image: url("../oak.jpg");
+}
+.cherry {
+	background-image: url("../cherry.jpg");
+}
+.maple {
+	background-image: url("../maple.jpg")
+}
+.walnut {
+	background-image: url("../walnut.jpg");
+}
+.pine {
+	background-image: url("../pine.jpg");
+}
+.buttons {
+	background-color: #8C1D40;
+  	border: none;
+  	color: white;
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+  	display: inline-block;
+  	margin: 4px 2px;
+  	cursor: pointer;
+	font-size: 16px;
+}
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+select#gender option[value="male"]   { background-image:url("../cherry.jpg");   }
+select#gender option[value="female"] { background-image:url("../maple.jpg"); }
+select#gender option[value="others"] { background-image:url("../oak.jpg"); }
+
 @media (max-width: 320px) {
 .secondary_header ul li {
 	float: none;
