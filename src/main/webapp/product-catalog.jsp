@@ -82,43 +82,52 @@
 			<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
         <article class="productInfo"><!-- Each individual product description -->
-			<div><img class="productImage" alt="sample" src="wooden product images/maple-wood-phone.jpg">
+			<div><img class="productImage" alt="sample" src="wooden product images/pine-wood-phone.jpg">
 				</div>
 			<p class="price">$50</p>
-          	<p class="productContent">Cherry wood Iphone case</p>
+          	<p class="productContent">Pine wood Iphone case</p>
           	<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
         <article class="productInfo"> <!-- Each individual product description -->
-          	<div><img class="productImage" alt="sample" src="wooden product images/maple-wood-phone.jpg">
+          	<div><img class="productImage" alt="sample" src="wooden product images/cherry-wood-placard.jpg">
 				</div>
           	<p class="price">$50</p>
-          	<p class="productContent">Cherry wood Iphone case</p>
+          	<p class="productContent">Cherry wood Placard</p>
           	<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
       </div>
       <div class="productRow"><!-- Each product row contains info of 3 elements -->
         <article class="productInfo"><!-- Each individual product description -->
-          	<div><img class="productImage" alt="sample" src="wooden product images/cherry-phone.jpg"></div>
+          	<div><img class="productImage" alt="sample" src="wooden product images/walnut-wood-placard.jpg"></div>
           	<p class="price">$25</p>
-          	<p class="productContent">Cherry wood Iphone case</p>
+          	<p class="productContent">Walnut wood Placard</p>
 			<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
         <article class="productInfo"><!-- Each individual product description -->
-			<div><img class="productImage" alt="sample" src="wooden product images/maple-wood-phone.jpg">
+			<div><img class="productImage" alt="sample" src="wooden product images/maple-wood-placard.jpg">
 				</div>
 			<p class="price">$50</p>
-          	<p class="productContent">Cherry wood Iphone case</p>
+          	<p class="productContent">Maple wood Placard</p>
           	<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
         <article class="productInfo"> <!-- Each individual product description -->
-          	<div><img class="productImage" alt="sample" src="wooden product images/maple-wood-phone.jpg">
+          	<div><img class="productImage" alt="sample" src="wooden product images/walnut-wood-desk.jpg">
 				</div>
           	<p class="price">$50</p>
-          	<p class="productContent">Cherry wood Iphone case</p>
+          	<p class="productContent">Walnut wood Desk name plate</p>
           	<button type="button" name="button" value="Buy" class="buyButton">BUY</button>
         </article>
       </div>
     </section>
   </div>
+<div class="pages">
+	<div class="pagination">
+		<a href="#">&laquo;</a>
+  		<a class="active" href="#">1</a>
+  		<a href="#">2</a>
+		<a href="#">3</a>
+  		<a href="#">&raquo;</a>
+	</div>
+</div>
 </body>
 </html>
