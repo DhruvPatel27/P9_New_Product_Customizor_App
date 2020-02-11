@@ -104,7 +104,7 @@
 	float: left;
 	font-family: "Roboto";
 	color: #343434;
-	padding-bottom: 10px;
+	padding-bottom: 15px;
 }
 .noDisplay {
 	display: none;
@@ -223,19 +223,39 @@
   	cursor: pointer;
 }
 .oak {
-	background-image: url("../oak.jpg");
+	background-image: url("../images/oak.jpg");
 }
 .cherry {
-	background-image: url("../cherry.jpg");
+	background-image: url("../images/cherry.jpg");
 }
 .maple {
-	background-image: url("../maple.jpg")
+	background-image: url("../images/maple.jpg")
 }
 .walnut {
-	background-image: url("../walnut.jpg");
+	background-image: url("../images/walnut.jpg");
 }
 .pine {
-	background-image: url("../pine.jpg");
+	background-image: url("../images/pine.jpg");
+}
+.bike {
+	background-image: url("../images/bike.jpg");
+	background-size: contain
+}
+.church {
+	background-image: url("../images/church.jpg");
+	background-size: contain
+}
+.ice_cream {
+	background-image: url("../images/ice_cream.jpg");
+	background-size: contain
+}
+.nyc {
+	background-image: url("../images/nyc.jpg");
+	background-size: contain
+}
+.space {
+	background-image: url("../images/space.jpg");
+	background-size: contain
 }
 .buttons {
 	background-color: #8C1D40;
@@ -263,9 +283,6 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
-select#gender option[value="male"]   { background-image:url("../cherry.jpg");   }
-select#gender option[value="female"] { background-image:url("../maple.jpg"); }
-select#gender option[value="others"] { background-image:url("../oak.jpg"); }
 
 @media (max-width: 320px) {
 .secondary_header ul li {

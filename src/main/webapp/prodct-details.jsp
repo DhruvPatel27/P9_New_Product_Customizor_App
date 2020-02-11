@@ -12,7 +12,7 @@
 <div class="container">
   <section>
     <h2 class="noDisplay">Main Content</h2> 
-    <aside class="left_article"><img src="image.jpeg" alt="" width="400" height="200" class="placeholder"/> </aside>
+    <aside class="left_article"><img src="../webapp/images/image.jpeg" alt="" width="400" height="200" class="placeholder"/> </aside>
     <article class="right_article">
       <h3 font-size:20px ><strong>iPhone XR Case</strong></h3>
 	  <h3><strong>$25.00</strong></h3>
@@ -28,14 +28,15 @@
         </h3>
 		<h3>Enter personal message</h3>
 		<h3><input type="text" placeholder=""></h3>
+		<h3><button class="buttons">Add text</button></h3>
       	<h3>Select image engraving</h3>
 		<h3>
-		<button class="design_select_buttons cherry" ></button>
-		<button class="design_select_buttons oak"></button>
-		<button class="design_select_buttons maple"></button>
-		<button class="design_select_buttons pine"></button>
-		<button class="design_select_buttons walnut"></button>
-		</h3>
+		<button class="design_select_buttons bike" title="Bikes" ></button>
+		<button class="design_select_buttons church" title="Church"></button>
+		<button class="design_select_buttons ice_cream" title="Ice Crean"></button>
+		<button class="design_select_buttons nyc" title="New York City"></button>
+		<button class="design_select_buttons space" title="Space"></button>
+	  </h3>
 		<h3><button class="buttons">Add to Cart</button></h3>
     </article>
   </section>
