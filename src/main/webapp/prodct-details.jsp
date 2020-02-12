@@ -16,7 +16,14 @@
     <article class="right_article">
       <h3><strong>iPhone XR Case</strong></h3>
 	  <h3><strong><h1>$25.00</h1></strong></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p><ul>
+			<li>Wood iPhone XR Case --Each case is unique with its own distinct wood grain,This protective phone case for iPhone XR combines dual layer Rubber and Real wood. Supports wireless charging
+			</li>
+			<li>ELEGANT & DURABLE: A perfect Stripes & stylish design that fits your iPhone XR perfectly while offers full protection (front, sides & back) with raised bezels that lift the screen and camera off flat surfaces
+			</li>
+			<li>Ergonomic design-Practical Protector, Thin, lightweight ,The iPhone XR Wood Case delivers effective protection against shocks, scratches, stains and dust
+			</li>
+		 </ul></p>
 		
 		<h3>Select Wood type</h3>
 		<h3>
