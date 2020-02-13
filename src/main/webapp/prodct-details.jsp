@@ -11,8 +11,8 @@
 <jsp:include page="basic-layout.jsp" /> 
 <div class="container">
   <section>
-    <h2 class="noDisplay">Main Content</h2> 
-    <aside class="left_article"><img src="../webapp/images/image.jpeg" alt="" width="400" height="200" class="placeholder"/> </aside>
+    <h2 class="noDisplay">Main Content</h2>
+    <aside class="left_article"><img src="images/Mobile Covers/cherry-wood-phone.jpg" alt="" width="400" height="200" class="placeholder"/> </aside>
     <article class="right_article">
       <h3><strong>iPhone XR Case</strong></h3>
 	  <h3><strong><h1>$25.00</h1></strong></h3>
@@ -35,7 +35,7 @@
         </h3>
 		<h3>Enter personal message</h3>
 		<h3><input class="personal_message" type="text" placeholder=""></h3>
-		<h3><button class="buttons">Add text</button></h3>
+		<h3><button class="buttons ">Add text</button><button class="buttons">Preview</button></h3>
       	<h3>Select image engraving</h3>
 		<h3>
 		<button class="design_select_buttons bike" title="Bikes" ></button>
@@ -47,7 +47,6 @@
 		
 		<h3><select class="quantity">
 			<option value="0">Select quantity</option>
-			<option value="1">1</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>

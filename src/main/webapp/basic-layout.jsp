@@ -7,17 +7,22 @@
 	<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 	<script>var __adobewebfontsappname__="dreamweaver"</script>
 	<script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	 function openPage(pageURL)
+		 {
+		 window.location.href = pageURL;
+		 }
+	</script>
 </head>
 <header>
 	<div id="mainWrapper"> 
     <!-- This is the header content. It contains Logo and links -->
-    <div id="logo"> WoodsEngraved 
+    <div onclick="openPage('index.jsp');" id="logo"> WoodsEngraved
       <!-- <img src="logoImage.png" alt="sample logo"> -->
       <!-- Company Logo text -->
     &nbsp; </div>
     <div id="headerLinks">
-	  <a href="#" title="Login/Register">Login/Register</a>
-	  <a href="#" title="Cart">Cart</a>
+	  <a href="Login.jsp" title="Login/Register">Login/Register</a>
     </div>
 	<div id="filterBar">
   		<div class="categories">
@@ -37,11 +42,11 @@
       			<i class="fa fa-caret-down"></i>
     		</button>
     		<div class="dropdown-occasions">
-      			<a href="#">Christmas</a>
-      			<a href="#">Mother's Day/Father's Day</a>
-      			<a href="#">Graduation</a>
-				<a href="#">Valentine's Day</a>
-				<a href="#">Weddings</a>
+      			<a href="Occasion1.jsp">Christmas</a>
+      			<a href="Occasion1.jsp">Mother's Day/Father's Day</a>
+      			<a href="Occasion1.jsp">Graduation</a>
+				<a href="Occasion1.jsp">Valentine's Day</a>
+				<a href="Occasion1.jsp">Weddings</a>
     		</div>
   		</div> 
 	</div> 
