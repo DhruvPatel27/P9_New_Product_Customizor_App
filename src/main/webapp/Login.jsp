@@ -58,7 +58,7 @@
 	  <div class="label">Password: </div>
 	  <div><input class="text" type="password" name="password"><br/><br/></div>
 	  <div><input type="submit" class="submit" value="Login"></div><br/>
-	  <div> New Customer? <a href="https://www.google.com/" class="link">Signup</a> </div>
+	  <div> New Customer? <a href="Signup.jsp" class="link">Signup</a> </div>
   </section>
   <div id="content"> </div>
   <footer> 
