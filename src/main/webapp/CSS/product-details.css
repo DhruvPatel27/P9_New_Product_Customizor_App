@@ -113,7 +113,7 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	margin-top: 5%;
-	color: #000000;
+  color: #000000;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -286,7 +286,6 @@
 .quantity{
 	height: 49px;
 }
-
 @media (max-width: 320px) {
 .secondary_header ul li {
 	float: none;
