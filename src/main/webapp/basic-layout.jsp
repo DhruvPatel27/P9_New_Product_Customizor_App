@@ -48,7 +48,15 @@
 </div>	
 </header>
 
-<body>
 
+<body>
+<!-- Footer -->
+<div id="footerBar"></div>
+<footer>
+	
+	<div class="footerlinks">
+		<p><a href="#">About us</a></p>
+	</div>
+</footer>
 </body>
 </html>

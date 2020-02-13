@@ -10,6 +10,7 @@ header {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
+	width: 100%;
 }
 /* Logo placeholder*/
 #logo {
@@ -44,6 +45,7 @@ header {
 	background-color: #353535;
 	height: 85px;
 	align-items: center;
+	width: 100%;
 	
 }
 #dropdown a{
@@ -52,7 +54,6 @@ header {
 }
 #categorybtn {
 	background-color: #353535;
-	vertical-align: middle;
   	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
@@ -150,3 +151,45 @@ color: #ffc627;}
 .occasions:hover #occasionBtn {background-color: #1f1f1f;
 color: #ffc627;}
 
+/*Footer*/
+/* Container for links in footer */
+#footerBar{
+	position: fixed;
+	background-color: #ffc627;
+	left: 0px;
+	height: 45px;
+	width: 100%;
+	bottom: 75px;
+}
+footer .footerlinks {
+	position: relative;
+	top: 12px;
+	text-align: center;
+	padding-bottom: 19px;
+}
+/* Links in footer */
+.footerlinks p a {
+	color: black;
+	display: inline;
+}
+footer div a {
+	color: black;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+}
+/* Footer region */
+footer {
+	position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+	background-color: #e5e5e5;
+	padding-left: 16px;
+	overflow: hidden;
+	height: 75px;
+}

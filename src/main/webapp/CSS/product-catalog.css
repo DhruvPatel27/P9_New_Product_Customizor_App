@@ -52,7 +52,6 @@ header {
 }
 #categorybtn {
 	background-color: #353535;
-	vertical-align: middle;
   	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
@@ -213,6 +212,7 @@ color: #ffc627;}
 }
 .pagination {
   	display: inline-block;
+	padding-bottom: 2%;
 }
 
 .pagination a {
