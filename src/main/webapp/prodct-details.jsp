@@ -11,8 +11,8 @@
 <jsp:include page="basic-layout.jsp" /> 
 <div class="container">
   <section>
-    <h2 class="noDisplay">Main Content</h2> 
-    <aside class="left_article"><img src="../webapp/images/image.jpeg" alt="" width="400" height="200" class="placeholder"/> </aside>
+    <h2 class="noDisplay">Main Content</h2>
+    <aside class="left_article"><img src="images/Mobile Covers/cherry-wood-phone.jpg" alt="" width="400" height="200" class="placeholder"/> </aside>
     <article class="right_article">
       <h3><strong>iPhone XR Case</strong></h3>
 	  <h3><strong><h1>$25.00</h1></strong></h3>
