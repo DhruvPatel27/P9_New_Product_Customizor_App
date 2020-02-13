@@ -54,7 +54,7 @@
 </header>
 
 
-<body>
+<body></body>
 <!-- Footer -->
 <div id="footerBar"></div>
 <footer>
@@ -63,5 +63,5 @@
 		<p><a href="#">About us</a></p>
 	</div>
 </footer>
-</body>
+
 </html>
