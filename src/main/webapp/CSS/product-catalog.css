@@ -136,6 +136,11 @@ color: #ffc627;}
 .occasions:hover #occasionBtn {background-color: #1f1f1f;
 color: #ffc627;}
 
+
+.Introduction{
+	font-family: 'Montserrat', sans-serif;
+	text-align: left;
+}
 /* Main content of the site */
 #content {
 	position: relative;
