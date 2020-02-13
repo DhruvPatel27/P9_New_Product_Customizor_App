@@ -1,5 +1,6 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<jsp:include page="product-catalog.jsp"></jsp:include>
+<h2></h2>
 </body>
 </html>

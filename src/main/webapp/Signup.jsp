@@ -64,7 +64,7 @@
 	  <div class="label">Confirm Password:</div>
 	  <div><input class="text" type="password" name="password"><br/><br/></div>
 	  <div><input type="submit" class="submit" value="Signup"></div><br/>
-	  <div> Returning Customer? <a href="https://www.google.com/" class="link">Login-></a> </div>
+	  <div> Returning Customer? <a href="Login.jsp" class="link">Login-></a> </div>
   </section>
 
   <div id="content"> </div>
