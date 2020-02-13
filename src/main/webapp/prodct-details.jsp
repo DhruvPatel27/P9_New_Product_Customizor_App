@@ -35,7 +35,7 @@
         </h3>
 		<h3>Enter personal message</h3>
 		<h3><input class="personal_message" type="text" placeholder=""></h3>
-		<h3><button class="buttons">Add text</button></h3>
+		<h3><button class="buttons ">Add text</button><button class="buttons">Preview</button></h3>
       	<h3>Select image engraving</h3>
 		<h3>
 		<button class="design_select_buttons bike" title="Bikes" ></button>
