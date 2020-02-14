@@ -258,24 +258,6 @@ footer div a {
 	left: 0%;
 	padding-bottom: 19px;
 }
-/* Container for each footer divisions */
-#mainWrapper footer div {
-	width: 44%;
-	text-align: justify;
-	font-size: 15px;
-}
-/* Links in footer */
-.footerlinks p a {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	display: inline;
-	padding-right: 35px;
-}
-/* Footer region */
-#mainWrapper footer {
-	padding-left: 16px;
-	overflow: hidden;
-}
 /* Links in header */
 header #headerLinks a {
 	padding-left: 0px;
@@ -285,10 +267,6 @@ header #headerLinks a {
 #mainWrapper #offer {
 	padding-left: 22%;
 }
-/* Paragraphs in footer */
-footer .footerlinks p {
-	display: inline;
-}
 }
 
 /* Links in header */
@@ -297,10 +275,5 @@ header #headerLinks a {
 	padding-right: 15px;
 	padding-left: 0px;
 }
-#mainWrapper footer div {
-	width: 100%;
-	margin-left: -16px;
-	text-align: justify;
-	padding-bottom: 16px;
-	overflow: auto;
-}
+
+

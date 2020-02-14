@@ -25,6 +25,7 @@
 	  <a href="Login.jsp" title="Login/Register">Login/Register</a>
     </div>
 	<div id="filterBar">
+		<div class="home" onclick="openPage('index.jsp');"><button id="homebtn">Home</button></div>
   		<div class="categories">
     		<button id="categorybtn" title="Category">Categories 
       			<i class="fa fa-caret-down"></i>
@@ -34,7 +35,7 @@
       			<a href="#">Placard</a>
       			<a href="#">Desk Nameplate</a>
 				<a href="#">Invitation Card</a>
-				<a href="#">Pen</a>
+				<a href="#">Coaster</a>
     		</div>
 	  	</div>
 		<div class="occasions">
@@ -53,7 +54,17 @@
 </div>	
 </header>
 
+
 <body>
 
 </body>
+<!-- Footer -->
+<div id="footerBar"></div>
+<footer>
+	<div class="footerlinks">
+		<p><a href="#">About us</a></p>
+	</div>
+</footer>
+
+
 </html>

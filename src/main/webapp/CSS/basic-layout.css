@@ -10,13 +10,13 @@ header {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
+	width: 100%;
 }
 /* Logo placeholder*/
 #logo {
 	color: #8c1d40;
 	float: left;
-	font: bolder
-	width: calc( 100% - 139px );
+	font: bolder;
 	padding-top: 10px;
 	width: 139px;
 	height: 29px;
@@ -44,15 +44,33 @@ header {
 	background-color: #353535;
 	height: 85px;
 	align-items: center;
-	
+	width: 100%;
 }
 #dropdown a{
 	color: white;	
 		
 }
+#homebtn{
+	background-color: #353535;
+  	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+  	font-size: 16px;
+	align-content: center;
+  	border: none;
+  	height: 45px;
+}
+
+.home {
+  	position: relative;
+  	display: inline-block;
+	left: 25%;
+}
+
 #categorybtn {
 	background-color: #353535;
-	vertical-align: middle;
   	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 16px;
@@ -70,7 +88,6 @@ header {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
-  	font-size: 16px;
 	align-content: center;
   	border: none;
   	height: 45px;
@@ -79,13 +96,13 @@ header {
 .occasions {
   	position: relative;
   	display: inline-block;
-	left: 45%;
+	left: 55%;
 }
 
 .categories {
   	position: relative;
   	display: inline-block;
-	left: 25%;
+	left: 40%;
 }
 
 .dropdown-categories {
@@ -110,7 +127,7 @@ header {
 
 .dropdown-categories a:hover {background-color: #1f1f1f;}
 
-.categories:hover .dropdown-categories {display: block; background-color: #353535;}
+.categories:hover .dropdown-categories {display: block; z-index:1000; background-color: #353535;}
 
 .categories:hover #categorybtn {background-color: #1f1f1f;
 color: #ffc627;}
@@ -132,21 +149,56 @@ color: #ffc627;}
 
 .dropdown-occasions a:hover {background-color: #1f1f1f;}
 
-.occasions:hover .dropdown-occasions {display: block; background-color: #353535;} 
-
-.dropdown-occasions a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-occasions a:hover {background-color: #1f1f1f;}
-
-.occasions:hover .dropdown-occasions {display: block; background-color: #353535;}
-
-
+.occasions:hover .dropdown-occasions {display: block; z-index:1000;  background-color: #353535;} 
 
 .occasions:hover #occasionBtn {background-color: #1f1f1f;
 color: #ffc627;}
 
+body{
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+/*Footer*/
+/* Container for links in footer */
+#footerBar{
+	background-color: #ffc627;
+	position: absolute;
+   	left: 0;
+   	bottom: 105px;
+   	top: 100%;
+   	width: 100%;
+	height: 45px;
+}
+footer .footerlinks {
+	position: relative;
+	top: 12px;
+	text-align: center;
+	padding-bottom: 19px;
+}
+/* Links in footer */
+.footerlinks p a {
+	color: black;
+	display: inline;
+}
+footer div a {
+	color: black;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+}
+/* Footer region */
+footer {
+	position: absolute;
+   	left: 0;
+   	bottom: 0;
+   	top: 100%;
+   	width: 100%;
+	background-color: #e5e5e5;
+	height: 75px;
+}

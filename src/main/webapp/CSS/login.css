@@ -224,98 +224,11 @@ input.text
 	left: -35px;
 	padding-top: 12px;
 }
-/* footer */
-#mainWrapper footer {
-	clear: both;
-	overflow: auto;
-	background-color: rgba(208,207,207,1.00);
-	font-family: source-sans-pro, sans-serif;
-	font-style: normal;
-	font-weight: 200;
-	line-height: 1.8;
-	padding-top: 22px;
-	padding-left: 22px;
-	text-align: center;
-	padding-bottom: 22px;
-	padding-right: 22px;
-}
-/*Each footer content */
-#mainWrapper footer div {
-	width: 27%;
-	float: left;
-	padding-left: 4%;
-	padding-right: 2%;
-	color: rgba(255,255,255,1.00);
-	text-align: justify;
-}
-/* Links in footer */
-footer div a {
-	color: rgba(146,146,146,1.00);
-	display: block;
-	text-decoration: none;
-	text-align: center;
-}
 /* main content region of page */
 #mainWrapper #content .mainContent {
 	overflow: hidden;
-	width: 95%;
 	margin-top: 40px;
 }
-/* Container for links in footer */
-#mainWrapper footer .footerlinks {
-	float: none;
-	width: 100%;
-	position: relative;
-	top: 17px;
-	clear: both;
-	text-align: center;
-	left: 0%;
-	padding-bottom: 19px;
-}
-/* Container for each footer divisions */
-#mainWrapper footer div {
-	width: 44%;
-	text-align: justify;
-	font-size: 15px;
-}
-/* Links in footer */
-.footerlinks p a {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	display: inline;
-	padding-right: 35px;
-}
-/* Footer region */
-#mainWrapper footer {
-	padding-left: 16px;
-	overflow: hidden;
-}
-/* Links in header */
-header #headerLinks a {
-	padding-left: 0px;
-	padding-right: 30px;
-}
-/* Offer- Text banner */
-#mainWrapper #offer {
-	padding-left: 22%;
-}
-/* Paragraphs in footer */
-footer .footerlinks p {
-	display: inline;
-}
-}
 
-/* Links in header */
-header #headerLinks a {
-	text-align: center;
-	padding-right: 15px;
-	padding-left: 0px;
-}
-#mainWrapper footer div {
-	width: 100%;
-	margin-left: -16px;
-	text-align: justify;
-	padding-bottom: 16px;
-	overflow: auto;
-}
+
 
