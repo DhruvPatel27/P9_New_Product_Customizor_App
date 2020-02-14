@@ -6,10 +6,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simple Theme</title>
 <link href="CSS/product-details.css" rel="stylesheet" type="text/css">
+<link href="CSS/basic-layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	 function openPage(pageURL)
+		 {
+		 window.location.href = pageURL;
+		 }
+	</script>
 </head>
-<jsp:include page="basic-layout.jsp"></jsp:include>
+
 <body>
-<div class="container">
+<header>
+	<div id="mainWrapper"> 
+    <!-- This is the header content. It contains Logo and links -->
+    <div onclick="openPage('product-catalog.jsp');" id="logo"> WoodsEngraved
+      <!-- <img src="logoImage.png" alt="sample logo"> -->
+      <!-- Company Logo text -->
+    &nbsp; </div>
+    <div id="headerLinks">
+	  <a href="Login.jsp" title="Login/Register">Login/Register</a>
+    </div>
+	<div id="filterBar">
+		<div class="home" onclick="openPage('product-catalog.jsp');"><button id="homebtn">Home</button></div>
+  		<div class="categories">
+    		<button id="categorybtn" title="Category">Categories 
+      			<i class="fa fa-caret-down"></i>
+    		</button>
+    		<div class="dropdown-categories">
+      			<a href="#">Phone cases</a>
+      			<a href="#">Placard</a>
+      			<a href="#">Desk Nameplate</a>
+				<a href="#">Invitation Card</a>
+				<a href="#">Coaster</a>
+    		</div>
+	  	</div>
+		<div class="occasions">
+    		<button id="occasionBtn" title="Occasion">Occasions 
+      			<i class="fa fa-caret-down"></i>
+    		</button>
+    		<div class="dropdown-occasions">
+      			<a href="Occasion1.jsp">Christmas</a>
+      			<a href="Occasion1.jsp">Mother's Day/Father's Day</a>
+      			<a href="Occasion1.jsp">Graduation</a>
+				<a href="Occasion1.jsp">Valentine's Day</a>
+				<a href="Occasion1.jsp">Weddings</a>
+    		</div>
+  		</div> 
+	</div> 
+</div>	
+</header>
+
   <section>
     <h2 class="noDisplay">Main Content</h2>
     <aside class="left_article"><img src="images/Mobile Covers/cherry-wood-phone.jpg" alt="" width="400" height="200" class="placeholder"/> </aside>
