@@ -8,6 +8,7 @@
 	<script>var __adobewebfontsappname__="dreamweaver"</script>
 	<script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js" type="text/javascript"></script>
 </head>
+<jsp:include page="basic-layout.jsp"></jsp:include>
 <body>
 <div id="mainWrapper">
    <section id="login"> 
