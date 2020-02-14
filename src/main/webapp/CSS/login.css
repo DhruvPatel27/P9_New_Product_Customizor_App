@@ -10,7 +10,7 @@ a:hover {
 	clear: both;
 	background-color:white;
 	color: rgba(146,146,146,1.00);
-	padding-left: 405px;
+	padding-left: 600px;
 	padding-top: 57px;
 	padding-bottom: 57px;
 	color:black;
@@ -54,7 +54,7 @@ input.submit{
     padding: 0px 20px !important;
     height: 36px;
     line-height: 1;
-	margin-left:60px;
+	margin-left:80px;
 }
 
 /*logout button*/

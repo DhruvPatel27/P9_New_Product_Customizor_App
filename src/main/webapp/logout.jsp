@@ -19,19 +19,19 @@
 	   <table>
 		   <tr>
 			  <td>
-				  <div class="label">Name <br/></div>
+				  <div class="label"><strong>Name</strong> <br/> Joseph Bieber</div>
 			   </td>
 			   
 			   <td>
 				   <div id="vertLine"/>
 			   </td>
 			   <td>
-				  <div id="history"class="label">Order History<br/></div>
+				  <div id="history"class="label"><b>Order History</b><br/></div>
 			   </td>
 		   </tr>
 		   <tr>
 			  <td>
-				  <div class="label">Primary Address <br/></div>
+				  <div class="label"><b>Primary Address</b> <br/> ASU, Tempe, 85281 AZ</div>
 			   </td>
 			   <td>
 				   <div id="vertLine"/>
