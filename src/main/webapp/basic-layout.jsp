@@ -17,7 +17,7 @@
 <header>
 	<div id="mainWrapper"> 
     <!-- This is the header content. It contains Logo and links -->
-    <div onclick="openPage('index.jsp');" id="logo"> WoodsEngraved
+    <div onclick="openPage('product-catalog.jsp');" id="logo"> WoodsEngraved
       <!-- <img src="logoImage.png" alt="sample logo"> -->
       <!-- Company Logo text -->
     &nbsp; </div>
@@ -25,7 +25,7 @@
 	  <a href="Login.jsp" title="Login/Register">Login/Register</a>
     </div>
 	<div id="filterBar">
-		<div class="home" onclick="openPage('index.jsp');"><button id="homebtn">Home</button></div>
+		<div class="home" onclick="openPage('product-catalog.jsp');"><button id="homebtn">Home</button></div>
   		<div class="categories">
     		<button id="categorybtn" title="Category">Categories 
       			<i class="fa fa-caret-down"></i>

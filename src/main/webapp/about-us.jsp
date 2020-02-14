@@ -7,9 +7,9 @@
 <title>Simple Theme</title>
 <link href="CSS/about-us.css" rel="stylesheet" type="text/css">
 </head>
-<body>
 <jsp:include page="basic-layout.jsp"/> 
-<div class="colContainer" style="padding-top: 100px;">
+<body style="height:100%">
+<div class="colContainer" style="padding-top: 100px;padding-bottom: 100px;">
  <section class="intro">
     <div class="column" style="width:30%;margin-top: 100px;">
       <h3>ABOUT US</h3>
