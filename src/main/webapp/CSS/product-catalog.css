@@ -11,12 +11,13 @@
 	clear: both;
 	overflow: auto;
 	padding-top: 5%;
+	padding-bottom: 5%;
 }
 
 #content .mainContent {
 	position: relative;
 	margin: auto;
-	width: 100%;
+	width: 90%;
 	text-align: center;
 	padding-left: 4%;
 }

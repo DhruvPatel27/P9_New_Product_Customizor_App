@@ -7,8 +7,8 @@
 <title>Simple Theme</title>
 <link href="CSS/product-details.css" rel="stylesheet" type="text/css">
 </head>
+<jsp:include page="basic-layout.jsp"></jsp:include>
 <body>
-<jsp:include page="basic-layout.jsp" /> 
 <div class="container">
   <section>
     <h2 class="noDisplay">Main Content</h2>
@@ -57,4 +57,5 @@
     </article>
   </section>
 </div>	
+</body>
 </html>
