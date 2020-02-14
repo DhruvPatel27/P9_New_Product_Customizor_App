@@ -7,13 +7,19 @@
 <title>Simple Theme</title>
 <link href="CSS/product-details.css" rel="stylesheet" type="text/css">
 <link href="CSS/basic-layout.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+	 function openPage(pageURL)
+		 {
+		 window.location.href = pageURL;
+		 }
+	</script>
 </head>
 
 <body>
 <header>
 	<div id="mainWrapper"> 
     <!-- This is the header content. It contains Logo and links -->
-    <div onclick="openPage('index.jsp');" id="logo"> WoodsEngraved
+    <div onclick="openPage('product-catalog.jsp');" id="logo"> WoodsEngraved
       <!-- <img src="logoImage.png" alt="sample logo"> -->
       <!-- Company Logo text -->
     &nbsp; </div>
@@ -21,6 +27,7 @@
 	  <a href="Login.jsp" title="Login/Register">Login/Register</a>
     </div>
 	<div id="filterBar">
+		<div class="home" onclick="openPage('product-catalog.jsp');"><button id="homebtn">Home</button></div>
   		<div class="categories">
     		<button id="categorybtn" title="Category">Categories 
       			<i class="fa fa-caret-down"></i>
@@ -30,7 +37,7 @@
       			<a href="#">Placard</a>
       			<a href="#">Desk Nameplate</a>
 				<a href="#">Invitation Card</a>
-				<a href="#">Pen</a>
+				<a href="#">Coaster</a>
     		</div>
 	  	</div>
 		<div class="occasions">
@@ -48,6 +55,7 @@
 	</div> 
 </div>	
 </header>
+
   <section>
     <h2 class="noDisplay">Main Content</h2>
     <aside class="left_article"><img src="images/Mobile Covers/cherry-wood-phone.jpg" alt="" width="400" height="200" class="placeholder"/> </aside>
@@ -95,4 +103,5 @@
     </article>
   </section>
 </div>	
+</body>
 </html>

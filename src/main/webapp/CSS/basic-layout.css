@@ -10,13 +10,13 @@ header {
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
+	width: 100%;
 }
 /* Logo placeholder*/
 #logo {
 	color: #8c1d40;
 	float: left;
 	font: bolder;
-	width: calc( 100% - 139px );
 	padding-top: 10px;
 	width: 139px;
 	height: 29px;
@@ -44,12 +44,31 @@ header {
 	background-color: #353535;
 	height: 85px;
 	align-items: center;
-	
+	width: 100%;
 }
 #dropdown a{
 	color: white;	
 		
 }
+#homebtn{
+	background-color: #353535;
+  	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+  	font-size: 16px;
+	align-content: center;
+  	border: none;
+  	height: 45px;
+}
+
+.home {
+  	position: relative;
+  	display: inline-block;
+	left: 25%;
+}
+
 #categorybtn {
 	background-color: #353535;
   	color: white;
@@ -77,13 +96,13 @@ header {
 .occasions {
   	position: relative;
   	display: inline-block;
-	left: 45%;
+	left: 55%;
 }
 
 .categories {
   	position: relative;
   	display: inline-block;
-	left: 25%;
+	left: 40%;
 }
 
 .dropdown-categories {
@@ -138,17 +157,19 @@ color: #ffc627;}
 body{
 	position: relative;
 	height: 100%;
+	width: 100%;
 }
 
 /*Footer*/
 /* Container for links in footer */
 #footerBar{
-	position: absolute;
 	background-color: #ffc627;
-	left: 0px;
+	position: absolute;
+   	left: 0;
+   	bottom: 105px;
+   	top: 100%;
+   	width: 100%;
 	height: 45px;
-	width: 100%;
-	bottom: 75px;
 }
 footer .footerlinks {
 	position: relative;
@@ -176,6 +197,7 @@ footer {
 	position: absolute;
    	left: 0;
    	bottom: 0;
+   	top: 100%;
    	width: 100%;
 	background-color: #e5e5e5;
 	height: 75px;

@@ -3,150 +3,8 @@
 a:hover {
 	color: rgba(255,255,255,1.00);
 }
-/*header*/
-header {
-	font-family: 'Montserrat', sans-serif;
-	color: rgba(255,198,39,1.00);
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-}
-/* Logo placeholder*/
-#logo {
-	color: #8c1d40;
-	float: left;
-	font: bolder
-	width: calc( 100% - 139px );
-	padding-top: 10px;
-	width: 139px;
-	height: 29px;
-	text-align: center;
-	background-color: rgba(255,255,255,1.00);
-}
-/* div for Links in header */
-#headerLinks {
-	float: left;
-	width: calc( 100% - 139px );
-	text-align: right;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background-color: rgba(255,255,255,1.00);
-}
-/* Links in header */
-#headerLinks a {
-	text-decoration: none;
-	color: rgba(0,0,0,1.00);
-	padding-left: 66px;
-	font-size: 14px;
-}
-/* categories and occasions bar */
-#filterBar{
-	background-color: #353535;
-	height: 85px;
-	align-items: center;
-	
-}
-#dropdown a{
-	color: white;	
-		
-}
-#categorybtn {
-	background-color: #353535;
-	vertical-align: middle;
-  	color: white;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-  	font-size: 16px;
-	align-content: center;
-  	border: none;
-  	height: 45px;
-}
-#occasionBtn{
-	background-color: #353535;
-  	color: white;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-  	font-size: 16px;
-	align-content: center;
-  	border: none;
-  	height: 45px;
-}
 
-.occasions {
-  	position: relative;
-  	display: inline-block;
-	left: 45%;
-}
-
-.categories {
-  	position: relative;
-  	display: inline-block;
-	left: 25%;
-}
-
-.dropdown-categories {
-  	display: none;
-  	position: absolute;
-  	background-color: #353535;
-  	min-width: 250%;
-	top: 100%;
-}
-
-.dropdown-categories a {
-  	color: white;
-  	padding: 12px 16px;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-  	font-size: 16px;
-  	text-decoration: none;
-  	display: block;
-}
-
-.dropdown-categories a:hover {background-color: #1f1f1f;}
-
-.categories:hover .dropdown-categories {display: block; background-color: #353535;}
-
-.categories:hover #categorybtn {background-color: #1f1f1f;
-color: #ffc627;}
-
-.dropdown-occasions {
-	display: none;
-  	position: absolute;
-  	background-color: #353535;
-  	min-width: 250%;
-	top: 100%;
-}
-
-.dropdown-occasions a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-occasions a:hover {background-color: #1f1f1f;}
-
-.occasions:hover .dropdown-occasions {display: block; background-color: #353535;} 
-
-.dropdown-occasions a {
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-occasions a:hover {background-color: #1f1f1f;}
-
-.occasions:hover .dropdown-occasions {display: block; background-color: #353535;}
-
-.occasions:hover #occasionBtn {background-color: #1f1f1f;
-color: #ffc627;}
+/*order details table*/
 table{
 	width:100%;
 }
@@ -163,29 +21,35 @@ table tr:nth-child(odd) {
 table, th, td {
 margin: 5px;
 padding: 15px;
-  border: 1px solid black;
-  border-collapse: collapse;
+border: 1px solid black;
+border-collapse: collapse;
 }
+
+/*order section*/
 #order {
 	font-family: 'Montserrat', sans-serif;
 	clear: both;
-	background-color: rgba(246,246,246,1.00);
-	color: rgba(146,146,146,1.00);
+	background-color:white;
+	color: black;
 	padding-left: 30px;
 	padding-top: 57px;
 	padding-bottom: 57px;
 	padding-right: 30px;
 }
 
+/*heading of the page*/
 h2{
 	text-align: center;
 }
+
+/*main content section*/
 #mainWrapper {
 	width: 100%;
 }
 
+/*button for managing orders*/
 input.complete{
-	background-color: #007BB6;
+	background-color: #8C1D40;
     border: none;
     color: #FFF;
     cursor: pointer;
@@ -199,81 +63,3 @@ input.complete:hover
 {
 	background-color: green
 }
-/*Text fields for Signup/login */
-input.text
-{   width: 50%;
-	background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #000;
-    font-size: 14px;
-    height: 30px;
-    padding: 0 5px;
-}
-/* footer */
-#mainWrapper footer {
-	clear: both;
-	overflow: auto;
-	background-color: rgba(208,207,207,1.00);
-	font-family: source-sans-pro, sans-serif;
-	font-style: normal;
-	font-weight: 200;
-	line-height: 1.8;
-	padding-top: 22px;
-	padding-left: 22px;
-	text-align: center;
-	padding-bottom: 22px;
-	padding-right: 22px;
-}
-/*Each footer content */
-#mainWrapper footer div {
-	width: 27%;
-	float: left;
-	padding-left: 4%;
-	padding-right: 2%;
-	color: rgba(255,255,255,1.00);
-	text-align: justify;
-}
-/* Links in footer */
-footer div a {
-	color: rgba(146,146,146,1.00);
-	display: block;
-	text-decoration: none;
-	text-align: center;
-}
-/* main content region of page */
-#mainWrapper #content .mainContent {
-	overflow: hidden;
-	width: 95%;
-	margin-top: 40px;
-}
-/* Container for links in footer */
-#mainWrapper footer .footerlinks {
-	float: none;
-	width: 100%;
-	position: relative;
-	top: 17px;
-	clear: both;
-	text-align: center;
-	left: 0%;
-	padding-bottom: 19px;
-}
-/* Links in header */
-header #headerLinks a {
-	padding-left: 0px;
-	padding-right: 30px;
-}
-/* Offer- Text banner */
-#mainWrapper #offer {
-	padding-left: 22%;
-}
-}
-
-/* Links in header */
-header #headerLinks a {
-	text-align: center;
-	padding-right: 15px;
-	padding-left: 0px;
-}
-
-
