@@ -62,7 +62,7 @@
 <div id="footerBar"></div>
 <footer>
 	<div class="footerlinks">
-		<p><a href="#">About us</a></p>
+		<p><a href="about-us.jsp">About us</a></p>
 	</div>
 </footer>
 
