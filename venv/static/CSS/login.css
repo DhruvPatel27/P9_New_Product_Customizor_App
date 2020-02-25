@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* Global Styles */
+a:hover {
+	color: rgba(255,255,255,1.00);
+}
+
+/*section for signup/login*/
+#login {
+	font-family: 'Montserrat', sans-serif;
+	clear: both;
+	background-color:white;
+	color: rgba(146,146,146,1.00);
+	padding-left: 600px;
+	padding-top: 57px;
+	padding-bottom: 57px;
+	color:black;
+}
+
+/*div for vertical line between profile and order history*/
+#vertLine {
+	width: 0px;
+	border: 1px solid black;
+	height: 100px;
+	left: 435px;
+	float:center;
+	margin-left:200px;
+	background: black}
+
+/*order history*/
+#history{
+	padding-left: 50px;
+	margin-left: 50px;
+}
+
+/*main page content*/
+#mainWrapper {
+	width: 100%;
+	
+}
+
+/*heading for signup/login/logout*/
+h2{
+	align:center;
+}
+
+/*login/Signup button*/
+input.submit{
+	background-color: #8C1D40;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0px 20px !important;
+    height: 36px;
+    line-height: 1;
+	margin-left:80px;
+}
+
+/*logout button*/
+#logout{
+	margin-top: 40px;
+	margin-left: 60px;
+	
+}
+/*Text fields for Signup/login */
+input.text
+{   width: 30%;
+	background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #000;
+    font-size: 14px;
+    height: 30px;
+    padding: 0 5px;
+}
+
+/*label for signup/login*/
+.label {
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 32px;
+    margin: 0;
+    width: 125px;
+    padding-bottom: 2px;
+}
+
+/*for Profile Info table*/
+table{
+	margin-left: -180px;
+	padding: 15px;
+}
+
+
+
+
