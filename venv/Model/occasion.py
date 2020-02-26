@@ -1,16 +1,8 @@
-import pymysql.cursors
+import db_connection
 
- # Connect to the database
-connection = pymysql.connect(host='database-1.cmuesaxglt7o.us-west-1.rds.amazonaws.com',
-                            user='admin',
-                            password='adminpassword',
-                            db='db4',
-                            charset='utf8mb4',
-                            cursorclass=pymysql.cursors.DictCursor)
-
-
-#Get product by occasion
+#API to get products by occasion
 def get_occasion_details(occasion):
+    connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from PRODUCT where occasion like %s"

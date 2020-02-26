@@ -1,16 +1,8 @@
-import pymysql.cursors
+import db_connection
 
- # Connect to the database
-connection = pymysql.connect(host='database-1.cmuesaxglt7o.us-west-1.rds.amazonaws.com',
-                            user='admin',
-                            password='adminpassword',
-                            db='db4',
-                            charset='utf8mb4',
-                            cursorclass=pymysql.cursors.DictCursor)
-
-
-#Get product by category
+#API to get products by category
 def get_category_details(category):
+    connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from PRODUCT where `category`=%s"
@@ -21,4 +13,4 @@ def get_category_details(category):
 
     return result
 
-#print(get_category_details('Coaster'))
+print(get_category_details('Coaster'))
