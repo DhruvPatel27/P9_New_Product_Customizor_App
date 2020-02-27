@@ -7,26 +7,29 @@ app = Flask(__name__)
 @app.route('/products',methods=['GET'])
 def get_product_by_id():
     id_name = request.args.get('id')
-    return render_template('prodct-details.html',product = product.get_product_details(id_name))
+    result = product.get_product_details(id_name)
+    return render_template('product-details.html', product=result, len=len(result))
 
 @app.route('/products/all',methods=['GET'])
 def get_products():
     category = request.args.get('category')
     occasion = request.args.get('occasion')
     result = product.get_products()
+    url=""
     if category:
         result = product.get_products_by_category(category)
     elif occasion:
         result = product.get_products_by_occasion(occasion)
-    print(len(result))
-    return render_template('product-catalog.html',list = result)
+    return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
     
 
 @app.route('/')
 @app.route('/product-catalog.html')
 def render_static():
-    return render_template('product-catalog.html')
+    result = product.get_products()
+    url=""
+    return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 @app.route('/basic-layout.html')
 def render_basic_layout():
