@@ -1,7 +1,6 @@
 import Model.db_connection as db_connection
-
 #API to get all products from the database
-def get_occasion_details():
+def get_products():
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -10,6 +9,7 @@ def get_occasion_details():
             result = cursor.fetchall()
     finally:
         connection.close()
+        cursor.close()
 
     return result
     
@@ -23,10 +23,11 @@ def get_product_details(product_id):
             result = cursor.fetchone()
     finally:
         connection.close()
+        cursor.close()
     return result
 
 #API to get products by occasion
-def get_occasion_details(occasion):
+def get_products_by_occasion(occasion):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -35,11 +36,12 @@ def get_occasion_details(occasion):
             result = cursor.fetchall()
     finally:
         connection.close()
+        cursor.close()
 
     return result
 
 #API to get products by category
-def get_category_details(category):
+def get_products_by_category(category):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -48,5 +50,6 @@ def get_category_details(category):
             result = cursor.fetchall()
     finally:
         connection.close()
+        cursor.close()
 
     return result
