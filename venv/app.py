@@ -1,6 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import Model.product as product
+import sys
 
 app = Flask(__name__)
+
+@app.route('/products',methods=['GET'])
+def get_product_by_id():
+    print("nothing")
+    id_name = request.args.get('id')
+    return product.get_product_details(id_name)
 
 @app.route('/')
 @app.route('/product-catalog.html')

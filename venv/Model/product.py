@@ -1,4 +1,4 @@
-import db_connection
+import Model.db_connection as db_connection
 
 #API to get all products from the database
 def get_occasion_details():
