@@ -26,89 +26,22 @@
 <div id="content">
     <section class="mainContent">
         <div class="productRow"><!-- Each product row contains info of 3 elements -->
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/cherry-wood-phone.jpg"></div>
-                <p class="price">$50</p>
-                <p class="productContent">Cherry wood Iphone case</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/maple-wood-phone.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Maple wood Iphone case</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"> <!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/walnut-phone.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Walnut wood Iphone case</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
+            {%for i in range(0, len)%}
+
+                <article class="productInfo"><!-- Each individual product description -->
+                    <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/cherry-wood-phone.jpg"></div>
+                    <p class="price">{{product[i]['price']}}</p>
+                    <p class="productContent">{{product[i]['title']}}</p>
+                    {% set url = "http://127.0.0.1:5000/products?id=" ~ product[i]['Product_id']%}
+                    <form action={{url}} method="GET">
+                        <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
+                        <input class="buyButton" type="submit" value="Customize">
+                    </form>
+                </article>
+            {%endfor%}
+
         </div>
-        <div class="productRow"><!-- Each product row contains info of 3 elements -->
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/oak-wood-phone.jpg"></div>
-                <p class="price">$25</p>
-                <p class="productContent">Oak wood Iphone case</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/pine-wood-phone.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Pine wood Iphone case</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"> <!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/cherry-wood-placard.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Cherry wood Placard</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-        </div>
-        <div class="productRow"><!-- Each product row contains info of 3 elements -->
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/walnut-wood-placard.jpg"></div>
-                <p class="price">$25</p>
-                <p class="productContent">Walnut wood Placard</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"><!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/maple-wood-placard.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Maple wood Placard</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-            <article class="productInfo"> <!-- Each individual product description -->
-                <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/walnut-wood-desk.jpg">
-                </div>
-                <p class="price">$50</p>
-                <p class="productContent">Walnut wood Desk name plate</p>
-                <button class="buyButton" name="button" onclick="openPage('prodct-details.html')" type="button"
-                        value="Customize">Customize
-                </button>
-            </article>
-        </div>
+
     </section>
 </div>
 <div class="pages">
