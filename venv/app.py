@@ -8,7 +8,7 @@ app = Flask(__name__)
 def get_product_by_id():
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
-    return render_template('prodct-details.html', product=result, len=len(result))
+    return render_template('product-details.html', product=result, len=len(result))
 
 @app.route('/products/all',methods=['GET'])
 def get_products():
