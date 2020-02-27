@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request
 import Model.product as product
-import sys
 
 app = Flask(__name__)
 
