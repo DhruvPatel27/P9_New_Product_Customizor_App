@@ -6,9 +6,22 @@ app = Flask(__name__)
 
 @app.route('/products',methods=['GET'])
 def get_product_by_id():
-    print("nothing")
     id_name = request.args.get('id')
-    return product.get_product_details(id_name)
+    return render_template('prodct-details.html',product = product.get_product_details(id_name))
+
+@app.route('/products/all',methods=['GET'])
+def get_products():
+    category = request.args.get('category')
+    occasion = request.args.get('occasion')
+    result = product.get_products()
+    if category:
+        result = product.get_products_by_category(category)
+    elif occasion:
+        result = product.get_products_by_occasion(occasion)
+    print(len(result))
+    return render_template('product-catalog.html',list = result)
+
+    
 
 @app.route('/')
 @app.route('/product-catalog.html')
