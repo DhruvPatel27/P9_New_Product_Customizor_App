@@ -7,10 +7,8 @@ def get_occasion_details(occasion):
         with connection.cursor() as cursor:
             sql = "SELECT * from PRODUCT where occasion like %s"
             cursor.execute(sql, '%'+occasion+'%')
-            result = cursor.fetchone()
+            result = cursor.fetchall()
     finally:
         connection.close()
 
     return result
-
-#print(get_occasion_details('Valentine'))

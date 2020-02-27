@@ -7,10 +7,8 @@ def get_category_details(category):
         with connection.cursor() as cursor:
             sql = "SELECT * from PRODUCT where `category`=%s"
             cursor.execute(sql, category)
-            result = cursor.fetchone()
+            result = cursor.fetchall()
     finally:
         connection.close()
 
     return result
-
-print(get_category_details('Coaster'))
