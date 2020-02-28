@@ -6,15 +6,59 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Simple Theme</title>
     <link href="static/CSS/product-details.css" rel="stylesheet" type="text/css">
+    <link href="/static/CSS/basic-layout.css" rel="stylesheet" type="text/css">
+    <script>var __adobewebfontsappname__="dreamweaver"</script>
+    <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
+            type="text/javascript"></script>
     <script src="static/scripts/jquery.js"></script>
-    <script>
-    $(function(){
-      $("#basic-layout").load("basic-layout.html");
-    });
-
-
-    </script>
+    <script type="text/javascript">
+        function openPage(pageURL)
+            {
+            window.location.href = pageURL;
+            }
+   
+       </script>
 </head>
+<header>
+    <div id="mainWrapper">
+        <!-- This is the header content. It contains Logo and links -->
+		<div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
+            <!-- <img src="logoImage.png" alt="sample logo"> -->
+            <!-- Company Logo text -->
+        <div id="headerLinks">
+            <a href="Login.html" title="Login/Register">Login/Register</a>
+        </div>
+        <div id="filterBar">
+            <div class="home" onclick="openPage('product-catalog.html');">
+                <button id="homebtn">Home</button>
+            </div>
+            <div class="categories">
+                <button id="categorybtn" title="Category">Categories
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-categories">
+                    <a href="#">Phone cases</a>
+                    <a href="#">Placard</a>
+                    <a href="#">Desk Nameplate</a>
+                    <a href="#">Invitation Card</a>
+                    <a href="#">Coaster</a>
+                </div>
+            </div>
+            <div class="occasions">
+                <button id="occasionBtn" title="Occasion">Occasions
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-occasions">
+                    <a href="Occasion1.html">Christmas</a>
+                    <a href="Occasion1.html">Mother's Day/Father's Day</a>
+                    <a href="Occasion1.html">Graduation</a>
+                    <a href="Occasion1.html">Valentine's Day</a>
+                    <a href="Occasion1.html">Weddings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <body>
 <div id="basic-layout"></div>
@@ -25,7 +69,7 @@
                                      width="400"/></aside>
     <article class="right_article">
         <h3><strong>{{product['title']}}</strong></h3>
-        <h3><strong><h1>{{product['price']}}</h1></strong></h3>
+        <h3><strong><h1> ${{product['price']}}</h1></strong></h3>
         <p>{{product['description']}}</p>
 
         <h3>Select Wood type</h3>
