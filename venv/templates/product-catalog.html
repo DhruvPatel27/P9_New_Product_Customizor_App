@@ -29,8 +29,8 @@
             {%for i in range(0, len)%}
 
                 <article class="productInfo"><!-- Each individual product description -->
-                    <div><img alt="sample" class="productImage" src="static/images/Mobile Covers/cherry-wood-phone.jpg"></div>
-                    <p class="price">{{product[i]['price']}}</p>
+                    <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}"></div>
+                    <p class="price">${{product[i]['price']}}</p>
                     <p class="productContent">{{product[i]['title']}}</p>
                     {% set url = "http://127.0.0.1:5000/products?id=" ~ product[i]['Product_id']%}
                     <form action={{url}} method="GET">
