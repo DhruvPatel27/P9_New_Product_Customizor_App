@@ -63,3 +63,16 @@ VALUES ('Church', '');
 INSERT INTO `db4`.PRODUCT(title,description,price,quantity,category,customizable,image,model_id,occasion)
 VALUES ('Engraved Wood Coaster','Customize this stylish wood coaster with your favorite type of wood, a name or a message or a pattern.', '25', '50', 'Coaster', '1', '',null,'Christmas, Valentines Day, Graduation, Weddings, Mothers Day/Fathers Day');
 
+
+## Release notes:
+
+### Sprint 1:
+
+Delivered static UI for Home, product details, occasion, login, signup, order details and wood worker pages.
+
+### Sprint 2:
+
+1. Created a database for product details and linked the backend with the database. 
+2. Linked the frontend with backend to show data dynamically.
+3. Created masks for images.
+
