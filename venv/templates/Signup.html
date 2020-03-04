@@ -20,6 +20,8 @@
 <div id="basic-layout"></div>
 <div id="mainWrapper">
     <section id="login">
+        {% set url = request.url_root%}
+        {% set url_login = request.url_root ~"login"%}
         <!-- The offer section displays a banner text for promotions -->
         <h2>Create Account</h2>
         <div class="label">First Name:</div>
@@ -34,7 +36,7 @@
         <div><input class="text" name="password" type="password"><br/><br/></div>
         <div><input class="submit" type="submit" value="Signup"></div>
         <br/>
-        <div> Returning Customer? <a class="link" href="Login.html">Login</a></div>
+        <div> Returning Customer? <a class="link" href={{url_login}}>Login</a></div>
     </section>
 
     <div id="content"></div>

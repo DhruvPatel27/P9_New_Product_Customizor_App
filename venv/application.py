@@ -36,12 +36,15 @@ def login():
     if(user.login(request.form['username'], request.form['password']) == "success"):
         return get_products(),200
     else:
-        return render_template('Login.html'),401
+        return render_template('login.html'),401
 
-@application.route('/login',methods=['GET'])
+@application.route('/login')
 def load_login_page():
-    return render_template('Login.html'),200
+    return render_template('login.html'),200
     
+@application.route('/about')
+def render_about_us():
+    return render_template('about-us.html')
 
 @application.route('/basic-layout.html')
 def render_basic_layout():
@@ -55,17 +58,13 @@ def render_product_details():
 def render_logout():
     return render_template('logout.html')
 
-@application.route('/about-us.html')
-def render_about_us():
-    return render_template('about-us.html')
-
 @application.route('/Occasion1.html')
 def render_occasion():
     return render_template('Occasion1.html')
 
-@application.route('/Signup.html')
+@application.route('/signup')
 def render_signup():
-    return render_template('Signup.html')
+    return render_template('signup.html')
 
 @application.route('/woodworker.html')
 def render_woodworker():
