@@ -23,7 +23,10 @@
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
         <div id="headerLinks">
-            <a href="Login.html" title="Login/Register">Login/Register</a>
+            {% set url = request.url_root ~"login"%}
+            <form action={{url}} method="GET">
+                    <input type="submit" value="Login/SignUp">
+            </form>
         </div>
         <div id="filterBar">
             <div class="home" onclick="openPage('product-catalog.html');">
