@@ -1,6 +1,8 @@
 import Model.db_connection as db_connection
 
-def login(email,password):
+
+# API to check if email id and password matches
+def login(email, password):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -15,4 +17,18 @@ def login(email,password):
         return "success"
     else:
         return "error"
+    return result
+
+
+# API to fetch the user details
+def get_user_details(user_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * from USER where `ID`=%s"
+            cursor.execute(sql, user_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
     return result
