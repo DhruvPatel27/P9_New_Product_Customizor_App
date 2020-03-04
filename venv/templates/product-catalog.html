@@ -32,7 +32,7 @@
                     <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}"></div>
                     <p class="price">${{product[i]['price']}}</p>
                     <p class="productContent">{{product[i]['title']}}</p>
-                    {% set url = "http://127.0.0.1:5000/products?id=" ~ product[i]['Product_id']%}
+                    {% set url = request.base_url ~ "products?id=" ~ product[i]['Product_id']%}
                     <form action={{url}} method="GET">
                         <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
                         <input class="buyButton" type="submit" value="Customize">
