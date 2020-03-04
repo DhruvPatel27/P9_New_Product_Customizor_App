@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import Model.product as product
+import Model.user as user
 
 application = Flask(__name__)
 
@@ -21,14 +22,29 @@ def get_products():
         result = product.get_products_by_occasion(occasion)
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
-    
-
 @application.route('/')
-@application.route('/product-catalog.html')
 def render_static():
     result = product.get_products()
     url=""
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
+
+
+@application.route('/login',methods=['POST'])
+def login():
+    if not request.form or not 'username' in request.form or not 'password' in request.form:
+        return render_template('login.html'),400
+    if(user.login(request.form['username'], request.form['password']) == "success"):
+        return get_products(),200
+    else:
+        return render_template('login.html'),401
+
+@application.route('/login')
+def load_login_page():
+    return render_template('login.html'),200
+    
+@application.route('/about')
+def render_about_us():
+    return render_template('about-us.html')
 
 @application.route('/basic-layout.html')
 def render_basic_layout():
@@ -38,25 +54,17 @@ def render_basic_layout():
 def render_product_details():
     return render_template('prodct-details.html')
 
-@application.route('/Login.html')
-def render_login():
-    return render_template('Login.html')
-
 @application.route('/logout.html')
 def render_logout():
     return render_template('logout.html')
-
-@application.route('/about-us.html')
-def render_about_us():
-    return render_template('about-us.html')
 
 @application.route('/Occasion1.html')
 def render_occasion():
     return render_template('Occasion1.html')
 
-@application.route('/Signup.html')
+@application.route('/signup')
 def render_signup():
-    return render_template('Signup.html')
+    return render_template('signup.html')
 
 @application.route('/woodworker.html')
 def render_woodworker():

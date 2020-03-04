@@ -17,13 +17,18 @@
     </script>
 </head>
 <header>
+    {% set url = request.url_root%}
+     {%set url_login = url ~"login"%}
+    {%set url_about = url ~"about"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
 		<div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
         <div id="headerLinks">
-            <a href="Login.html" title="Login/Register">Login/Register</a>
+            <form action={{url_login}} method="GET">
+                    <input type="submit" value="Login/SignUp">
+            </form>
         </div>
         <div id="filterBar">
             <div class="home" onclick="openPage('product-catalog.html');">
@@ -65,7 +70,7 @@
 <div id="footerBar"></div>
 <footer>
     <div class="footerlinks">
-        <p><a href="about-us.html">About us</a></p>
+        <p><a href={{url_about}}>About us</a></p>
     </div>
 </footer>
 
