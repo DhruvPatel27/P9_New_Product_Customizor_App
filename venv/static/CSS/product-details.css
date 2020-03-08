@@ -228,40 +228,24 @@
 .footerBar{
 	display: none;
 }
-.oak {
-	background-image: url("../images/oak.jpg");
+.input-hidden {
+  position: absolute;
+  left: -9999px;
 }
-.cherry {
-	background-image: url("../images/cherry.jpg");
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #FFC627;
 }
-.maple {
-	background-image: url("../images/maple.jpg")
+input[type=radio] + label>img {
+  border: 1px #444;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
 }
-.walnut {
-	background-image: url("../images/walnut.jpg");
-}
-.pine {
-	background-image: url("../images/pine.jpg");
-}
-.bike {
-	background-image: url("../images/bike.jpg");
-	background-size: contain
-}
-.church {
-	background-image: url("../images/church.jpg");
-	background-size: contain
-}
-.ice_cream {
-	background-image: url("../images/ice_cream.jpg");
-	background-size: contain
-}
-.nyc {
-	background-image: url("../images/nyc.jpg");
-	background-size: contain
-}
-.space {
-	background-image: url("../images/space.jpg");
-	background-size: contain
+
+input[type=radio]:checked + label>img {
+  transform:
+
 }
 .buttons {
 	background-color: #8C1D40;
@@ -282,7 +266,7 @@
     display:inline-block;
 }
 .personal_message {
-  width: 100%;
+  width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;

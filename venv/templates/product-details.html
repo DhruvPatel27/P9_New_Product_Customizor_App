@@ -64,45 +64,73 @@
 <div id="basic-layout"></div>
 <section>
     <h2 class="noDisplay">Main Content</h2>
-    <aside class="left_article"><img alt="" class="placeholder" height="200"
+    <aside class="left_article"><img id="product_image" alt="" class="placeholder" height="200"
                                      src="data:image/png;base64,{{product['image'].decode('utf-8')}}"
                                      width="400"/></aside>
     <article class="right_article">
         <h3><strong>{{product['title']}}</strong></h3>
-        <h3><strong><h1> ${{product['price']}}</h1></strong></h3>
+        <strong><h1> ${{product['price']}}</h1></strong>
         <p>{{product['description']}}</p>
+        <form action="{{url}}" method="get">
+            <h3>Select Wood type</h3>
 
-        <h3>Select Wood type</h3>
-        <h3>
-            <button class="wood_select_buttons cherry" title="Cherry"></button>
-            <button class="wood_select_buttons oak" title="Oak"></button>
-            <button class="wood_select_buttons maple" title="Maple"></button>
-            <button class="wood_select_buttons pine" title="Pine"></button>
-            <button class="wood_select_buttons walnut" title="Walnut"></button>
-        </h3>
-        <h3>Enter personal message</h3>
-        <h3><input class="personal_message" placeholder="" type="text"></h3>
-        <h3>
-            <button class="buttons ">Add text</button>
-            <button class="buttons">Preview</button>
-        </h3>
-        <h3>Select image engraving</h3>
-        <h3>
-            <button class="design_select_buttons bike" title="Bikes"></button>
-            <button class="design_select_buttons church" title="Church"></button>
-            <button class="design_select_buttons ice_cream" title="Ice Cream"></button>
-            <button class="design_select_buttons nyc" title="New York City"></button>
-            <button class="design_select_buttons space" title="Space"></button>
-        </h3>
+            <input type="radio" name="wood_type" id="cherry" class="input-hidden" />
+            <label for="cherry">
+                <img src="../static/images/cherry.jpg" alt="Cherry" />
+            </label>
+            <input type="radio" name="wood_type" id="oak" class="input-hidden" />
+            <label for="oak">
+                <img src="../static/images/oak.jpg" alt="Oak" />
+            </label>
+            <input type="radio" name="wood_type" id="maple" class="input-hidden" />
+            <label for="maple">
+                <img src="../static/images/maple.jpg" alt="Maple" />
+            </label>
+            <input type="radio" name="wood_type" id="pine" class="input-hidden" />
+            <label for="pine">
+                <img src="../static/images/pine.jpg" alt="Pine" />
+            </label>
+            <input type="radio" name="wood_type" id="walnut" class="input-hidden" />
+            <label for="walnut">
+                <img src="../static/images/walnut.jpg" alt="Walnut" />
+            </label>
 
-        <h3><select class="quantity">
-            <option value="0">Select quantity</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+            <h3>Enter personal message</h3>
+            <input id="personal_message" class="personal_message" placeholder="Enter upto 50 characters" type="text" maxlength="50">
+
+            <h3>Select image engraving</h3>
+            <input type="radio" name="design_type" id="bikes" class="input-hidden" />
+            <label for="bikes">
+                <img src="../static/images/bike.jpg" alt="Bikes" />
+            </label>
+            <input type="radio" name="design_type" id="church" class="input-hidden" />
+            <label for="church">
+                <img src="../static/images/church.jpg" alt="Church" />
+            </label>
+            <input type="radio" name="design_type" id="ice_cream" class="input-hidden" />
+            <label for="ice_cream">
+                <img src="../static/images/ice_cream.jpg" alt="Ice Cream" />
+            </label>
+            <input type="radio" name="design_type" id="nyc" class="input-hidden" />
+            <label for="nyc">
+                <img src="../static/images/nyc.jpg" alt="New York City" />
+            </label>
+            <input type="radio" name="design_type" id="space" class="input-hidden" />
+            <label for="space">
+                <img src="../static/images/space.jpg" alt="Space" />
+            </label>
+        </form>
+
+        <h3><button class="buttons">Preview</button></h3>
+        <h3>
+            <select class="quantity">
+                <option value="0">Select quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             <button class="buttons"><strong>Add to Cart</strong></button>
         </h3>
     </article>
