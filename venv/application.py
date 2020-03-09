@@ -4,13 +4,13 @@ import Model.user as user
 
 application = Flask(__name__)
 
-@application.route('/products',methods=['GET'])
+@application.route('/products', methods=['GET'])
 def get_product_by_id():
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     return render_template('product-details.html', product=result, len=len(result))
 
-@application.route('/products/all',methods=['GET'])
+@application.route('/products/all', methods=['GET'])
 def get_products():
     category = request.args.get('category')
     occasion = request.args.get('occasion')
@@ -29,7 +29,7 @@ def render_static():
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 
-@application.route('/login',methods=['POST'])
+@application.route('/login', methods=['POST'])
 def login():
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
@@ -37,6 +37,12 @@ def login():
         return get_products(),200
     else:
         return render_template('login.html'),401
+
+@application.route('/user', methods=['GET'])
+def get_product_by_id():
+    id_name = request.args.get('id')
+    result = user.get_user_details(id_name)
+    return render_template('my-account.html', user=result, len=len(result))
 
 @application.route('/login')
 def load_login_page():
