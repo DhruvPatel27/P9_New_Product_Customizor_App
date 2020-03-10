@@ -20,16 +20,23 @@
     {% set url = request.url_root%}
      {%set url_login = url ~"login"%}
     {%set url_about = url ~"about"%}
+    {%set url_logout = url ~"logout"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
 		<div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
             <!-- <img src="logoImage.png" alt="sample logo"> -->
             <!-- Company Logo text -->
-        <div id="headerLinks">
-            <form action={{url_login}} method="GET">
-                    <input type="submit" value="Login/SignUp">
-            </form>
+            {% if session['user_name'] %}
+                <div class="headerLinks">
+                    <a>My Account</a>
+                    <a href={{url_logout}}>Logout</a>
+                </div>
+            {% endif %}
+            {% if not session['user_name'] %}
+        <div class="headerLinks">
+            <a href={{url_login}}>Login/SignUp</a>
         </div>
+        {% endif %}
         <div id="filterBar">
             <div class="home" onclick="openPage('product-catalog.html');">
                 <button id="homebtn">Home</button>
