@@ -24,7 +24,7 @@ header {
 	background-color: rgba(255,255,255,1.00);
 }
 /* div for Links in header */
-#headerLinks {
+.headerLinks {
 	float: left;
 	width: calc( 100% - 139px );
 	text-align: right;
@@ -33,7 +33,7 @@ header {
 	background-color: rgba(255,255,255,1.00);
 }
 /* Links in header */
-#headerLinks a {
+.headerLinks a {
 	text-decoration: none;
 	color: rgba(0,0,0,1.00);
 	padding-left: 66px;

@@ -1,16 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import Model.product as product
 import Model.user as user
 
 application = Flask(__name__)
 
-@application.route('/products',methods=['GET'])
+@application.route('/products', methods=['GET'])
 def get_product_by_id():
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     return render_template('product-details.html', product=result, len=len(result))
 
-@application.route('/products/all',methods=['GET'])
+@application.route('/products/all', methods=['GET'])
 def get_products():
     category = request.args.get('category')
     occasion = request.args.get('occasion')
@@ -29,14 +29,23 @@ def render_static():
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 
-@application.route('/login',methods=['POST'])
+@application.route('/login', methods=['POST'])
 def login():
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     if(user.login(request.form['username'], request.form['password']) == "success"):
-        return get_products(),200
+        url=""
+        session['user_name'] =  request.form['username']
+        result = product.get_products()
+        return render_template('product-catalog.html', product=result, len=len(result), url=url),200
     else:
         return render_template('login.html'),401
+
+# @application.route('/user', methods=['GET'])
+# def get_product_by_id():
+#     id_name = request.args.get('id')
+#     result = user.get_user_details(id_name)
+#     return render_template('my-account.html', user=result, len=len(result))
 
 @application.route('/login')
 def load_login_page():
@@ -54,9 +63,12 @@ def render_basic_layout():
 def render_product_details():
     return render_template('prodct-details.html')
 
-@application.route('/logout.html')
+@application.route('/logout')
 def render_logout():
-    return render_template('logout.html')
+    session.clear()
+    url=""
+    result = product.get_products()
+    return render_template('product-catalog.html', product=result, len=len(result), url=url),200
 
 @application.route('/Occasion1.html')
 def render_occasion():
@@ -71,5 +83,6 @@ def render_woodworker():
     return render_template('woodworker.html')
 
 if __name__ == '__main__':
+    application.secret_key = 'super secret key'
     application.debug = True
     application.run()
