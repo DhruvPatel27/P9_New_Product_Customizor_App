@@ -53,6 +53,7 @@ def login():
             orders = order.get_all_orders()
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         elif user_details['Role'] == "Admin":
+            orders = order.get_all_orders()
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         result = product.get_products()
         total_pages = (len(result) % 12) + 1
