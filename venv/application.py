@@ -69,6 +69,7 @@ def get_user_by_id():
     order_result = order.get_order_details_for_user(user_name)
     return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
 
+
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200
