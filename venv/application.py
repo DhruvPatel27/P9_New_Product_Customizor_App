@@ -41,11 +41,11 @@ def login():
     else:
         return render_template('login.html'),401
 
-# @application.route('/user', methods=['GET'])
-# def get_product_by_id():
-#     id_name = request.args.get('id')
-#     result = user.get_user_details(id_name)
-#     return render_template('my-account.html', user=result, len=len(result))
+@application.route('/account', methods=['GET'])
+def get_user_by_id():
+    user_name = session['user_name']
+    user_result = user.get_user_details(user_name)
+    return render_template('my-account.html', user=user_result, len=len(user_result))
 
 @application.route('/login')
 def load_login_page():

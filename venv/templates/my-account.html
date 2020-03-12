@@ -24,29 +24,43 @@
     <section id="login">
         <!-- The offer section displays a banner text for promotions -->
         <h2>Account Details</h2>
-        <table>
+        <table style="margin-left: -320px">
             <tr>
-                <td>
-                    <div class="label"><strong>Name</strong> <br/> ${{user['FirstName']}} ${{user['LastName']}}</div>
+                <td style="padding-left: 100px">
+                    <div class="label"><strong>Name</strong> <br/> {{user['FirstName']}} {{user['LastName']}}</div>
                 </td>
 
                 <td>
-                    <div id="vertLine"/>
+                    <div id="vertLine" style="margin-left: 200px"/>
                 </td>
-                <td>
-                    <div class="label" id="history"><b>Order History</b><br/></div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="label"><b>Email Address</b> <br/> ${{user['Email']}}</div>
-                </td>
-                <td>
-                    <div id="vertLine"/>
+                <td style="padding-left: 160px">
+                    <div class="label"><b>Email Address</b> <br/> {{user['Email']}}</div>
                 </td>
             </tr>
         </table>
-        <div id="logout"><input class="submit" type="submit" value="Logout"></div>
+
+
+        <h2>Order History</h2>
+                     <table style="margin-left: -400px">
+                    <tr>
+                        <th>Order ID</th>
+                        <th style="padding-left: 150px">Product</th>
+                        <th style="padding-left: 150px">Date</th>
+                        <th style="padding-left: 150px">Cost</th>
+                        <th style="padding-left: 150px">State</th>
+                    </tr>
+                    <tr>
+                        <td style="padding-left: 50px">1</td>
+                        <td style="padding-left: 150px; padding-top: 20px"><img src="../static/images/oak.jpg" alt="product" height="95" width="95"></td>
+                        <td style="padding-left: 150px">Feb 20</td>
+                        <td style="padding-left: 150px">$24.99</td>
+                        <td style="padding-left: 150px">In Progress</td>
+                    </tr>
+
+
+
+                    </table>
+
         <br/>
     </section>
     <div id="content"></div>
