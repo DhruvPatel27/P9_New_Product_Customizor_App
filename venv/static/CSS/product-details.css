@@ -232,22 +232,16 @@
   position: absolute;
   left: -9999px;
 }
-input[type=radio]:checked + label>img {
+input[type=radio]:checked + img {
   border: 1px solid #fff;
   box-shadow: 0 0 3px 3px #FFC627;
 }
-input[type=radio] + label>img {
+input[type=radio] + img {
   border: 1px #444;
   width: 50px;
   height: 50px;
   cursor: pointer;
-}
-
-input[type=radio]:checked + label>img {
-  transform:
-
-}
-.buttons {
+}uttons {
 	background-color: #8C1D40;
   	border: none;
   	color: white;
@@ -308,7 +302,7 @@ input[type=radio]:checked + label>img {
 .left_article {
 	width: 100%;
 	height: auto;
-	padding bottom: 75px;
+	padding_bottom: 75px;
 }
 .right_article {
 	width: 100%;
