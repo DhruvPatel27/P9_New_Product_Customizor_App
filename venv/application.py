@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session
 import itertools
 import Model.product as product
 import Model.user as user
+import Model.order as order
 
 application = Flask(__name__)
 
@@ -56,7 +57,8 @@ def login():
 def get_user_by_id():
     user_name = session['user_name']
     user_result = user.get_user_details(user_name)
-    return render_template('my-account.html', user=user_result, len=len(user_result))
+    order_result = order.get_order_details_for_user(user_name)
+    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
 
 @application.route('/login')
 def load_login_page():

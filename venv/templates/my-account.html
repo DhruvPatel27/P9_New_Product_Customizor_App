@@ -49,13 +49,15 @@
                         <th style="padding-left: 150px">Cost</th>
                         <th style="padding-left: 150px">State</th>
                     </tr>
+                         {%for i in range(0, order_len)%}
                     <tr>
                         <td style="padding-left: 50px">1</td>
-                        <td style="padding-left: 150px; padding-top: 20px"><img src="../static/images/oak.jpg" alt="product" height="95" width="95"></td>
-                        <td style="padding-left: 150px">Feb 20</td>
-                        <td style="padding-left: 150px">$24.99</td>
-                        <td style="padding-left: 150px">In Progress</td>
+                        <td style="padding-left: 150px; padding-top: 20px"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="95" width="95"></td>
+                        <td style="padding-left: 150px">{{order[i]['order_date']}}</td>
+                        <td style="padding-left: 150px">${{order[i]['total_cost']}}</td>
+                        <td style="padding-left: 150px">{{order[i]['state']}}</td>
                     </tr>
+                         {%endfor%}
 
 
 

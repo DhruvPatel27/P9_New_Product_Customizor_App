@@ -22,8 +22,8 @@ def get_order_details_for_user(user_name):
             sql1 = "SELECT `ID` from USER where `Email`=%s"
             cursor.execute(sql1, user_name)
             user_id = cursor.fetchone()
-            sql = "SELECT * from ORDER where `user_id`=%s"
-            cursor.execute(sql, user_id)
+            sql = "SELECT * from `ORDER` where `user_id`=%s"
+            cursor.execute(sql,user_id['ID'])
             result = cursor.fetchall()
     finally:
         connection.close()
