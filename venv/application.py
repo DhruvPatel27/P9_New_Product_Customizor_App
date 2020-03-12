@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session
 import itertools
 import Model.product as product
 import Model.user as user
+import Model.order as order
 
 application = Flask(__name__)
 
@@ -44,13 +45,21 @@ def render_static():
 def login():
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
-    if(user.login(request.form['username'], request.form['password']) == "success"):
+    user_details = user.login(request.form['username'], request.form['password'])
+    if(user_details):
         url=""
         session['user_name'] =  request.form['username']
+        if user_details['Role'] == "Carpenter":
+            orders = order.get_all_orders()
+            return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
+        elif user_details['Role'] == "Admin":
+            return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         result = product.get_products()
-        return render_template('product-catalog.html', product=result, len=len(result), url=url),200
+        total_pages = (len(result) % 12) + 1
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
+        
 
 # @application.route('/user', methods=['GET'])
 # def get_product_by_id():
@@ -79,7 +88,8 @@ def render_logout():
     session.clear()
     url=""
     result = product.get_products()
-    return render_template('product-catalog.html', product=result, len=len(result), url=url),200
+    total_pages = (len(result) % 12) + 1
+    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
 
 @application.route('/Occasion1.html')
 def render_occasion():

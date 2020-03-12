@@ -1,7 +1,7 @@
 import Model.db_connection as db_connection
 
 #API to get all orders from the database for woodworker
-def get_allorders():
+def get_all_orders():
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
