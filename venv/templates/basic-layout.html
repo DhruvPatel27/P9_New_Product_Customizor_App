@@ -21,6 +21,7 @@
      {%set url_login = url ~"login"%}
     {%set url_about = url ~"about"%}
     {%set url_logout = url ~"logout"%}
+    {%set url_account = url ~"account"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
 		<div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
@@ -28,7 +29,7 @@
             <!-- Company Logo text -->
             {% if session['user_name'] %}
                 <div class="headerLinks">
-                    <a>My Account</a>
+                    <a href={{url_account}}>My Account</a>
                     <a href={{url_logout}}>Logout</a>
                 </div>
             {% endif %}

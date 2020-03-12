@@ -21,12 +21,12 @@ def login(email, password):
 
 
 # API to fetch the user details
-def get_user_details(user_id):
+def get_user_details(user_name):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * from USER where `ID`=%s"
-            cursor.execute(sql, user_id)
+            sql = "SELECT * from USER where `Email`=%s"
+            cursor.execute(sql, user_name)
             result = cursor.fetchone()
     finally:
         connection.close()
