@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import itertools
 import Model.product as product
 import Model.user as user
 
@@ -32,11 +33,11 @@ def render_static():
 
     if(page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))
-        return render_template('product-catalog.html', product=result, url=url, total_pages=total_pages)
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages)
     else:
         page = int(page)
         result = result[12*(page-1):12*page]
-        return render_template('product-catalog.html', product=result, url=url, total_pages=total_pages)
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages)
 
 @application.route('/login',methods=['POST'])
 def login():
