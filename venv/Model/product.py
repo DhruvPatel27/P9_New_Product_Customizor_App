@@ -53,3 +53,17 @@ def get_products_by_category(category):
         cursor.close()
 
     return result
+
+#API to get product mask by Model id
+def get_products_mask(model_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * from MODAL where `ID`=%s"
+            cursor.execute(sql, model_id)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
