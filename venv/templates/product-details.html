@@ -16,8 +16,21 @@
             {
             window.location.href = pageURL;
             }
-   
+
        </script>
+    <script>
+        $(function () {
+            $('#preview').click(function() {
+                $.ajax({
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + document.getElementById('wood_type').value,
+                    success: function(data) {
+                        var image = "data:image/png;base64," + data['preview_image'].decode('utf-8');
+                        document.getElementById('product_image').src = image
+                    }
+                });
+            })
+        });
+    </script>
 </head>
 <header>
     <div id="mainWrapper">
@@ -73,25 +86,24 @@
         <p>{{product['description']}}</p>
         <form action="{{url}}" method="get">
             <h3>Select Wood type</h3>
-
-            <input type="radio" name="wood_type" id="cherry" class="input-hidden" />
-            <label for="cherry">
+            <label>
+                <input type="radio" id="wood_type" name="cherry" value="1" class="input-hidden" />
                 <img src="../static/images/cherry.jpg" alt="Cherry" />
             </label>
-            <input type="radio" name="wood_type" id="oak" class="input-hidden" />
-            <label for="oak">
+            <label>
+                <input type="radio" id="wood_type" name="oak" value="2" class="input-hidden" />
                 <img src="../static/images/oak.jpg" alt="Oak" />
             </label>
-            <input type="radio" name="wood_type" id="maple" class="input-hidden" />
-            <label for="maple">
+            <label>
+                <input type="radio" id="wood_type" name="maple" value="3" class="input-hidden" />
                 <img src="../static/images/maple.jpg" alt="Maple" />
             </label>
-            <input type="radio" name="wood_type" id="pine" class="input-hidden" />
-            <label for="pine">
+            <label>
+                <input type="radio" id="wood_type" name="pine" value="4" class="input-hidden" />
                 <img src="../static/images/pine.jpg" alt="Pine" />
             </label>
-            <input type="radio" name="wood_type" id="walnut" class="input-hidden" />
-            <label for="walnut">
+            <label>
+                <input type="radio" id="wood_type" name="walnut" value="5" class="input-hidden" />
                 <img src="../static/images/walnut.jpg" alt="Walnut" />
             </label>
 
@@ -99,29 +111,29 @@
             <input id="personal_message" class="personal_message" placeholder="Enter upto 50 characters" type="text" maxlength="50">
 
             <h3>Select image engraving</h3>
-            <input type="radio" name="design_type" id="bikes" class="input-hidden" />
-            <label for="bikes">
+            <label>
+                <input type="radio" id="design_type" name="bikes" value="1" class="input-hidden" />
                 <img src="../static/images/bike.jpg" alt="Bikes" />
             </label>
-            <input type="radio" name="design_type" id="church" class="input-hidden" />
-            <label for="church">
+            <label>
+                <input type="radio" id="design_type" name="church" value="2" class="input-hidden" />
                 <img src="../static/images/church.jpg" alt="Church" />
             </label>
-            <input type="radio" name="design_type" id="ice_cream" class="input-hidden" />
-            <label for="ice_cream">
+            <label>
+                <input type="radio" id="design_type" name="ice_cream" value="3" class="input-hidden" />
                 <img src="../static/images/ice_cream.jpg" alt="Ice Cream" />
             </label>
-            <input type="radio" name="design_type" id="nyc" class="input-hidden" />
-            <label for="nyc">
+            <label>
+                <input type="radio" id="design_type" name="nyc" value="4" class="input-hidden" />
                 <img src="../static/images/nyc.jpg" alt="New York City" />
             </label>
-            <input type="radio" name="design_type" id="space" class="input-hidden" />
-            <label for="space">
+            <label>
+                <input type="radio" id="design_type" name="space" value="5" class="input-hidden" />
                 <img src="../static/images/space.jpg" alt="Space" />
             </label>
         </form>
 
-        <h3><button class="buttons">Preview</button></h3>
+        <h3><button id="preview" class="buttons">Preview</button></h3>
         <h3>
             <select class="quantity">
                 <option value="0">Select quantity</option>
