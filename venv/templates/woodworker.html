@@ -35,7 +35,7 @@
             <tr>
                 <th>Orders #</th>
                 <th>Order Date</th>
-                <th>Customised Product Link</th>
+                <th>Customised Product Image</th>
                 <th>Action</th>
                 <th>Status</th>
             </tr>
@@ -48,7 +48,9 @@
                     {{orders[i]['order_date']}}
                 </td>
                 <td>
-                    {{orders[i]['customized_image']}}
+                    <img alt="" class="placeholder" height="200"
+                                     src="data:image/png;base64,{{orders[i]['customized_image'].decode('utf-8')}}"
+                                     width="400"/>
                 </td>
                 <td>
                     {{orders[i['state']]}}
