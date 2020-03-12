@@ -23,7 +23,7 @@ def get_order_details_for_user(user_name):
             cursor.execute(sql1, user_name)
             user_id = cursor.fetchone()
             sql = "SELECT * from `ORDER` where `user_id`=%s"
-            cursor.execute(sql, user_id['ID'])
+            cursor.execute(sql,user_id['ID'])
             result = cursor.fetchall()
     finally:
         connection.close()
