@@ -243,6 +243,7 @@ input[type=radio] + img {
   cursor: pointer;
 }
 button {
+
 	background-color: #8C1D40;
   	border: none;
   	color: white;
