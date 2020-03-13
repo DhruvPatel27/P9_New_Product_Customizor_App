@@ -60,7 +60,21 @@ def login():
         return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
-        
+
+@application.route('/signup', methods=['POST'])
+def signup():
+    if not request.form:
+        return render_template('signup.html'),400
+    else:
+        user_details = user.signup(request.form['lastname'], request.form['firstname'], request.form['emailid'], request.form['password'])
+        if(user_details):
+            url=""
+            result = product.get_products()
+            total_pages = (len(result) % 12) + 1
+            return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
+        else:
+            return render_template('signup.html'),401
+
 
 @application.route('/account', methods=['GET'])
 def get_user_by_id():
@@ -73,7 +87,11 @@ def get_user_by_id():
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200
-    
+
+@application.route('/signup')
+def render_signup():
+    return render_template('signup.html'),200
+
 @application.route('/about')
 def render_about_us():
     return render_template('about-us.html')
@@ -98,15 +116,13 @@ def render_logout():
 def render_occasion():
     return render_template('Occasion1.html')
 
-@application.route('/signup')
-def render_signup():
-    return render_template('signup.html')
-
 @application.route('/woodworker.html')
 def render_woodworker():
     return render_template('woodworker.html')
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'
+    print ("hello")
+    #print (user.signup('testl','testf','test@gmail.com','Password'))
     application.debug = True
     application.run()

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* Global Styles */
 a:hover {
-	color: rgba(255,255,255,1.00);
+	color: rgba(73, 4, 4);
 }
 
 /*section for signup/login*/
@@ -86,6 +86,10 @@ input.text
     padding-bottom: 2px;
 }
 
+/*for asterisk for input fields*/
+.required{
+	color: red;
+  }
 /*for Profile Info table*/
 table{
 	margin-left: -180px;
