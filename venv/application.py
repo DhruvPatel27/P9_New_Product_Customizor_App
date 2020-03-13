@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, jsonify
 import itertools
 import Model.product as product
 import Model.user as user
 import Model.order as order
+import Model.customization as preview
+import Model.wood as wood
 
 application = Flask(__name__)
 
@@ -105,6 +107,20 @@ def render_signup():
 @application.route('/woodworker.html')
 def render_woodworker():
     return render_template('woodworker.html')
+
+@application.route('/preview')
+def show_preview():
+    model_id = request.args.get('model_id')
+    wood_id = request.args.get('wood_id')
+    mask = product.get_products_mask(model_id)
+    wood_type = wood.get_wood(wood_id)
+
+    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
+
+    return jsonify({
+        "preview_image": preview_image.decode('utf-8')
+    })
+
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'

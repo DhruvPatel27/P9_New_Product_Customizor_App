@@ -241,7 +241,8 @@ input[type=radio] + img {
   width: 50px;
   height: 50px;
   cursor: pointer;
-}uttons {
+}
+button {
 	background-color: #8C1D40;
   	border: none;
   	color: white;

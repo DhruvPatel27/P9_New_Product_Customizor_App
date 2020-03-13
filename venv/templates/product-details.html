@@ -18,13 +18,14 @@
             }
 
        </script>
-    <script>
+    <script type="text/javascript">
         $(function () {
             $('#preview').click(function() {
+                var radio = $(".input-hidden:checked").val();
                 $.ajax({
-                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + document.getElementById('wood_type').value,
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + radio,
                     success: function(data) {
-                        var image = "data:image/png;base64," + data['preview_image'].decode('utf-8');
+                        var image = "data:image/png;base64," + data['preview_image'];
                         document.getElementById('product_image').src = image
                     }
                 });
@@ -84,26 +85,26 @@
         <h3><strong>{{product['title']}}</strong></h3>
         <strong><h1> ${{product['price']}}</h1></strong>
         <p>{{product['description']}}</p>
-        <form action="{{url}}" method="get">
+        <form id="preview_form" action="{{url}}" method="get">
             <h3>Select Wood type</h3>
             <label>
-                <input type="radio" id="wood_type" name="cherry" value="1" class="input-hidden" />
-                <img src="../static/images/cherry.jpg" alt="Cherry" />
+                <input type="radio" name="wood_type" value="1" class="input-hidden" />
+                <img src="../static/images/maple.jpg" alt="Cherry" />
             </label>
             <label>
-                <input type="radio" id="wood_type" name="oak" value="2" class="input-hidden" />
-                <img src="../static/images/oak.jpg" alt="Oak" />
+                <input type="radio" name="wood_type" value="2" class="input-hidden" />
+                <img src="../static/images/cherry.jpg" alt="Oak" />
             </label>
             <label>
-                <input type="radio" id="wood_type" name="maple" value="3" class="input-hidden" />
-                <img src="../static/images/maple.jpg" alt="Maple" />
+                <input type="radio" name="wood_type" value="3" class="input-hidden" />
+                <img src="../static/images/oak.jpg" alt="Maple" />
             </label>
             <label>
-                <input type="radio" id="wood_type" name="pine" value="4" class="input-hidden" />
+                <input type="radio" name="wood_type" value="4" class="input-hidden" />
                 <img src="../static/images/pine.jpg" alt="Pine" />
             </label>
             <label>
-                <input type="radio" id="wood_type" name="walnut" value="5" class="input-hidden" />
+                <input type="radio" name="wood_type" value="5" class="input-hidden" />
                 <img src="../static/images/walnut.jpg" alt="Walnut" />
             </label>
 
