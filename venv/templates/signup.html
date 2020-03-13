@@ -13,8 +13,19 @@
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
-
     </script>
+    <script>
+        function validate_password() {
+        if (document.getElementById("password").value ==document.getElementById("confirm_password").value) {
+            document.getElementById("message").style.color = 'green';
+            document.getElementById("message").innerHTML = "Password matched!";
+         } 
+        else {
+            document.getElementById("message").style.color = 'red';
+            document.getElementById("message").innerHTML = "Password doesn't match!";
+        }
+    }
+</script>
 </head>
 <body>
 <div id="basic-layout"></div>
@@ -22,26 +33,41 @@
     <section id="login">
         {% set url = request.url_root%}
         {% set url_login = request.url_root ~"login"%}
+        {% set url_signup = request.url_root ~"signup"%}
         <!-- The offer section displays a banner text for promotions -->
         <h2>Create Account</h2>
-        <div class="label">First Name:</div>
-        <div><input class="text" name="firstname" type="text"><br/></div>
-        <div class="label">Last Name:</div>
-        <div><input class="text" name="lastname" type="text"><br/></div>
-        <div class="label">Email ID:</div>
-        <div><input class="text" name="emailid" type="text"><br/></div>
-        <div class="label">Create Password:</div>
-        <div><input class="text" name="password" type="password"><br/><br/></div>
-        <div class="label">Confirm Password:</div>
-        <div><input class="text" name="password" type="password"><br/><br/></div>
-        <div><input class="submit" type="submit" value="Signup"></div>
-        <br/>
-        <div> Returning Customer? <a class="link" href={{url_login}}>Login</a></div>
+        <form name ="signupDetails" action={{url_signup}} method="POST">
+            <div class="label">First Name:</div><span class="required"> *</span>
+            <div>
+            <input class="text" name="firstname" type="text" required><br/>
+            </div>
+            <div class="label">Last Name:</div><span class="required"> *</span>
+            <div>
+            <input class="text" name="lastname" type="text" required><br/>
+            </div>
+            <div class="label">Email ID:</div><span class="required"> *</span>
+            <div>
+            <input class="text" name="emailid" type="text" required><br/>
+            </div>
+            <div class="label">Create Password:</div><span class="required"> *</span>
+            <div><input class="text" name="password" id="password" type="password" required><br/>
+            </div>
+            <div class="label">Confirm Password:</div><span class="required"> *</span>
+            <div>
+            <input class="text" name="confirm_password" id="confirm_password" type="password" required onkeyup="validate_password()"><span id="message"></span>
+            <br/>
+            </div>
+            <br/>
+            <div>
+            <input class="submit" type="submit" value="Signup">
+            </div>
+            <br/>
+        <div> Returning Customer? <a class="link" href={{url_login}}>Login</a>
+        </div>
+        </form>       
     </section>
 
     <div id="content"></div>
-
 </div>
 </body>
-
 </html>
