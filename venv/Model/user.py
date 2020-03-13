@@ -29,7 +29,7 @@ def get_user_details(user_name):
         cursor.close()
     return result
 
-# Method to check if email id and password matches
+# Method to add a guest user in the database
 def signup(lastname, firstname, email, password):
     connection = db_connection.get_connection()
     try:

@@ -122,7 +122,5 @@ def render_woodworker():
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'
-    print ("hello")
-    #print (user.signup('testl','testf','test@gmail.com','Password'))
     application.debug = True
     application.run()
