@@ -40,25 +40,33 @@
         </table>
 
 
-        <h2>Order History</h2>
-                     <table style="margin-left: -400px">
+        <h2 style="margin-left: 20px">Your Orders</h2>
+                    {% if order_len > 0%}
+                     <table style="margin-left: -500px">
                     <tr>
-                        <th>Order ID</th>
+                        <th style="padding-left: 20px">Order #</th>
                         <th style="padding-left: 150px">Product</th>
-                        <th style="padding-left: 150px">Date</th>
+                        <th style="padding-left: 150px">Order Date</th>
                         <th style="padding-left: 150px">Cost</th>
-                        <th style="padding-left: 150px">State</th>
+                        <th style="padding-left: 150px">Shipment Status</th>
                     </tr>
-                         {%for i in range(0, order_len)%}
+                         {%for i in range(order_len-1,-1,-1)%}
                     <tr>
-                        <td style="padding-left: 50px">1</td>
-                        <td style="padding-left: 150px; padding-top: 20px"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="95" width="95"></td>
+                        <td style="padding-left: 50px">{{order[i]['ID']}}</td>
+                        <td style="padding-left: 150px; padding-top: 20px"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
                         <td style="padding-left: 150px">{{order[i]['order_date']}}</td>
                         <td style="padding-left: 150px">${{order[i]['total_cost']}}</td>
-                        <td style="padding-left: 150px">{{order[i]['state']}}</td>
+                        {% if order[i]['state'] == 'completed' %}
+                            <td style="padding-left: 180px">Shipped</td>
+                        {% else %}
+                            <td style="padding-left: 170px">In Progress</td>
+                        {% endif %}
                     </tr>
                          {%endfor%}
                     </table>
+            {% else %}
+                 <div class="label" style="margin-left: 23px"><strong>No orders available</strong></div>
+        {% endif %}
 
         <br/>
     </section>
