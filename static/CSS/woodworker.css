@@ -1,4 +1,5 @@
 @charset "utf-8";
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,900,900italic,300italic,300,100italic,100);
 /* Global Styles */
 a:hover {
 	color: rgba(255,255,255,1.00);
@@ -28,7 +29,7 @@ text-align: center;
 
 /*order section*/
 #order {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Roboto';
 	clear: both;
 	background-color:white;
 	color: black;

@@ -34,17 +34,28 @@
     </script>
 </head>
 <header>
+    {% set url = request.url_root%}
+     {%set url_login = url ~"login"%}
+    {%set url_about = url ~"about"%}
+    {%set url_logout = url ~"logout"%}
+    {%set url_account = url ~"account"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
-        <div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
-            <!-- <img src="logoImage.png" alt="sample logo"> -->
-            <!-- Company Logo text -->
-        <div id="headerLinks">
-            <a href="Login.html" title="Login/Register">Login/Register</a>
+		<div id="logo"><a href={{url}}>Woods Engraved</a></div>
+            {% if session['user_name'] %}
+                <div class="headerLinks">
+                    <a href={{url_account}}>My Account</a>
+                    <a href={{url_logout}}>Logout</a>
+                </div>
+            {% endif %}
+            {% if not session['user_name'] %}
+        <div class="headerLinks">
+            <a href={{url_login}}>Login/SignUp</a>
         </div>
+        {% endif %}
         <div id="filterBar">
-            <div class="home" onclick="openPage('product-catalog.html');">
-                <button id="homebtn">Home</button>
+            <div class="home">
+                <a href={{url}} id="homebtn">Home</a>
             </div>
             <div class="categories">
                 <button id="categorybtn" title="Category">Categories
@@ -134,7 +145,7 @@
             </label>
         </form>
 
-        <h3><button id="preview" class="buttons">Preview</button></h3>
+        <h3><button class="buttons" id="preview" class="buttons">Preview</button></h3>
         <h3>
             <select class="quantity">
                 <option value="0">Select quantity</option>

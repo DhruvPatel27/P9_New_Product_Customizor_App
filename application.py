@@ -27,6 +27,7 @@ def get_products():
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 @application.route('/')
+@application.route('/product-catalog.html')
 def render_static():
     page = request.args.get('page')
     result = product.get_products()
