@@ -27,7 +27,6 @@ def get_products():
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 @application.route('/')
-@application.route('/product-catalog.html')
 def render_static():
     page = request.args.get('page')
     result = product.get_products()
@@ -101,6 +100,10 @@ def render_about_us():
 @application.route('/basic-layout.html')
 def render_basic_layout():
     return render_template('basic-layout.html')
+
+@application.route('/manage-products.html')
+def manage_prods():
+    return render_template('manage-products.html')
 
 @application.route('/prodct-details.html')
 def render_product_details():

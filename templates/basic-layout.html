@@ -9,9 +9,9 @@
     <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
             type="text/javascript"></script>
     <script type="text/javascript">
-	 function openPage(pageURL)
+	 function getCatalog(url)
 		 {
-		 window.location.href = pageURL;
+		 window.location.href = url;
 		 }
 
     </script>
@@ -24,9 +24,7 @@
     {%set url_account = url ~"account"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
-		<div onclick="openPage('product-catalog.html');" id="logo"> WoodsEngraved</div>
-            <!-- <img src="logoImage.png" alt="sample logo"> -->
-            <!-- Company Logo text -->
+		<div id="logo"><a href={{url}}>WoodsEngraved</a></div>
             {% if session['user_name'] %}
                 <div class="headerLinks">
                     <a href={{url_account}}>My Account</a>
@@ -39,8 +37,8 @@
         </div>
         {% endif %}
         <div id="filterBar">
-            <div class="home" onclick="openPage('product-catalog.html');">
-                <button id="homebtn">Home</button>
+            <div class="home">
+                <a href={{url}} id="homebtn">Home</a>
             </div>
             <div class="categories">
                 <button id="categorybtn" title="Category">Categories
