@@ -46,6 +46,7 @@ header {
 	align-items: center;
 	width: 100%;
 }
+
 #dropdown a{
 	color: white;	
 		
@@ -67,6 +68,10 @@ header {
   	position: relative;
   	display: inline-block;
 	left: 25%;
+}
+
+.home a{
+	text-decoration: none;
 }
 
 #categorybtn {
