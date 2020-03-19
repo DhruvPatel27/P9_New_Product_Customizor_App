@@ -98,26 +98,14 @@
         <p>{{product['description']}}</p>
         <form id="preview_form" action="{{url}}" method="get">
             <h3>Select Wood type</h3>
-            <label>
-                <input type="radio" name="wood_type" value="1" class="input-hidden" />
-                <img src="../static/images/maple.jpg" alt="Cherry" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="2" class="input-hidden" />
-                <img src="../static/images/cherry.jpg" alt="Oak" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="3" class="input-hidden" />
-                <img src="../static/images/oak.jpg" alt="Maple" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="4" class="input-hidden" />
-                <img src="../static/images/pine.jpg" alt="Pine" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="5" class="input-hidden" />
-                <img src="../static/images/walnut.jpg" alt="Walnut" />
-            </label>
+            {%for i in range(0, 5)%}
+
+                <label>
+                    <input type="radio" name="wood_type" value={{wood_type[i]['ID']}} class="input-hidden" />
+                    <img src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}" alt={{wood_type[i]['name']}} />
+                </label>
+
+            {%endfor%}
 
             <h3>Enter personal message</h3>
             <input id="personal_message" class="personal_message" placeholder="Enter upto 50 characters" type="text" maxlength="50">
@@ -145,7 +133,7 @@
             </label>
         </form>
 
-        <h3><button class="buttons" id="preview" class="buttons">Preview</button></h3>
+        <h3><button class="buttons" id="preview">Preview</button></h3>
         <h3>
             <select class="quantity">
                 <option value="0">Select quantity</option>
