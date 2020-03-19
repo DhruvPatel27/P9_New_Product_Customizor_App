@@ -86,6 +86,11 @@ def get_user_by_id():
     return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
 
 
+@application.route('/cart')
+def load_cart_page():
+    return render_template('cart.html'),200
+
+
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200

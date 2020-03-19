@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="static/CSS/cart-design.css" rel="stylesheet" type="text/css" />
+    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+    <script>var __adobewebfontsappname__="dreamweaver"</script>
+    <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
+            type="text/javascript"></script>
+    <script src="static/scripts/jquery.js"></script>
+    <script>
+	$(function(){
+	  $("#basic-layout").load("basic-layout.html");
+	});
+    </script>
+</head>
+<body>
+<div id="basic-layout"></div>
+
+<h1>Shopping Cart</h1>
+
+<div id="line"></div>
+
+<div class="shopping-cart">
+    <div class="product">
+        <div class="product-image">
+            <img src="../static/images/bike.jpg" height="100" width="100">
+        </div>
+        <div class="product-details">
+            <div class="product-title"><b>Dingo Dog Bones</b></div>
+            <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+        </div>
+        <div class="product-quantity">
+            <input type="number" value="1" min="1">
+        </div>
+        <div class="delete"><button class="deleteButton">-</button></div>
+        <div class="product-line-price">$25.98</div>
+  </div>
+</div>
+
+
+<div class="totals">
+    <div class="totals-item">
+        <label>Subtotal</label>
+        <div class="totals-value" id="cart-subtotal">$71.97</div>
+    </div>
+    <div class="totals-item">
+        <label>Shipping</label>
+        <div class="totals-value" id="cart-shipping">$5.00</div>
+    </div>
+    <div class="totals-item totals-item-total">
+        <label>Grand Total</label>
+        <div class="totals-value" id="cart-total">$90.57</div>
+    </div>
+</div>
+
+</body>
+</html>

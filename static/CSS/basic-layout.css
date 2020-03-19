@@ -24,10 +24,6 @@ header {
 	text-align: center;
 	background-color: rgba(255,255,255,1.00);
 }
-img {
-    height: 29px;
-    width: 139px;
-}
 /* div for Links in header */
 .headerLinks {
 	float: left;
