@@ -27,6 +27,7 @@ def get_products():
     return render_template('product-catalog.html', product=result, len=len(result), url=url)
 
 @application.route('/')
+@application.route('/product-catalog.html')
 def render_static():
     page = request.args.get('page')
     result = product.get_products()
@@ -83,6 +84,11 @@ def get_user_by_id():
     user_result = user.get_user_details(user_name)
     order_result = order.get_order_details_for_user(user_name)
     return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
+
+
+@application.route('/cart')
+def load_cart_page():
+    return render_template('cart.html'),200
 
 
 @application.route('/login')
