@@ -1,0 +1,100 @@
+h1{
+    font-weight: 100;
+    margin-left: 2%;
+}
+
+
+#line{
+    border-bottom: 1px solid #eee;
+}
+
+.shopping-cart{
+    padding-bottom: 10%;
+    border-bottom: 1px solid #eee;
+}
+
+.product-image{
+    float: left;
+    width: 15%;
+    margin-top: 15px;
+    margin-left: 5%;
+}
+
+.product-details{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    float: left;
+    width: 40%;
+    margin-top: 17px;
+}
+
+.product-quantity{
+    float: left;
+    margin-top: 55px;
+    padding-left: 7%;
+}
+
+input {
+      width: 40px;
+
+}
+
+.delete{
+    float: left;
+    width: 9%;
+    margin-top: 55px;
+    padding-left: 10%;
+}
+
+.deleteButton {
+    background: transparent;
+    border: 1px solid #f00;
+    border-radius: 2em;
+    color: #f00;
+    display: inline-block;
+    font-size: 12px;
+    height: 20px;
+    line-height: 2px;
+    margin: 0 0 8px;
+    padding: 0;
+    text-align: center;
+    width: 20px;
+}
+
+
+.product-line-price{
+    font-family: 'Montserrat', sans-serif;
+    float: right;
+    width: 4%;
+    text-align: right;
+    margin-top: 55px;
+    margin-right: 40px;
+}
+
+.totals{
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 80%;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.totals-item{
+    width: 75%;
+    margin-bottom: 10px;
+}
+
+.totals-value{
+    width: 11%;
+    padding-left: 5%;
+    float: right;
+}
+
+label{
+    color: #aaa;
+    width: 20%;
+}
+
+.totals-item totals-item-total{
+    width: 100%;
+    padding-bottom: 30px;
+}
