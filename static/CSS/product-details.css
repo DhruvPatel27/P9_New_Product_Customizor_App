@@ -10,6 +10,9 @@
 	padding-right: 0px;
 	padding-bottom: 0px;
 }
+footer{
+	top:1000%;
+}
 .row {
 	width: 100%;
 	margin-top: 0px;
@@ -131,7 +134,7 @@
 	float: left;
 	/*background-color: #F6F6F6;*/
 	margin-top:3%;
-	padding-botton: 75px;
+	padding-bottom: 75px;
 }
 .container . ul {
 	margin-top: 0px;
@@ -222,12 +225,6 @@
   	margin: 4px 2px;
   	cursor: pointer;
 }
-.footer{
-	display: none;
-}
-.footerBar{
-	display: none;
-}
 .input-hidden {
   position: absolute;
   left: -9999px;
@@ -243,7 +240,6 @@ input[type=radio] + img {
   cursor: pointer;
 }
 button {
-
 	background-color: #8C1D40;
   	border: none;
   	color: white;
@@ -251,7 +247,6 @@ button {
   	text-align: center;
   	text-decoration: none;
   	display: inline-block;
-  	margin: 4px 0px;
   	margin-right: 40px;
   	cursor: pointer;
 	font-size: 16px;
@@ -304,7 +299,7 @@ button {
 .left_article {
 	width: 100%;
 	height: auto;
-	padding_bottom: 75px;
+	padding-bottom: 75px;
 }
 .right_article {
 	width: 100%;
@@ -347,8 +342,6 @@ button {
 }
 .container .left_article h3 {
 	margin-top: 30px;
-}
-.container .secondary_header {
 }
 }
 
