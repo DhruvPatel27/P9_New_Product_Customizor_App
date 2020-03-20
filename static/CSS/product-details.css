@@ -11,7 +11,7 @@
 	padding-bottom: 0px;
 }
 footer{
-	top:1000%;
+	top:1000% !important;
 }
 .row {
 	width: 100%;
