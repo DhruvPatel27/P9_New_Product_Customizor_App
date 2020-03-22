@@ -88,7 +88,7 @@ def get_user_by_id():
 
 @application.route('/cart')
 def load_cart_page():
-    return render_template('cart.html'),200
+    return render_template('cart.html'), 200
 
 
 @application.route('/login')
