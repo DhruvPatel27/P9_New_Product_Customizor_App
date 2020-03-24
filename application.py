@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, jsonify
+from gevent.pywsgi import WSGIServer
 import itertools
 import Model.product as product
 import Model.user as user
@@ -13,7 +14,8 @@ def get_product_by_id():
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
-    return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type)
+    wood_design = wood.get_design()
+    return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type, wood_design=wood_design)
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -132,14 +134,15 @@ def render_occasion():
 def render_woodworker():
     return render_template('woodworker.html')
 
-@application.route('/preview')
+@application.route('/preview', methods=['GET'])
 def show_preview():
     model_id = request.args.get('model_id')
     wood_id = request.args.get('wood_id')
+    design_id = request.args.get('design_id')
     mask = product.get_products_mask(model_id)
     wood_type = wood.get_wood_by_id(wood_id)
-
-    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
+    design_type = wood.get_design_by_id(design_id)
+    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
 
     return jsonify({
         "preview_image": preview_image.decode('utf-8')

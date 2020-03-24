@@ -29,3 +29,32 @@ def get_wood():
         cursor.close()
 
     return result
+
+# API to get wood design images by id from the database
+def get_design_by_id(design_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * from WOOD_PATTERN where `ID`=%s"
+            cursor.execute(sql, design_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get all wood images from the database
+def get_design():
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * from WOOD_PATTERN"
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
