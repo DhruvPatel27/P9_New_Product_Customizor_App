@@ -67,3 +67,17 @@ def get_products_mask(model_id):
         cursor.close()
 
     return result
+
+
+# API to get the product title, description and price for the specified product id
+def get_product_details_cart(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT Product_id, title, description, price from PRODUCT where `Product_id`=%s"
+            cursor.execute(sql, product_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+    return result

@@ -89,10 +89,12 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    print(session)
     data = session['product']
-    print(data)
-    return render_template('cart.html'), 200
+    product_result = []
+    for i in data:
+        result = product.get_product_details_cart(i)
+        product_result.append(result)
+    return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
 
 
 @application.route('/addToCart', methods=['GET'])
