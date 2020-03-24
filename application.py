@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
 import Model.product as product
 import Model.user as user
@@ -10,9 +10,10 @@ application = Flask(__name__)
 
 @application.route('/products', methods=['GET'])
 def get_product_by_id():
+    url = ""
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
-    return render_template('product-details.html', product=result, len=len(result))
+    return render_template('product-details.html', product=result, len=len(result), url=url)
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -83,12 +84,28 @@ def get_user_by_id():
     user_name = session['user_name']
     user_result = user.get_user_details(user_name)
     order_result = order.get_order_details_for_user(user_name)
-    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
+    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result)), 200
 
 
-@application.route('/cart')
+@application.route('/cart', methods=['GET'])
 def load_cart_page():
-    return render_template('cart.html'),200
+    print(session)
+    data = session['product']
+    print(data)
+    return render_template('cart.html'), 200
+
+
+@application.route('/addToCart', methods=['GET'])
+def add_to_cart():
+    url = ""
+    id_name = request.args.get('id')
+    if 'product' not in session.keys():
+        session['product'] = [id_name]
+    else:
+        data = session['product']
+        data.append(id_name)
+        session['product'] = data
+    return redirect(url_for('render_static')), 200
 
 
 @application.route('/login')
