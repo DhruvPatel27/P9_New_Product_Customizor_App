@@ -102,15 +102,12 @@
 
         <h3><button class="buttons" id="preview" class="buttons">Preview</button></h3>
         <h3>
-            <select class="quantity">
-                <option value="0">Select quantity</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <a href="/addToCart?id={{request.args.get('id')}}"><button type="submit" class="buttons"><strong>Add to Cart</strong></button></a>
+            {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id'] %}
+            <form action={{url}} method="POST">
+                <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
+                <input type="number" name="quantity" value="1" min="1">
+                <button type="submit" class="buttons"><strong>Add to Cart</strong></button>
+            </form>
         </h3>
     </article>
 </section>
