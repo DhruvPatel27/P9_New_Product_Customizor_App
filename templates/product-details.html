@@ -10,20 +10,22 @@
     <script>var __adobewebfontsappname__="dreamweaver"</script>
     <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
             type="text/javascript"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="static/Scripts/jquery.js"></script>
     <script type="text/javascript">
         function openPage(pageURL)
             {
             window.location.href = pageURL;
             }
 
-       </script>
+
+    </script>
     <script type="text/javascript">
         $(function () {
             $('#preview').click(function() {
-                var radio = $(".input-hidden:checked").val();
+                var wood_id = $(".wood_type:checked").val();
+                var design_id = $(".design_type:checked").val();
                 $.ajax({
-                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + radio,
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id,
                     success: function(data) {
                         var image = "data:image/png;base64," + data['preview_image'];
                         document.getElementById('product_image').src = image
@@ -31,11 +33,13 @@
                 });
             })
         });
+
     </script>
     <script>
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
+
     </script>
 
 </head>
@@ -44,63 +48,44 @@
 <div id="basic-layout"></div>
 <section>
     <h2 class="noDisplay">Main Content</h2>
-    <aside class="left_article"><img id="product_image" alt="" class="placeholder" height="200"
+    <aside class="left_article"><img alt="" class="placeholder" height="200" id="product_image"
                                      src="data:image/png;base64,{{product['image'].decode('utf-8')}}"
                                      width="400"/></aside>
     <article class="right_article">
         <h3><strong>{{product['title']}}</strong></h3>
         <strong><h1> ${{product['price']}}</h1></strong>
         <p>{{product['description']}}</p>
-        <form id="preview_form" action="{{url}}" method="get">
+        <form action="{{url}}" id="preview_form" method="get">
             <h3>Select Wood type</h3>
-            <label>
-                <input type="radio" name="wood_type" value="1" class="input-hidden" />
-                <img src="../static/images/maple.jpg" alt="Cherry" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="2" class="input-hidden" />
-                <img src="../static/images/cherry.jpg" alt="Oak" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="3" class="input-hidden" />
-                <img src="../static/images/oak.jpg" alt="Maple" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="4" class="input-hidden" />
-                <img src="../static/images/pine.jpg" alt="Pine" />
-            </label>
-            <label>
-                <input type="radio" name="wood_type" value="5" class="input-hidden" />
-                <img src="../static/images/walnut.jpg" alt="Walnut" />
-            </label>
+            {%for i in range(0, 5)%}
 
-            <h3>Enter personal message</h3>
-            <input id="personal_message" class="personal_message" placeholder="Enter upto 50 characters" type="text" maxlength="50">
+            <label>
+                <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}}/>
+                <img alt={{wood_type[i]['name']}}/
+                     src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
+            </label>
+            {%endfor%}
 
             <h3>Select image engraving</h3>
+
+            {%for i in range(0, 5)%}
+
             <label>
-                <input type="radio" id="design_type" name="bikes" value="1" class="input-hidden" />
-                <img src="../static/images/bike.jpg" alt="Bikes" />
+                <input class="design_type" name="design_type" type="radio" value={{wood_design[i]['ID']}}/>
+                <img alt={{wood_design[i]['name']}}/
+                     src="data:image/png;base64,{{wood_design[i]['image'].decode('utf-8')}}">
             </label>
-            <label>
-                <input type="radio" id="design_type" name="church" value="2" class="input-hidden" />
-                <img src="../static/images/church.jpg" alt="Church" />
-            </label>
-            <label>
-                <input type="radio" id="design_type" name="ice_cream" value="3" class="input-hidden" />
-                <img src="../static/images/ice_cream.jpg" alt="Ice Cream" />
-            </label>
-            <label>
-                <input type="radio" id="design_type" name="nyc" value="4" class="input-hidden" />
-                <img src="../static/images/nyc.jpg" alt="New York City" />
-            </label>
-            <label>
-                <input type="radio" id="design_type" name="space" value="5" class="input-hidden" />
-                <img src="../static/images/space.jpg" alt="Space" />
-            </label>
+
+            {%endfor%}
+        <h3>Enter personal message</h3>
+        <input class="personal_message" id="personal_message" maxlength="20 " placeholder="Enter up to 20 characters" type="text">
+
         </form>
 
-        <h3><button class="buttons" id="preview" class="buttons">Preview</button></h3>
+        <h3>
+            <button class="buttons" id="preview">Preview</button>
+        </h3>
+
         <h3>
             {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id'] %}
             <form action={{url}} method="POST">

@@ -3,12 +3,14 @@ from io import BytesIO
 
 from PIL import Image
 
-def mask_loop(mask, wood_id):
+def mask_loop(mask, wood_type, design_type):
     mask = Image.open(BytesIO(base64.b64decode(mask.decode('utf-8'))))
     mask = mask.convert("RGBA")
-    wood = Image.open(BytesIO(base64.b64decode(wood_id.decode('utf-8'))))
+    wood = Image.open(BytesIO(base64.b64decode(wood_type.decode('utf-8'))))
     wood = wood.convert("RGBA")
-    files = [wood, mask]
+    design = Image.open(BytesIO(base64.b64decode(design_type.decode('utf-8'))))
+    design = design.convert("RGBA")
+    files = [wood, design, mask]
 
     result = Image.new("RGBA", (1000, 1000))
 
