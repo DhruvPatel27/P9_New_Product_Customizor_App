@@ -17,8 +17,12 @@
 </head>
 <body>
 <div id="basic-layout"></div>
-
+<div class="column_total">Total</div>
+<div class="column_remove">Remove</div>
+<div class="column_quantity">Quantity</div>
+<div class="column_price">Price</div>
 <h1>Shopping Cart</h1>
+
 
 <div id="line"></div>
 
@@ -32,9 +36,8 @@
             <div class="product-title"><b>{{product[i]['title']}}</b></div>
             <p class="product-description">{{product[i]['description']}}</p>
         </div>
-        <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
+        <div class="product-price">${{product[i]['price']}}</div>
+        <div class="product-quantity">{{product[i]['quantity']}}</div>
         <div class="delete"><button class="deleteButton">-</button></div>
         <div class="product-line-price">${{product[i]['price']}}</div>
   </div>

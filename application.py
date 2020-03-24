@@ -91,23 +91,26 @@ def get_user_by_id():
 def load_cart_page():
     data = session['product']
     product_result = []
-    for i in data:
-        result = product.get_product_details_cart(i)
-        product_result.append(result)
+    for dic in data:
+        for prod_id, q in dic.items():
+            result = product.get_product_details_cart(prod_id)
+            result['quantity'] = q
+            product_result.append(result)
     return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
 
 
-@application.route('/addToCart', methods=['GET'])
+@application.route('/addToCart', methods=['POST'])
 def add_to_cart():
     url = ""
     id_name = request.args.get('id')
+    quantity = request.form['quantity']
     if 'product' not in session.keys():
-        session['product'] = [id_name]
+        session['product'] = [{id_name: quantity}]
     else:
         data = session['product']
-        data.append(id_name)
+        data.append({id_name: quantity})
         session['product'] = data
-    return redirect(url_for('render_static')), 200
+    return redirect('/product-catalog.html'), 200
 
 
 @application.route('/login')
