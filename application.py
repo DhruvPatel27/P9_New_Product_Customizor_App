@@ -49,17 +49,21 @@ def login():
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     user_details = user.login(request.form['username'], request.form['password'])
+    print(user_details)
     if(user_details):
         url=""
         session['user_name'] =  request.form['username']
+        session['fname'] = user_details['FirstName']
+        session['lname'] = user_details['LastName']
         if user_details['Role'] == "Carpenter":
             orders = order.get_all_orders()
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         elif user_details['Role'] == "Admin":
             orders = order.get_all_orders()
-            return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
+            return render_template('woodworker.html',  orders=orders, len=len(orders), url=url),200
         result = product.get_products()
         total_pages = (len(result) % 12) + 1
+        
         return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
