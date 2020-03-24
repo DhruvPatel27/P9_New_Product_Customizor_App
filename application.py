@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, session, jsonify
-from gevent.pywsgi import WSGIServer
+from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
 import Model.product as product
 import Model.user as user
@@ -11,12 +10,12 @@ application = Flask(__name__)
 
 @application.route('/products', methods=['GET'])
 def get_product_by_id():
+    url = ""
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
     wood_design = wood.get_design()
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type, wood_design=wood_design)
-
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -52,17 +51,21 @@ def login():
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     user_details = user.login(request.form['username'], request.form['password'])
+    print(user_details)
     if(user_details):
         url=""
         session['user_name'] =  request.form['username']
+        session['fname'] = user_details['FirstName']
+        session['lname'] = user_details['LastName']
         if user_details['Role'] == "Carpenter":
             orders = order.get_all_orders()
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         elif user_details['Role'] == "Admin":
             orders = order.get_all_orders()
-            return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
+            return render_template('woodworker.html',  orders=orders, len=len(orders), url=url),200
         result = product.get_products()
         total_pages = (len(result) % 12) + 1
+        
         return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
@@ -87,12 +90,28 @@ def get_user_by_id():
     user_name = session['user_name']
     user_result = user.get_user_details(user_name)
     order_result = order.get_order_details_for_user(user_name)
-    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result))
+    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result)), 200
 
 
-@application.route('/cart')
+@application.route('/cart', methods=['GET'])
 def load_cart_page():
-    return render_template('cart.html'),200
+    print(session)
+    data = session['product']
+    print(data)
+    return render_template('cart.html'), 200
+
+
+@application.route('/addToCart', methods=['GET'])
+def add_to_cart():
+    url = ""
+    id_name = request.args.get('id')
+    if 'product' not in session.keys():
+        session['product'] = [id_name]
+    else:
+        data = session['product']
+        data.append(id_name)
+        session['product'] = data
+    return redirect(url_for('render_static')), 200
 
 
 @application.route('/login')

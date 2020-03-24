@@ -22,12 +22,14 @@
     {%set url_about = url ~"about"%}
     {%set url_logout = url ~"logout"%}
     {%set url_account = url ~"account"%}
+    {%set url_cart = url ~"cart"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
 		<div id="logo"><a href={{url}}>Woods Engraved</a></div>
             {% if session['user_name'] %}
                 <div class="headerLinks">
-                    <a href={{url_account}}>My Account</a>
+                    <a href={{url_account}}>{{session['fname']}} {{session['lname']}}</a>
+                    <a href={{url_cart}}>Cart</a>
                     <a href={{url_logout}}>Logout</a>
                 </div>
             {% endif %}
