@@ -14,6 +14,24 @@
 	  $("#basic-layout").load("basic-layout.html");
 	});
     </script>
+    <script>
+    function grabImage(id){
+        // Check browser support
+        console.log("HELLO");
+        if (typeof(Storage) !== "undefined") {
+            // Retrieve
+            var image = localStorage.getItem(id);
+            console.log(id);
+            document.getElementById(id).src = image;
+        }
+    }
+</script>
+    <script>
+        function changeID(id){
+            document.getElementById("final_image").id = id;
+            console.log(document.getElementById(id).id);
+        }
+    </script>
 </head>
 <body>
 <div id="basic-layout"></div>
@@ -30,8 +48,10 @@
 <div class="shopping-cart">
     <div class="product">
         <div class="product-image">
-            <img src="../static/images/bike.jpg" height="100" width="100">
+            <img id="final_image" class="placeholder" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}" height="100" width="100">
         </div>
+        <script>changeID({{product[i]['Product_id']}});</script>
+        <script>grabImage({{product[i]['Product_id']}});</script>
         <div class="product-details">
             <div class="product-title"><b>{{product[i]['title']}}</b></div>
             <p class="product-description">{{product[i]['description']}}</p>
@@ -58,6 +78,5 @@
         <div class="totals-value" id="cart-total">$90.57</div>
     </div>
 </div>
-
 </body>
 </html>
