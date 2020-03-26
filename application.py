@@ -95,14 +95,17 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    data = session['product']
-    product_result = []
-    for dic in data:
-        for prod_id, q in dic.items():
-            result = product.get_product_details_cart(prod_id)
-            result['quantity'] = q
-            product_result.append(result)
-    return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    if 'product' in session:
+        data = session['product']
+        product_result = []
+        for dic in data:
+            for prod_id, q in dic.items():
+                result = product.get_product_details_cart(prod_id)
+                result['quantity'] = q
+                product_result.append(result)
+        return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    else:
+        return render_template('cart.html', product_len=0), 200
 
 
 @application.route('/addToCart', methods=['POST'])
