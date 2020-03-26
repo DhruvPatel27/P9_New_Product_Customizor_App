@@ -45,9 +45,7 @@
         function saveImage(id) {
             var finalImage =  document.getElementById('product_image').src;
             if (typeof(Storage) !== "undefined") {
-                // Store
                 localStorage.setItem(id, finalImage);
-                console.log(id);
             }
          }
     </script>
