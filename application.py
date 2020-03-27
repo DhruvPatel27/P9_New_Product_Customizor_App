@@ -34,9 +34,10 @@ def get_products():
 @application.route('/product-catalog.html')
 def render_static():
     page = request.args.get('page')
+    
     result = product.get_products()
     url = ""
-    total_pages = (len(result) % 12) + 1
+    total_pages = (int)(len(result) / 12) + 1
 
     if(page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))
@@ -50,6 +51,7 @@ def render_static():
 @application.route('/login', methods=['POST'])
 def login():
     session.clear()
+    page = request.args.get('page')
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     user_details = user.login(request.form['username'], request.form['password'])
@@ -65,13 +67,21 @@ def login():
             orders = order.get_all_orders()
             return render_template('manage-products.html'),200
         result = product.get_products()
-        total_pages = (len(result) % 12) + 1
-        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
+        total_pages = (int)(len(result) / 12) + 1
+
+        if(page == None or int(page) == 1):
+            result = list(itertools.islice(result, 0, 12, 1))
+            return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
+        else:
+            page = int(page)
+            result = result[12*(page-1):12*page]
+            return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
 
 @application.route('/signup', methods=['POST'])
 def signup():
+    page = request.args.get('page')
     if not request.form:
         return render_template('signup.html'),400
     else:
@@ -79,8 +89,16 @@ def signup():
         if(user_details):
             url=""
             result = product.get_products()
-            total_pages = (len(result) % 12) + 1
-            return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
+
+            total_pages = (int)(len(result) / 12) + 1
+
+            if(page == None or int(page) == 1):
+                result = list(itertools.islice(result, 0, 12, 1))
+                return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200          
+            else:
+                page = int(page)
+                result = result[12*(page-1):12*page]
+                return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200            
         else:
             return render_template('signup.html'),401
 
@@ -111,6 +129,7 @@ def load_cart_page():
 @application.route('/addToCart', methods=['POST'])
 def add_to_cart():
     id_name = request.args.get('id')
+    page = request.args.get('page')
     quantity = request.form['quantity']
     if 'product' not in session.keys():
         session['product'] = [{id_name: quantity}]
@@ -120,11 +139,17 @@ def add_to_cart():
         session['product'] = data
     url = ""
     result = product.get_products()
-    total_pages = (len(result) % 12) + 1
-    return render_template('product-catalog.html', product=result, len=len(result), url=url,
+    total_pages = (int)(len(result) / 12) + 1
+    if(page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+        return render_template('product-catalog.html', product=result, len=len(result), url=url,
                            total_pages=total_pages), 200
-
-
+    else:
+        page = int(page)
+        result = result[12*(page-1):12*page]
+        return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                           total_pages=total_pages), 200
+    
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200
@@ -158,28 +183,54 @@ def render_product_details():
 @application.route('/logout')
 def render_logout():
     session.clear()
+    page = request.args.get('page')
     url=""
     result = product.get_products()
-    total_pages = (len(result) % 12) + 1
-    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages), 200
+
+    total_pages = (len(result) / 12) + 1
+    if(page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages), 200
+    else:
+        page = int(page)
+        result = result[12*(page-1):12*page]
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages), 200
 
 @application.route('/occasions', methods=['GET'])
 def render_occasion():
     occasion = str(request.args.get('occasion'))
+    page = request.args.get('page')
     result = product.get_products()
     url=""
     if occasion:
         result = product.get_products_by_occasion(occasion)
-    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=3, occasion=occasion)
+    
+    total_pages = (int)(len(result) / 12) + 1
+    if(page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages, occasion=occasion)
+    else:
+        page = int(page)
+        result = result[12*(page-1):12*page]
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages, occasion=occasion)
 
 @application.route('/categories', methods=['GET'])
 def render_category():
     category = str(request.args.get('category'))
+    page = request.args.get('page')
     result = product.get_products()
     url=""
     if category:
         result = product.get_products_by_category(category)
-    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=3)
+        
+    total_pages = (int)(len(result) / 12) + 1
+    if(page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages)
+    else:
+        page = int(page)
+        result = result[12*(page-1):12*page]
+        return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages)
 
 @application.route('/woodworker.html')
 def render_woodworker():
