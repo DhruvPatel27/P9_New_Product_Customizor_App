@@ -48,10 +48,10 @@ def render_static():
 
 @application.route('/login', methods=['POST'])
 def login():
+    session.clear()
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     user_details = user.login(request.form['username'], request.form['password'])
-    print(user_details)
     if(user_details):
         url=""
         session['user_name'] =  request.form['username']
@@ -110,7 +110,6 @@ def load_cart_page():
 
 @application.route('/addToCart', methods=['POST'])
 def add_to_cart():
-    url = ""
     id_name = request.args.get('id')
     quantity = request.form['quantity']
     if 'product' not in session.keys():
@@ -119,7 +118,11 @@ def add_to_cart():
         data = session['product']
         data.append({id_name: quantity})
         session['product'] = data
-    return redirect('/product-catalog.html'), 200
+    url = ""
+    result = product.get_products()
+    total_pages = (len(result) % 12) + 1
+    return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                           total_pages=total_pages), 200
 
 
 @application.route('/login')
