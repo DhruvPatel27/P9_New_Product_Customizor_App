@@ -27,13 +27,14 @@
 	position: relative;
 	overflow: auto;
 	color: rgba(146,146,146,1.00);
+	margin: auto;
 }
 /* Each product Information in the catalog */
 .mainContent .productRow .productInfo {
 	float: left;
-	padding-left: 5%;
-	padding-right: 5%;
-	width: 340px;
+	padding-bottom: 3%;
+	width: 435px;
+	margin: auto;
 }
 /* Prices of a products in catalog */
 .productRow .productInfo .price {
