@@ -63,10 +63,9 @@ def login():
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url),200
         elif user_details['Role'] == "Admin":
             orders = order.get_all_orders()
-            return render_template('woodworker.html',  orders=orders, len=len(orders), url=url),200
+            return render_template('manage-products.html'),200
         result = product.get_products()
         total_pages = (len(result) % 12) + 1
-        
         return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
     else:
         return render_template('login.html'),401
@@ -148,9 +147,9 @@ def manage_products():
         new_products = request.files['new-products']
         data_xls = pd.read_excel(new_products)
         product.add_products(data_xls)
-        return data_xls.to_html()
+        return render_template('success.html'),200
     
-    return render_template('manage-products.html')
+    return render_template('manage-products.html'),200
 
 @application.route('/prodct-details.html')
 def render_product_details():
