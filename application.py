@@ -144,6 +144,7 @@ def manage_products():
     if request.method == 'POST':
         new_products = request.files['new-products']
         data_xls = pd.read_excel(new_products)
+        product.add_products(data_xls)
         return data_xls.to_html()
     
     return render_template('manage-products.html')
