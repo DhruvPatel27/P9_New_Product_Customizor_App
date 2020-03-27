@@ -20,12 +20,50 @@
       $("#basic-layout").load("basic-layout.html");
     });
     </script>
-
+    <script>
+        function show_occasion(){
+            document.getElementById('{{ occasion }}').style.display = "inline";
+        }
+            
+    </script>
 </head>
-<body>
+<body onload="show_occasion()">
 <div id="basic-layout"></div>
 <div id="content">
     <section class="mainContent">
+        <div class="Introduction" id="Christmas" style="display:none">
+            <h1><i><center>Christmas 2020</center></i></h1>
+            <p> When you pass out Christmas gifts this year, make sure they're cherished for years to come by adding a
+                personal touch. Personalized Christmas gifts make the spirit of the season come to life and feel even
+                more special. We have something to get everyone in the festive mood!!</p>
+        </div>
+        <div class="Introduction" id="Graduation" style="display:none">
+	    <h1><i><center>Graduation</center></i></h1>
+        <p> A personalized graduation gift is the perfect way to congratulate your high school or college grad.
+            Make their graduation memorable with a unique personalized present.Say congrats with an engraved frame to 
+            display their tassel or a monogrammed keepsake box.Celebrate the excitement with a graduation gift 
+            they'll hang on to....
+            </p>
+      </div>
+      <div class="Introduction"id="Valentine" style="display:none">
+	    <h1><i><center>Valentines Day</center></i></h1>
+        <p> Personalised Valentine's gifts are an amazing way to say “I love you!” Customise your gift that tells 
+            your story.It's not everyday that you receive a personalized Valentine's Day gift—after all, February 14th
+            only comes once a year.Make the season of love extra magical by giving your special someone a customized 
+            present they can cherish for years to come...</p>
+      </div>
+      <div class="Introduction" id="Weddings" style="display:none">
+	    <h1><i><center>Weddings</center></i></h1>
+        <p> Help the bride and groom toast to their wedding date for years to come with the perfect customised gift that 
+            demonstrates their love.Honor the unique bond between newlyweds with personalized wedding gifts they'll 
+            cherish forever...</p>
+      </div>
+      <div class="Introduction" id="Mother" style="display:none">
+	    <h1><i><center>Mother's Day/Father's Day</center></i></h1>
+        <p> We believe that Mother's Day/Father's Day should be every day, but since it only comes once a year, give 
+            him/her a gift that will warm his/her heart. Personalised gifts are sure to make him/her day a happy one.
+            Show how much you appreciate what they do with one-of-a-kind gifts made just for them...</p>
+      </div>
         <div class="productRow"><!-- Each product row contains info of 3 elements -->
             {%for i in range(0, len)%}
 
