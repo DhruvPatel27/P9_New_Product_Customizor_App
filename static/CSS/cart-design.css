@@ -100,10 +100,11 @@ h1{
 }
 
 
-.product-line-price{
+k{
     font-family: 'Montserrat', sans-serif;
     float: left;
     margin-top: 55px;
+    width: 5%;
 }
 
 .totals{
@@ -132,4 +133,11 @@ label{
 .totals-item totals-item-total{
     width: 100%;
     padding-bottom: 30px;
+}
+
+#empty{
+    color: #aaa;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 20%;
 }

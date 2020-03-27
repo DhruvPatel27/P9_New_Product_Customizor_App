@@ -17,7 +17,7 @@
             window.location.href = pageURL;
             }
 
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     </script>
     <script type="text/javascript">
         $(function () {
@@ -41,7 +41,14 @@
     });
 
     </script>
-
+    <script>
+        function saveImage(id) {
+            var finalImage =  document.getElementById('product_image').src;
+            if (typeof(Storage) !== "undefined") {
+                localStorage.setItem(id, finalImage);
+            }
+         }
+    </script>
 </head>
 
 <body>
@@ -87,12 +94,14 @@
         </h3>
 
         <h3>
-            {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id'] %}
+            {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
-                <input type="number" name="quantity" class="quantity" value="1" min="1">
-                <button type="submit" class="buttons"><strong>Add to Cart</strong></button>
+                <input type="number" name="quantity" value="1" min="1">
+                <button type="submit" onclick="saveImage({{product['Product_id']}})" class="buttons"><strong>Add to Cart</strong></button>
             </form>
+            <p id="demo"></p>
+
         </h3>
     </article>
 </section>

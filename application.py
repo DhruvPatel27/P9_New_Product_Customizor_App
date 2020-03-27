@@ -5,6 +5,7 @@ import Model.user as user
 import Model.order as order
 import Model.customization as preview
 import Model.wood as wood
+import pandas as pd
 
 application = Flask(__name__)
 
@@ -48,10 +49,10 @@ def render_static():
 
 @application.route('/login', methods=['POST'])
 def login():
+    session.clear()
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'),400
     user_details = user.login(request.form['username'], request.form['password'])
-    print(user_details)
     if(user_details):
         url=""
         session['user_name'] =  request.form['username']
@@ -95,19 +96,21 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    data = session['product']
-    product_result = []
-    for dic in data:
-        for prod_id, q in dic.items():
-            result = product.get_product_details_cart(prod_id)
-            result['quantity'] = q
-            product_result.append(result)
-    return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    if 'product' in session:
+        data = session['product']
+        product_result = []
+        for dic in data:
+            for prod_id, q in dic.items():
+                result = product.get_product_details_cart(prod_id)
+                result['quantity'] = q
+                product_result.append(result)
+        return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    else:
+        return render_template('cart.html', product_len=0), 200
 
 
 @application.route('/addToCart', methods=['POST'])
 def add_to_cart():
-    url = ""
     id_name = request.args.get('id')
     quantity = request.form['quantity']
     if 'product' not in session.keys():
@@ -116,7 +119,11 @@ def add_to_cart():
         data = session['product']
         data.append({id_name: quantity})
         session['product'] = data
-    return redirect('/product-catalog.html'), 200
+    url = ""
+    result = product.get_products()
+    total_pages = (len(result) % 12) + 1
+    return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                           total_pages=total_pages), 200
 
 
 @application.route('/login')
@@ -134,9 +141,15 @@ def render_about_us():
 @application.route('/basic-layout.html')
 def render_basic_layout():
     return render_template('basic-layout.html')
-
-@application.route('/manage-products.html')
-def manage_prods():
+    
+@application.route('/manage-products', methods=['POST', 'GET'])
+def manage_products():
+    if request.method == 'POST':
+        new_products = request.files['new-products']
+        data_xls = pd.read_excel(new_products)
+        product.add_products(data_xls)
+        return data_xls.to_html()
+    
     return render_template('manage-products.html')
 
 @application.route('/prodct-details.html')

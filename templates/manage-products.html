@@ -23,8 +23,10 @@
 <div id="mainWrapper">
     <section id="upload_products">
         <h2>Add Products</h2><br/>
+        {% set url = request.url_root%}
+        {% set url_upload_products = request.url_root ~"manage-products"%}
         Please download the excel format to provide the new product details <a href='../static/add_products_template.xlsx' target="_blank">here</a>. <br/><br/>
-        <form name ="upload-products" action={{url_upload_products}} method="POST">
+        <form name ="upload-products" action={{url_upload_products}} method="POST" enctype="multipart/form-data">
             <label for="file-upload" class="custom-file-upload">
                 <i class="fa fa-cloud-upload"> Upload </i> 
             </label>
