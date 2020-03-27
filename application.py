@@ -154,9 +154,14 @@ def render_logout():
     total_pages = (len(result) % 12) + 1
     return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages), 200
 
-@application.route('/Occasion1.html')
+@application.route('/Occasion1.html', methods=['GET'])
 def render_occasion():
-    return render_template('Occasion1.html')
+    occasion = str(request.args.get('occasion'))
+    result = product.get_products()
+    url=""
+    if occasion:
+        result = product.get_products_by_occasion(occasion)
+    return render_template('Occasion1.html', product=result, len=len(result), url=url, total_pages=3, occasion=occasion)
 
 @application.route('/woodworker.html')
 def render_woodworker():
