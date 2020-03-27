@@ -5,6 +5,7 @@ import Model.user as user
 import Model.order as order
 import Model.customization as preview
 import Model.wood as wood
+import pandas as pd
 
 application = Flask(__name__)
 
@@ -140,9 +141,15 @@ def render_about_us():
 @application.route('/basic-layout.html')
 def render_basic_layout():
     return render_template('basic-layout.html')
-
-@application.route('/manage-products.html')
-def manage_prods():
+    
+@application.route('/manage-products', methods=['POST', 'GET'])
+def manage_products():
+    if request.method == 'POST':
+        new_products = request.files['new-products']
+        data_xls = pd.read_excel(new_products)
+        product.add_products(data_xls)
+        return data_xls.to_html()
+    
     return render_template('manage-products.html')
 
 @application.route('/prodct-details.html')
