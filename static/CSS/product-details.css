@@ -206,30 +206,6 @@ footer{
 	padding-top: 25px;
 	padding-bottom: 25px;
 }
-.wood_select_buttons {
-	height: 50px;
-	width: 50px;
-  	border: none;
-  	color: white;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	margin: 4px 2px;
-  	cursor: pointer;
-}
-.design_select_buttons {
-	height: 100px;
-	width: 100px;
-  	border: none;
-  	color: white;
-  	padding: 15px 32px;
-  	text-align: center;
-  	text-decoration: none;
-  	display: inline-block;
-  	margin: 4px 2px;
-  	cursor: pointer;
-}
 .wood_type {
   position: absolute;
   left: -9999px;

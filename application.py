@@ -67,7 +67,6 @@ def login():
             orders = order.get_all_orders()
             return render_template('manage-products.html'),200
         result = product.get_products()
-        
         total_pages = (int)(len(result) / 12) + 1
 
         if(page == None or int(page) == 1):
@@ -140,7 +139,6 @@ def add_to_cart():
         session['product'] = data
     url = ""
     result = product.get_products()
-
     total_pages = (int)(len(result) / 12) + 1
     if(page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))

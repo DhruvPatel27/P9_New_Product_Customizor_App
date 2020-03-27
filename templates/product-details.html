@@ -17,7 +17,7 @@
             window.location.href = pageURL;
             }
 
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     </script>
     <script type="text/javascript">
         $(function () {
@@ -45,9 +45,7 @@
         function saveImage(id) {
             var finalImage =  document.getElementById('product_image').src;
             if (typeof(Storage) !== "undefined") {
-                // Store
                 localStorage.setItem(id, finalImage);
-                console.log(id);
             }
          }
     </script>
