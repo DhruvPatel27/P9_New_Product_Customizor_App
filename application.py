@@ -163,6 +163,15 @@ def render_occasion():
         result = product.get_products_by_occasion(occasion)
     return render_template('Occasion1.html', product=result, len=len(result), url=url, total_pages=3, occasion=occasion)
 
+@application.route('/Category.html', methods=['GET'])
+def render_category():
+    category = str(request.args.get('category'))
+    result = product.get_products()
+    url=""
+    if category:
+        result = product.get_products_by_category(category)
+    return render_template('Category.html', product=result, len=len(result), url=url, total_pages=3)
+
 @application.route('/woodworker.html')
 def render_woodworker():
     return render_template('woodworker.html')
