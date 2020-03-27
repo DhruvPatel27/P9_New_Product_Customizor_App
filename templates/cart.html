@@ -14,36 +14,73 @@
 	  $("#basic-layout").load("basic-layout.html");
 	});
     </script>
+    <script>
+    function grabImage(id){
+        if (typeof(Storage) !== "undefined") {
+            var image = localStorage.getItem(id);
+            document.getElementById("final_image").id = id;
+            document.getElementById(id).src = image;
+        }
+    }
+</script>
+    <script>
+        function calculateTotal(id, price, quantity){
+            var total = price * quantity;
+            document.getElementById("product-line-price").id = "price"+id;
+            document.getElementById("price"+id).value = total;
+            document.getElementById("price"+id).innerHTML = "$"+(total).toFixed(2);
+        }
+    </script>
+    <script>
+        var subTotal = 0;
+        function calculateSubTotal(id){
+            subTotal = subTotal + document.getElementById("price"+id).value;
+        }
+        function displaySubTotal(){
+            document.getElementById("cart-subtotal").innerHTML = "$"+subTotal.toFixed(2);
+            document.getElementById("cart-total").innerHTML = "$"+(5.00 + subTotal).toFixed(2);
+        }
+    </script>
 </head>
 <body>
-<div id="basic-layout"></div>
 
+<div id="basic-layout"></div>
+{% if product_len > 0%}
+<div class="column_total">Total</div>
+<div class="column_remove">Remove</div>
+<div class="column_quantity">Quantity</div>
+<div class="column_price">Price</div>
+{% endif %}
 <h1>Shopping Cart</h1>
 
-<div id="line"></div>
 
+<div id="line"></div>
+{% if product_len > 0%}
+{%for i in range(0, product_len)%}
 <div class="shopping-cart">
     <div class="product">
         <div class="product-image">
-            <img src="../static/images/bike.jpg" height="100" width="100">
+            <img id="final_image" class="placeholder" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}" height="100" width="100">
         </div>
+        <script>grabImage({{product[i]['Product_id']}});</script>
         <div class="product-details">
-            <div class="product-title"><b>Dingo Dog Bones</b></div>
-            <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+            <div class="product-title"><b>{{product[i]['title']}}</b></div>
+            <p class="product-description">{{product[i]['description']}}</p>
         </div>
-        <div class="product-quantity">
-            <input type="number" value="1" min="1">
-        </div>
+        <div class="product-price">${{product[i]['price']}}</div>
+        <div class="product-quantity">{{product[i]['quantity']}}</div>
         <div class="delete"><button class="deleteButton">-</button></div>
-        <div class="product-line-price">$25.98</div>
+        <k id="product-line-price"></k>
+        <script>calculateTotal({{product[i]['Product_id']}}, {{product[i]['price']}}, {{product[i]['quantity']}})</script>
+        <script>calculateSubTotal({{product[i]['Product_id']}})</script>
   </div>
 </div>
-
+{%endfor%}
 
 <div class="totals">
     <div class="totals-item">
         <label>Subtotal</label>
-        <div class="totals-value" id="cart-subtotal">$71.97</div>
+        <div class="totals-value" id="cart-subtotal"></div>
     </div>
     <div class="totals-item">
         <label>Shipping</label>
@@ -51,9 +88,12 @@
     </div>
     <div class="totals-item totals-item-total">
         <label>Grand Total</label>
-        <div class="totals-value" id="cart-total">$90.57</div>
+        <div class="totals-value" id="cart-total"></div>
     </div>
+    <script>displaySubTotal()</script>
 </div>
-
+{%else%}
+<h2 id="empty">Cart Empty</h2>
+{% endif %}
 </body>
 </html>

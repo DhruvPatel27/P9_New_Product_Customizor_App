@@ -43,7 +43,6 @@ header {
 /* categories and occasions bar */
 #filterBar{
 	background-color: #353535;
-	height: 85px;
 	align-items: center;
 	width: 100%;
 }

@@ -230,7 +230,11 @@ footer{
   	margin: 4px 2px;
   	cursor: pointer;
 }
-.input-hidden {
+.wood_type {
+  position: absolute;
+  left: -9999px;
+}
+.design_type {
   position: absolute;
   left: -9999px;
 }

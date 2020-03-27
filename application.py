@@ -14,7 +14,9 @@ def get_product_by_id():
     url = ""
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
-    return render_template('product-details.html', product=result, len=len(result), url=url)
+    wood_type = wood.get_wood()
+    wood_design = wood.get_design()
+    return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type, wood_design=wood_design)
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -94,23 +96,31 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    print(session)
-    data = session['product']
-    print(data)
-    return render_template('cart.html'), 200
+    if 'product' in session:
+        data = session['product']
+        product_result = []
+        for dic in data:
+            for prod_id, q in dic.items():
+                result = product.get_product_details_cart(prod_id)
+                result['quantity'] = q
+                product_result.append(result)
+        return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    else:
+        return render_template('cart.html', product_len=0), 200
 
 
-@application.route('/addToCart', methods=['GET'])
+@application.route('/addToCart', methods=['POST'])
 def add_to_cart():
     url = ""
     id_name = request.args.get('id')
+    quantity = request.form['quantity']
     if 'product' not in session.keys():
-        session['product'] = [id_name]
+        session['product'] = [{id_name: quantity}]
     else:
         data = session['product']
-        data.append(id_name)
+        data.append({id_name: quantity})
         session['product'] = data
-    return redirect(url_for('render_static')), 200
+    return redirect('/product-catalog.html'), 200
 
 
 @application.route('/login')
@@ -148,7 +158,7 @@ def render_logout():
     url=""
     result = product.get_products()
     total_pages = (len(result) % 12) + 1
-    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages),200
+    return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages), 200
 
 @application.route('/Occasion1.html')
 def render_occasion():
@@ -158,14 +168,15 @@ def render_occasion():
 def render_woodworker():
     return render_template('woodworker.html')
 
-@application.route('/preview')
+@application.route('/preview', methods=['GET'])
 def show_preview():
     model_id = request.args.get('model_id')
     wood_id = request.args.get('wood_id')
+    design_id = request.args.get('design_id')
     mask = product.get_products_mask(model_id)
-    wood_type = wood.get_wood(wood_id)
-
-    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
+    wood_type = wood.get_wood_by_id(wood_id)
+    design_type = wood.get_design_by_id(design_id)
+    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
 
     return jsonify({
         "preview_image": preview_image.decode('utf-8')

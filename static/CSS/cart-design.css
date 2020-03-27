@@ -1,8 +1,43 @@
 h1{
     font-weight: 100;
     margin-left: 2%;
+    width: 14%;
 }
 
+.column_details{
+
+    float: left;
+    width: 5%;
+    padding-left: 30px;
+}
+
+.column_price{
+    color: #aaa;
+    float: right;
+    margin-right: 100px;
+    margin-top: 60px;
+}
+
+.column_quantity{
+    color: #aaa;
+    float: right;
+    margin-right: 70px;
+    margin-top: 60px;
+}
+
+.column_remove{
+    color: #aaa;
+    float: right;
+    margin-right: 50px;
+    margin-top: 60px;
+}
+
+.column_total{
+    color: #aaa;
+    float: right;
+    margin-right: 50px;
+    margin-top: 60px;
+}
 
 #line{
     border-bottom: 1px solid #eee;
@@ -28,22 +63,25 @@ h1{
     margin-top: 17px;
 }
 
-.product-quantity{
+.product-price {
+    font-family: 'Montserrat', sans-serif;
     float: left;
     margin-top: 55px;
     padding-left: 7%;
 }
 
-input {
-      width: 40px;
-
+.product-quantity{
+    font-family: 'Montserrat', sans-serif;
+    float: left;
+    margin-top: 55px;
+    padding-left: 8%;
 }
 
 .delete{
     float: left;
-    width: 9%;
+    width: 6%;
     margin-top: 55px;
-    padding-left: 10%;
+    padding-left: 8%;
 }
 
 .deleteButton {
@@ -62,13 +100,11 @@ input {
 }
 
 
-.product-line-price{
+k{
     font-family: 'Montserrat', sans-serif;
-    float: right;
-    width: 4%;
-    text-align: right;
+    float: left;
     margin-top: 55px;
-    margin-right: 40px;
+    width: 5%;
 }
 
 .totals{
@@ -97,4 +133,11 @@ label{
 .totals-item totals-item-total{
     width: 100%;
     padding-bottom: 30px;
+}
+
+#empty{
+    color: #aaa;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 20%;
 }
