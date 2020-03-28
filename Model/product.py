@@ -92,25 +92,22 @@ def add_products(data_xls):
         with connection.cursor() as cursor:
             sql = "INSERT INTO PRODUCT(`Product_id`,`title`,`description`,`price`,`category`,`customizable`,`occasion`,`image`,`model_id`) VALUES(DEFAULT,%s,%s,%s,%s,%s,%s,%s,%s)"
             for i,row in data_xls.iterrows():
-                if i==1:
-                    img1 = "No File"
-                    img2 = "No file"
-                    img3 = "No File"
-                    with open(tuple(row)[6], "rb") as image_file:
-                        img1 = utils.image_encoding(image_file)
-                    with open(tuple(row)[7], "rb") as image_file:
-                        img2 = utils.image_encoding(image_file)
-                    with open(tuple(row)[8], "rb") as image_file:
-                        img3 = utils.image_encoding(image_file)
-                    if img1 == "No File":
-                        Exception("Please specify correct path")
-                    del[]
-                    row['product_image'] = img1
-                    modal_id = add_modal(img3, img2)
-                    product = tuple(row[:7],) + (modal_id,)
-                    print(product)
-                    cursor.execute(sql, product)
-                    connection.commit()
+                img1 = "No File"
+                img2 = "No file"
+                img3 = "No File"
+                with open(tuple(row)[6], "rb") as image_file:
+                    img1 = utils.image_encoding(image_file)
+                with open(tuple(row)[7], "rb") as image_file:
+                    img2 = utils.image_encoding(image_file)
+                with open(tuple(row)[8], "rb") as image_file:
+                    img3 = utils.image_encoding(image_file)
+                if img1 == "No File":
+                    Exception("Please specify correct path")
+                row['product_image'] = img1
+                modal_id = add_modal(img3, img2)
+                product = tuple(row[:7],) + (modal_id,)
+                cursor.execute(sql, product)
+                connection.commit()
     finally:
         connection.close()
         cursor.close()
