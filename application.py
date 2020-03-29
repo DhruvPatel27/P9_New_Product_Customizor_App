@@ -149,7 +149,11 @@ def add_to_cart():
         result = result[12*(page-1):12*page]
         return render_template('product-catalog.html', product=result, len=len(result), url=url,
                            total_pages=total_pages), 200
-    
+
+@application.route('/checkoutSuccess')
+def load_checkout_success():
+    return render_template('checkout-success.html'), 200
+
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200
