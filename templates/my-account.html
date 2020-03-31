@@ -57,17 +57,17 @@
                 <td align="center" style="padding-left: 9%"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
                 <td align="center" style="padding-left: 9%">{{order[i]['order_date']}}</td>
                 <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
-                <td align="center" style="padding-left: 10%">${{order[i]['total_cost']}}</td>
+                <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>
                 {% if order[i]['state'] == 'Recieved' %}
-                <td align="center" style="padding-left: 10%">Order Received</td>
+                <td align="center" style="padding-left: 9%">Order Received</td>
                 {% elif order[i]['state'] == 'CutWood' %}
-                <td align="center" style="padding-left: 10%">Wood is cut</td>
+                <td align="center" style="padding-left: 9%">Wood is cut</td>
                 {% elif order[i]['state'] == 'Engraved' %}
-                <td align="center" style="padding-left: 10%">Finished Engraving</td>
+                <td align="center" style="padding-left: 9%">Finished Engraving</td>
                 {% elif order[i]['state'] == 'Finish' %}
-                <td align="center" style="padding-left: 10%">Ready to ship</td>
+                <td align="center" style="padding-left: 9%">Ready to ship</td>
                 {% elif order[i]['state'] == 'Ship' %}
-                <td align="center" style="padding-left: 10%">Shipped</td>
+                <td align="center" style="padding-left: 9%">Shipped</td>
                 {% endif %}
             </tr>
             {%endfor%}
