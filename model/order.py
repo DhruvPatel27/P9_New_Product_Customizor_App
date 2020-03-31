@@ -1,4 +1,4 @@
-import Model.db_connection as db_connection
+import model.db_connection as db_connection
 
 #API to get all orders from the database for woodworker
 def get_all_orders():

@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
-import Model.product as product
-import Model.user as user
-import Model.order as order
-import Model.customization as preview
-import Model.wood as wood
+import model.product as product
+import model.user as user
+import model.order as order
+import model.customization as preview
+import model.wood as wood
 import pandas as pd
 
 application = Flask(__name__)
@@ -286,11 +286,15 @@ def show_preview():
     model_id = request.args.get('model_id')
     wood_id = request.args.get('wood_id')
     design_id = request.args.get('design_id')
+
     mask = product.get_products_mask(model_id)
     wood_type = wood.get_wood_by_id(wood_id)
-    design_type = wood.get_design_by_id(design_id)
-    preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
 
+    if(design_id != 'undefined'):
+        design_type = wood.get_design_by_id(design_id)
+        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
+    else:
+        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
     return jsonify({
         "preview_image": preview_image.decode('utf-8')
     })
