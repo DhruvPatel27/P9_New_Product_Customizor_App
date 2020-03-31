@@ -24,6 +24,7 @@
             $('#preview').click(function() {
                 var wood_id = $(".wood_type:checked").val();
                 var design_id = $(".design_type:checked").val();
+
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id,
                     success: function(data) {
@@ -64,15 +65,16 @@
         <p>{{product['description']}}</p>
         <form action="{{url}}" id="preview_form" method="get">
             <h3>Select Wood type</h3>
+
             {%for i in range(0, 5)%}
 
             <label>
-                <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}}/>
+                <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}} required/>
                 <img alt={{wood_type[i]['name']}}/
                      src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
             </label>
             {%endfor%}
-
+                <span id="wood_type_message"></span>
             <h3>Select image engraving</h3>
 
             {%for i in range(0, 5)%}
@@ -90,7 +92,7 @@
         </form>
 
         <h3>
-            <button class="buttons" id="preview">Preview</button>
+            <button type="submit" class="buttons" id="preview">Preview</button>
         </h3>
 
         <h3>
