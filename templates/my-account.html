@@ -21,56 +21,62 @@
 <body>
 <div id="basic-layout"></div>
 <div id="mainWrapper">
-    <section id="login">
+    <section id="account">
         <!-- The offer section displays a banner text for promotions -->
-        <h2>Account Details</h2>
-        <table style="margin-left: -320px">
+        <h2 align="center">Account Details</h2>
+        <table id="profile" align="center">
             <tr>
-                <td style="padding-left: 100px">
-                    <div class="label"><strong>Name</strong> <br/> {{user['FirstName']}} {{user['LastName']}}</div>
+                <td id="name-td">
+                    <div class="name"><strong>Name</strong> <br/> {{user['FirstName']}} {{user['LastName']}}</div>
                 </td>
 
                 <td>
-                    <div id="vertLine" style="margin-left: 200px"/>
+                    <div id="vertLine"/>
                 </td>
-                <td style="padding-left: 160px">
-                    <div class="label"><b>Email Address</b> <br/> {{user['Email']}}</div>
+                <td  id="email-td">
+                    <div class="email"><b>Email Address</b> <br/> {{user['Email']}}</div>
                 </td>
             </tr>
         </table>
 
 
-        <h2 style="margin-left: 20px">Your Orders</h2>
-                    {% if order_len > 0%}
-                     <table style="margin-left: -500px">
-                    <tr>
-                        <th style="padding-left: 20px">Order #</th>
-                        <th style="padding-left: 150px">Product</th>
-                        <th style="padding-left: 150px">Order Date</th>
-                        <th style="padding-left: 150px">Cost</th>
-                        <th style="padding-left: 150px">Shipment Status</th>
-                    </tr>
-                         {%for i in range(order_len-1,-1,-1)%}
-                    <tr>
-                        <td style="padding-left: 50px">{{order[i]['ID']}}</td>
-                        <td style="padding-left: 150px; padding-top: 20px"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
-                        <td style="padding-left: 150px">{{order[i]['order_date']}}</td>
-                        <td style="padding-left: 150px">${{order[i]['total_cost']}}</td>
-                        {% if order[i]['state'] == 'completed' %}
-                            <td style="padding-left: 180px">Shipped</td>
-                        {% else %}
-                            <td style="padding-left: 170px">In Progress</td>
-                        {% endif %}
-                    </tr>
-                         {%endfor%}
-                    </table>
-            {% else %}
-                 <div class="label" style="margin-left: 23px"><strong>No orders available</strong></div>
+        <h2 align="center">Your Orders</h2>
+        {% if order_len > 0%}
+        <table id="orders" align="center">
+            <tr>
+                <th align="center">Order #</th>
+                <th align="center" style="padding-left: 8%">Product</th>
+                <th align="center" style="padding-left: 8%">Order Date</th>
+                <th align="center" style="padding-left: 8%">Quantity</th>
+                <th align="center" style="padding-left: 8%">Cost</th>
+                <th align="center" style="padding-left: 8%">Shipment Status</th>
+            </tr>
+            {%for i in range(order_len-1,-1,-1)%}
+            <tr>
+                <td align="center">{{order[i]['ID']}}</td>
+                <td align="center" style="padding-left: 9%"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
+                <td align="center" style="padding-left: 9%">{{order[i]['order_date']}}</td>
+                <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
+                <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>
+                {% if order[i]['state'] == 'Recieved' %}
+                <td align="center" style="padding-left: 9%">Order Received</td>
+                {% elif order[i]['state'] == 'CutWood' %}
+                <td align="center" style="padding-left: 9%">Wood is cut</td>
+                {% elif order[i]['state'] == 'Engraved' %}
+                <td align="center" style="padding-left: 9%">Finished Engraving</td>
+                {% elif order[i]['state'] == 'Finish' %}
+                <td align="center" style="padding-left: 9%">Ready to ship</td>
+                {% elif order[i]['state'] == 'Ship' %}
+                <td align="center" style="padding-left: 9%">Shipped</td>
+                {% endif %}
+            </tr>
+            {%endfor%}
+        </table>
+        {% else %}
+        <div class="label" style="margin-left: 23px"><strong>No orders available</strong></div>
         {% endif %}
-
         <br/>
     </section>
-    <div id="content"></div>
 </div>
 </body>
 </html>

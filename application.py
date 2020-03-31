@@ -113,7 +113,7 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    if 'product' in session:
+    if 'product' in session or len(session['product']) > 0:
         data = session['product']
         product_result = []
         for dic in data:
@@ -124,6 +124,47 @@ def load_cart_page():
         return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
     else:
         return render_template('cart.html', product_len=0), 200
+
+# @application.route('/preview', methods=['GET'])
+# def show_preview():
+#     model_id = request.args.get('model_id')
+#     wood_id = request.args.get('wood_id')
+#     design_id = request.args.get('design_id')
+#     mask = product.get_products_mask(model_id)
+#     wood_type = wood.get_wood_by_id(wood_id)
+#     design_type = wood.get_design_by_id(design_id)
+#     preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
+#
+#     return jsonify({
+#         "preview_image": preview_image.decode('utf-8')
+#     })
+
+@application.route('/removeCart', methods=['GET'])
+def remove_from_cart_page():
+    id_name = request.args.get('id')
+    # if 'product' in session or len(session['product']) > 0:
+    if 'product' in session:
+        data = session['product']
+        product_result = []
+        for i in range(len(data)):
+            if id_name in data[i]:
+                del data[i]
+                break
+        session['product'] = data
+        product_result = []
+        for dic in data:
+            for prod_id, q in dic.items():
+                result = product.get_product_details_cart(prod_id)
+                res_img = result['image']
+                result['image'] = res_img.decode('utf-8')
+                result['quantity'] = q
+                product_result.append(result)
+        return jsonify({
+            "product": product_result
+            })
+    #     return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    # else:
+    #     return render_template('cart.html', product_len=0), 200
 
 
 @application.route('/addToCart', methods=['POST'])
@@ -149,7 +190,11 @@ def add_to_cart():
         result = result[12*(page-1):12*page]
         return render_template('product-catalog.html', product=result, len=len(result), url=url,
                            total_pages=total_pages), 200
-    
+
+@application.route('/checkoutSuccess')
+def load_checkout_success():
+    return render_template('checkout-success.html'), 200
+
 @application.route('/login')
 def load_login_page():
     return render_template('login.html'),200
