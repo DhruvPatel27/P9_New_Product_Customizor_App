@@ -14,16 +14,14 @@ def get_all_orders():
         
     return result
 
+
 # API to get the order details for the specified user id
 def get_order_details_for_user(user_name):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql1 = "SELECT `ID` from USER where `Email`=%s"
-            cursor.execute(sql1, user_name)
-            user_id = cursor.fetchone()
-            sql = "SELECT * from `ORDER` where `user_id`=%s"
-            cursor.execute(sql,user_id['ID'])
+            sql = "SELECT * from `ORDER` where `email_id`=%s"
+            cursor.execute(sql, user_name)
             result = cursor.fetchall()
     finally:
         connection.close()
