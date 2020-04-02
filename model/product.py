@@ -129,3 +129,17 @@ def add_modal(modal_mask, image_mask):
     finally:
         connection.close()
         cursor.close()
+
+# Remove product from DB
+def remove(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "DELETE FROM PRODUCT where `Product_id`=%s"
+            cursor.execute(sql, product_id)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()

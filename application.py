@@ -318,6 +318,11 @@ def show_preview():
         "preview_image": preview_image.decode('utf-8')
     })
 
+@application.route('/remove', methods=['GET'])
+def remove_product():
+    product_id = request.args.get('productid')
+    product.remove(product_id)
+    return render_template("success.html")
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'

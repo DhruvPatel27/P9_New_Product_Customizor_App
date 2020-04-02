@@ -44,17 +44,18 @@
                     <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}"></div>
                     <p class="price">${{product[i]['price']}}</p>
                     <p class="productContent">{{product[i]['title']}}</p>
-                    {% set url = request.url_root ~ "products?id=" ~ product[i]['Product_id']%}
+                    {% set urldelete = request.url_root ~ "remove"%}
+                    {% set urledit = request.url_root ~ "edit"%}
                     <div style="display: inline-flex;">
                     <div style="padding-right:40px;">
-                    <form action={{url}} method="GET">
-                        <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
+                    <form name ="editform" action={{urledit}} method="GET">
+                        <input type="hidden" id="productid" name="productid" value={{product[i]['Product_id']}}>
                         <input class="buyButton" style="width:100px;" type="submit" value="Edit">
                     </form>
                 </div>
                 <div>
-                    <form action={{url}} method="GET">
-                        <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
+                    <form name="deleteform" action={{urldelete}} method="POST">
+                        <input type="hidden" id="productid" name="productid" value={{product[i]['Product_id']}}>
                         <input class="buyButton" style="width:100px;" type="submit" value="Remove">
                     </form>
                 </div>
