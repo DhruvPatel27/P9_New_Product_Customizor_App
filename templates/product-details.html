@@ -60,6 +60,8 @@
                 var wood_id = $(".wood_type:checked").val();
                 design_id = $(".design_type:checked").val();
                 var message = $(".personal_message").val();
+                document.getElementById('wood').value = wood_id;
+                document.getElementById('pattern').value = design_id;
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
@@ -73,6 +75,8 @@
     <script>
         function saveImage() {
             document.getElementById('image').value =  document.getElementById('product_image').src;
+            document.getElementById('wood').value = $(".wood_type:checked").val();
+            document.getElementById('pattern').value = $(".design_type:checked").val();
          }
     </script>
     <script>
@@ -135,7 +139,6 @@
         <h3>
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
-                <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
                 <input type="hidden" id="image" name="image" value="0">
                 <input type="hidden" id="wood" name="wood" value="0">
                 <input type="hidden" id="pattern" name="pattern" value="0">

@@ -21,6 +21,9 @@
     });
     </script>
     <script>
+        function getId(id){
+            document.getElementById('prod_id').value = id;
+        }
         var subTotal = 0;
         var total = 0;
         function calculateSubTotal(totalCost){
@@ -39,7 +42,9 @@
     </script>
     <script>
     var num = 0;
-    function removeProduct(id){
+    function removeProduct(){
+        var id = document.getElementById('prod_id').value;
+        console.log(id);
             $.ajax({
 	        type : "GET",
 	        url : '/remove-cart?id=' + id,
@@ -78,8 +83,9 @@
         </div>
         <div class="product-price">${{product[i]['price']}}</div>
         <div class="product-quantity">{{product[i]['quantity']}}</div>
-        <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
-        <div class="delete"><button onclick="removeProduct({{product[i]['Product_id']}})" class="deleteButton">-</button></div>
+        <input type="hidden" id="prod_id" name="prod_id" value="0">
+        <script>getId({{product[i]['product_id']}})</script>
+        <div class="delete"><button onclick="removeProduct()" class="deleteButton">-</button></div>
         <k id="product-line-price">${{product[i]['total_cost']}}</k>
         <script>calculateSubTotal({{product[i]['total_cost']}})</script>
   </div>
