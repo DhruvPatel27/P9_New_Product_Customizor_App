@@ -161,7 +161,7 @@ def remove_from_cart_page():
                 result = product.get_product_details_cart(prod_id)
                 res_img = result['image']
                 result['image'] = res_img.decode('utf-8')
-                result['quantity'] = q
+                result['quantity'] = q[0]
                 product_result.append(result)
         return jsonify({
             "product": product_result
