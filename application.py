@@ -24,6 +24,7 @@ def get_product_by_id():
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
                            wood_design=wood_design, default_image=default_image)
 
+
 @application.route('/products/all', methods=['GET'])
 def get_products():
     category = request.args.get('category')
