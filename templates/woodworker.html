@@ -36,7 +36,6 @@
                 <th>Orders #</th>
                 <th>Order Date</th>
                 <th>Customised Product Image</th>
-                <th>Action</th>
                 <th>Status</th>
             </tr>
             {%for i in range(0, len)%}
@@ -52,10 +51,7 @@
                                      src="data:image/png;base64,{{orders[i]['customized_image'].decode('utf-8')}}"
                                      width="400"/>
                 </td>
-                <td>
-                    {{orders[i['state']]}}
-                </td>
-                <td><input class="complete" type="submit" value="Complete">
+                <td><input class="complete" type="submit" value="Track Order">
                 </td>
             </tr>
             {%endfor%}
