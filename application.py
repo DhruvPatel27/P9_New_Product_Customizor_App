@@ -9,7 +9,9 @@ import pandas as pd
 
 application = Flask(__name__)
 
+
 @application.route('/products', methods=['GET'])
+
 def get_product_by_id():
     url = ""
     id_name = request.args.get('id')
@@ -46,6 +48,23 @@ def render_static():
         page = int(page)
         result = result[12*(page-1):12*page]
         return render_template('product-catalog.html', product=result, len=len(result), url=url, total_pages=total_pages)
+
+
+@application.route('/product-catalog-manager.html')
+def product_catalog_manager():
+    page = request.args.get('page')
+    
+    result = product.get_products()
+    url = ""
+    total_pages = (int)(len(result) / 12) + 1
+
+    if(page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url, total_pages=total_pages)
+    else:
+        page = int(page)
+        result = result[12*(page-1):12*page]
+        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url, total_pages=total_pages)
 
 
 @application.route('/login', methods=['POST'])
