@@ -119,33 +119,18 @@ def load_cart_page():
         for dic in data:
             for prod_id, q in dic.items():
                 result = product.get_product_details_cart(prod_id)
-                result['quantity'] = q
+                result['quantity'] = q[0]
                 product_result.append(result)
         return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
     else:
         return render_template('cart.html', product_len=0), 200
 
-# @application.route('/preview', methods=['GET'])
-# def show_preview():
-#     model_id = request.args.get('model_id')
-#     wood_id = request.args.get('wood_id')
-#     design_id = request.args.get('design_id')
-#     mask = product.get_products_mask(model_id)
-#     wood_type = wood.get_wood_by_id(wood_id)
-#     design_type = wood.get_design_by_id(design_id)
-#     preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
-#
-#     return jsonify({
-#         "preview_image": preview_image.decode('utf-8')
-#     })
 
 @application.route('/removeCart', methods=['GET'])
 def remove_from_cart_page():
     id_name = request.args.get('id')
-    # if 'product' in session or len(session['product']) > 0:
     if 'product' in session:
         data = session['product']
-        product_result = []
         for i in range(len(data)):
             if id_name in data[i]:
                 del data[i]
@@ -162,9 +147,6 @@ def remove_from_cart_page():
         return jsonify({
             "product": product_result
             })
-    #     return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
-    # else:
-    #     return render_template('cart.html', product_len=0), 200
 
 
 @application.route('/addToCart', methods=['POST'])
@@ -172,11 +154,13 @@ def add_to_cart():
     id_name = request.args.get('id')
     page = request.args.get('page')
     quantity = request.form['quantity']
+    wood_id = request.form['wood']
+    pattern_id = request.form['pattern']
     if 'product' not in session.keys():
-        session['product'] = [{id_name: quantity}]
+        session['product'] = [{id_name: [quantity, wood_id, pattern_id]}]
     else:
         data = session['product']
-        data.append({id_name: quantity})
+        data.append({id_name: [quantity, wood_id, pattern_id]})
         session['product'] = data
     url = ""
     result = product.get_products()
@@ -190,6 +174,7 @@ def add_to_cart():
         result = result[12*(page-1):12*page]
         return render_template('product-catalog.html', product=result, len=len(result), url=url,
                            total_pages=total_pages), 200
+
 
 @application.route('/checkoutSuccess')
 def load_checkout_success():

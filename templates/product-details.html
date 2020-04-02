@@ -23,7 +23,9 @@
         $(function () {
             $('#preview').click(function() {
                 var wood_id = $(".wood_type:checked").val();
+                document.getElementById('wood').value = wood_id;
                 var design_id = $(".design_type:checked").val();
+                document.getElementById('pattern').value = design_id;
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id,
                     success: function(data) {
@@ -97,6 +99,8 @@
             {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
+                <input type="hidden" id="wood" name="wood" value="0">
+                <input type="hidden" id="pattern" name="pattern" value="0">
                 <input type="number" name="quantity" value="1" min="1">
                 <button type="submit" onclick="saveImage({{product['Product_id']}})" class="buttons"><strong>Add to Cart</strong></button>
             </form>
