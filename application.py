@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
-import model.product as product
-import model.user as user
-import model.order as order
-import model.customization as preview
-import model.wood as wood
+import Model.product as product
+import Model.user as user
+import Model.order as order
+import Model.customization as preview
+import Model.wood as wood
 import pandas as pd
 
 application = Flask(__name__)
