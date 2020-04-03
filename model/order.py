@@ -30,3 +30,17 @@ def get_order_details_for_user(user_name):
         cursor.close()
         
     return result
+
+# API to change the order status for a specific order
+def update_order_status_for_order(order_status,order_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "UPDATE `ORDER` SET `state` = %s where `ID` = %s"
+            cursor.execute(sql,(order_status,order_id))
+            connection.commit()            
+    finally:
+        connection.close()
+        cursor.close()
+    
+    return
