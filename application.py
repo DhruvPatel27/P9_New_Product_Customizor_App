@@ -294,7 +294,7 @@ def show_preview():
         design_type = wood.get_design_by_id(design_id)
         preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
     else:
-        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
+        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'],0)
     return jsonify({
         "preview_image": preview_image.decode('utf-8')
     })
@@ -304,3 +304,4 @@ if __name__ == '__main__':
     application.secret_key = 'super secret key'
     application.debug = True
     application.run()
+   
