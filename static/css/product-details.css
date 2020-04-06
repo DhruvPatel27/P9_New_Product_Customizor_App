@@ -247,8 +247,9 @@ button {
     display:inline-block;
 }
 .personal_message {
-  width: 50%;
-  padding: 12px 20px;
+  width: 250 px;
+  height: 40 px;
+  padding: 15px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -256,7 +257,7 @@ button {
   box-sizing: border-box;
 }
 .quantity{
-	height: 49px;
+	padding: 15px 4px;
 }
 @media (max-width: 320px) {
 .secondary_header ul li {
