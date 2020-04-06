@@ -120,6 +120,10 @@ def load_cart_page():
             for prod_id, q in dic.items():
                 result = product.get_product_details_cart(prod_id)
                 result['quantity'] = q[0]
+                wood_type = wood.get_wood_by_id(q[1])
+                result['wood_type'] = wood_type['name']
+                design_type = wood.get_design_by_id(q[2])
+                result['wood_pattern'] = design_type['name']
                 product_result.append(result)
         return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
     else:

@@ -33,8 +33,10 @@
     </script>
     <script>
         var numPrice = 0;
-        function calculateTotal(price, quantity){
+        function calculateTotal(id, price, quantity){
             var total = price * quantity;
+            var old = localStorage.getItem(id);
+            localStorage.setItem(id, [old, total]);
             document.getElementById("product-line-price").id = "price"+numPrice;
             document.getElementById("price"+numPrice).value = total;
             document.getElementById("price"+numPrice).innerHTML = "$"+(total).toFixed(2);
@@ -45,8 +47,10 @@
             numPrice = numPrice + 1;
         }
         function displaySubTotal(){
+            var tax = subTotal * 0.08;
+            document.getElementById("cart-tax").innerHTML = "$"+tax.toFixed(2);
             document.getElementById("cart-subtotal").innerHTML = "$"+subTotal.toFixed(2);
-            document.getElementById("cart-total").innerHTML = "$"+(5.00 + subTotal).toFixed(2);
+            document.getElementById("cart-total").innerHTML = "$"+(5.00 + subTotal + tax).toFixed(2);
         }
     </script>
     <script>
@@ -91,14 +95,14 @@
         <script>grabImage({{product[i]['Product_id']}});</script>
         <div class="product-details">
             <div class="product-title"><b>{{product[i]['title']}}</b></div>
-            <p class="product-description">{{product[i]['description']}}</p>
+            <p class="product-description">Wood type: {{product[i]['wood_type']}} <br> Wood pattern: {{product[i]['wood_pattern']}}</p>
         </div>
         <div class="product-price">${{product[i]['price']}}</div>
         <div class="product-quantity">{{product[i]['quantity']}}</div>
         <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
         <div class="delete"><button onclick="removeImage('id')" class="deleteButton">-</button></div>
         <k id="product-line-price"></k>
-        <script>calculateTotal({{product[i]['price']}}, {{product[i]['quantity']}})</script>
+        <script>calculateTotal({{product[i]['Product_id']}}, {{product[i]['price']}}, {{product[i]['quantity']}})</script>
         <script>calculateSubTotal()</script>
   </div>
 </div>
@@ -108,6 +112,10 @@
     <div class="totals-item">
         <label>Subtotal</label>
         <div class="totals-value" id="cart-subtotal"></div>
+    </div>
+    <div class="totals-item">
+      <label>Tax (8%)</label>
+      <div class="totals-value" id="cart-tax">3.60</div>
     </div>
     <div class="totals-item">
         <label>Shipping</label>
