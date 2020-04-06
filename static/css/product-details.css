@@ -224,6 +224,11 @@ input[type=radio] + img {
   height: 50px;
   cursor: pointer;
 }
+.warning {
+    color:red;
+    font-family:Roboto;
+    font-size: 12px;
+}
 button {
 	background-color: #8C1D40;
   	border: none;
