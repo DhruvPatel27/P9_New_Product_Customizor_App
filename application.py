@@ -318,9 +318,9 @@ def show_preview():
         "preview_image": preview_image.decode('utf-8')
     })
 
-@application.route('/remove', methods=['GET'])
+@application.route('/remove', methods=['POST'])
 def remove_product():
-    product_id = request.args.get('productid')
+    product_id = request.form['productid']
     product.remove(product_id)
     return render_template("success.html")
 
