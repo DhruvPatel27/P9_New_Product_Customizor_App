@@ -6,6 +6,7 @@ import model.order as order
 import model.customization as preview
 import model.wood as wood
 import pandas as pd
+import base64
 
 application = Flask(__name__)
 
@@ -132,21 +133,33 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    if 'product' in session or len(session['product']) > 0:
-        data = session['product']
-        product_result = []
-        for dic in data:
-            for prod_id, q in dic.items():
-                result = product.get_product_details_cart(prod_id)
-                result['quantity'] = q[0]
-                wood_type = wood.get_wood_by_id(q[1])
-                result['wood_type'] = wood_type['name']
-                design_type = wood.get_design_by_id(q[2])
-                result['wood_pattern'] = design_type['name']
-                product_result.append(result)
-        return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
-    else:
-        return render_template('cart.html', product_len=0), 200
+    user_name = session['user_name']
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry['product_id'])
+        entry['title'] = prod['title']
+        entry['price'] = prod['price']
+        wood_type = wood.get_wood_by_id(entry['woodtype_id'])
+        entry['wood_type'] = wood_type['name']
+        design_type = wood.get_design_by_id(entry['woodpattern_id'])
+        entry['wood_pattern'] = design_type['name']
+        product_result.append(entry)
+    # if 'product' in session or len(session['product']) > 0:
+    #     data = session['product']
+    #     product_result = []
+    #     for dic in data:
+    #         for prod_id, q in dic.items():
+    #             result = product.get_product_details_cart(prod_id)
+    #             result['quantity'] = q[0]
+    #             wood_type = wood.get_wood_by_id(q[1])
+    #             result['wood_type'] = wood_type['name']
+    #             design_type = wood.get_design_by_id(q[2])
+    #             result['wood_pattern'] = design_type['name']
+    #             product_result.append(result)
+    return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
+    # else:
+    #     return render_template('cart.html', product_len=0), 200
 
 
 @application.route('/removeCart', methods=['GET'])
@@ -175,28 +188,54 @@ def remove_from_cart_page():
 @application.route('/addToCart', methods=['POST'])
 def add_to_cart():
     id_name = request.args.get('id')
+    image = request.form['image']
     page = request.args.get('page')
     quantity = request.form['quantity']
     wood_id = request.form['wood']
     pattern_id = request.form['pattern']
-    if 'product' not in session.keys():
-        session['product'] = [{id_name: [quantity, wood_id, pattern_id]}]
-    else:
-        data = session['product']
-        data.append({id_name: [quantity, wood_id, pattern_id]})
-        session['product'] = data
-    url = ""
-    result = product.get_products()
-    total_pages = (int)(len(result) / 12) + 1
-    if(page == None or int(page) == 1):
-        result = list(itertools.islice(result, 0, 12, 1))
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                           total_pages=total_pages), 200
-    else:
-        page = int(page)
-        result = result[12*(page-1):12*page]
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                           total_pages=total_pages), 200
+    user_name = session['user_name']
+    result = product.get_product_details_cart(id_name)
+    price = result['price']
+    total_cost = price * float(quantity)
+    cart_details = order.add_to_cart(id_name, image, quantity, wood_id, pattern_id, user_name, total_cost)
+    if (cart_details):
+        url = ""
+        result = product.get_products()
+
+        total_pages = (int)(len(result) / 12) + 1
+
+        if (page == None or int(page) == 1):
+            result = list(itertools.islice(result, 0, 12, 1))
+            return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                                   total_pages=total_pages), 200
+        else:
+            page = int(page)
+            result = result[12 * (page - 1):12 * page]
+            return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                                   total_pages=total_pages), 200
+    # if 'product' not in session.keys():
+    #     session['product'] = [{id_name: [quantity, wood_id, pattern_id]}]
+    # else:
+    #     data = session['product']
+    #     data.append({id_name: [quantity, wood_id, pattern_id]})
+    #     session['product'] = data
+    # url = ""
+    # result = product.get_products()
+    # total_pages = (int)(len(result) / 12) + 1
+    # if(page == None or int(page) == 1):
+    #     result = list(itertools.islice(result, 0, 12, 1))
+    #     return render_template('product-catalog.html', product=result, len=len(result), url=url,
+    #                        total_pages=total_pages), 200
+    # else:
+    #     page = int(page)
+    #     result = result[12*(page-1):12*page]
+    #     return render_template('product-catalog.html', product=result, len=len(result), url=url,
+    #                        total_pages=total_pages), 200
+
+
+@application.route('/checkout')
+def load_checkout():
+    return render_template('checkout.html'), 200
 
 
 @application.route('/checkoutSuccess')

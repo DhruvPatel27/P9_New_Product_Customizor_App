@@ -21,30 +21,9 @@
     });
     </script>
     <script>
-    var num = 0;
-    function grabImage(id){
-        if (typeof(Storage) !== "undefined") {
-            var image = localStorage.getItem(id);
-            document.getElementById("final_image").id = num;
-            document.getElementById(num).src = image;
-            num = num + 1;
-        }
-    }
-    </script>
-    <script>
-        var numPrice = 0;
-        function calculateTotal(id, price, quantity){
-            var total = price * quantity;
-            var old = localStorage.getItem(id);
-            localStorage.setItem(id, [old, total]);
-            document.getElementById("product-line-price").id = "price"+numPrice;
-            document.getElementById("price"+numPrice).value = total;
-            document.getElementById("price"+numPrice).innerHTML = "$"+(total).toFixed(2);
-        }
         var subTotal = 0;
-        function calculateSubTotal(){
-            subTotal = subTotal + document.getElementById("price"+numPrice).value;
-            numPrice = numPrice + 1;
+        function calculateSubTotal(totalCost){
+            subTotal = subTotal + totalCost;
         }
         function displaySubTotal(){
             var tax = subTotal * 0.08;
@@ -56,9 +35,6 @@
     <script>
     var num = 0;
     function removeImage(id){
-        if (typeof(Storage) !== "undefined") {
-            var id = document.getElementById(id).value;
-            localStorage.removeItem(id);
             $.ajax({
 	        type : "GET",
 	        url : '/removeCart?id=' + id,
@@ -68,7 +44,6 @@
 	            location.reload();
 		    }
 	        });
-        }
     }
     </script>
 </head>
@@ -90,9 +65,8 @@
 <div class="shopping-cart">
     <div class="product">
         <div class="product-image">
-            <img id="final_image" class="placeholder" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}" height="100" width="100">
+            <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}" height="100" width="100"></div>
         </div>
-        <script>grabImage({{product[i]['Product_id']}});</script>
         <div class="product-details">
             <div class="product-title"><b>{{product[i]['title']}}</b></div>
             <p class="product-description">Wood type: {{product[i]['wood_type']}} <br> Wood pattern: {{product[i]['wood_pattern']}}</p>
@@ -100,10 +74,9 @@
         <div class="product-price">${{product[i]['price']}}</div>
         <div class="product-quantity">{{product[i]['quantity']}}</div>
         <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
-        <div class="delete"><button onclick="removeImage('id')" class="deleteButton">-</button></div>
-        <k id="product-line-price"></k>
-        <script>calculateTotal({{product[i]['Product_id']}}, {{product[i]['price']}}, {{product[i]['quantity']}})</script>
-        <script>calculateSubTotal()</script>
+        <div class="delete"><button onclick="removeImage({{product[i]['Product_id']}})" class="deleteButton">-</button></div>
+        <k id="product-line-price">${{product[i]['total_cost']}}</k>
+        <script>calculateSubTotal({{product[i]['total_cost']}})</script>
   </div>
 </div>
 {%endfor%}
@@ -130,8 +103,8 @@
 {% if not session['user_name'] %}
 <div class="email-input"><div class="email">Email ID:</div><input class="text" name="username" type="text"></div>
 {% endif %}
-{%set url_checkoutSuccess = url ~"checkoutSuccess"%}
-<a href={{url_checkoutSuccess}}><h3><button class="buttons" id="checkout">Checkout</button></h3></a>
+{%set url_checkout = url ~"checkout"%}
+<a href={{url_checkout}}><h3><button class="buttons" id="checkout">Checkout</button></h3></a>
 {%else%}
 <h2 id="empty">Cart Empty</h2>
 {% endif %}
