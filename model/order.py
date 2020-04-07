@@ -121,3 +121,4 @@ def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, co
     finally:
         connection.close()
         cursor.close()
+
