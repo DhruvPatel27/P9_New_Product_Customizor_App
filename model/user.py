@@ -1,4 +1,4 @@
-import Model.db_connection as db_connection
+import model.db_connection as db_connection
 from flask import jsonify
 # Method to check if email id and password matches
 def login(email, password):
