@@ -77,7 +77,7 @@ def get_product_details_cart(product_id):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT Product_id, title, image, price from PRODUCT where `Product_id`=%s"
+            sql = "SELECT Product_id, title, price from PRODUCT where `Product_id`=%s"
             cursor.execute(sql, product_id)
             result = cursor.fetchone()
     finally:

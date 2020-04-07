@@ -45,7 +45,7 @@
     </script>
     <script>
         function saveImage(id) {
-            var finalImage =  document.getElementById('product_image').src;
+            document.getElementById('image').value =  document.getElementById('product_image').src;
             if (typeof(Storage) !== "undefined") {
                 localStorage.setItem(id, finalImage);
             }
@@ -103,6 +103,7 @@
             {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
+                <input type="hidden" id="image" name="image" value="0">
                 <input type="hidden" id="wood" name="wood" value="0">
                 <input type="hidden" id="pattern" name="pattern" value="0">
                 <input type="number" name="quantity" value="1" min="1">
