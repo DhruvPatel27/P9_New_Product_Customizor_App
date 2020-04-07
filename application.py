@@ -324,6 +324,14 @@ def remove_product():
     product.remove(product_id)
     return render_template("success.html")
 
+@application.route('/edit')
+def edit_product():
+    if request.method == 'GET':
+        id_name = request.args.get('id')
+        result = product.get_product_details(id_name)
+        return render_template('edit-product.html', product=result, len=len(result))
+    
+
 if __name__ == '__main__':
     application.secret_key = 'super secret key'
     application.debug = True
