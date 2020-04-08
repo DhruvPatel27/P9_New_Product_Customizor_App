@@ -37,6 +37,7 @@
     <script>
         $(document).ready(function () {
             $("input[name='design_type']").change(function(){
+<<<<<<< HEAD
                 var design_id = 6;
                 var message = "";
                 var wood_id = $(".wood_type:checked").val();
@@ -66,9 +67,8 @@
                         document.getElementById('product_image').src = image
                     }
                 });
-            })
+            });
         });
-
     </script>
     <script>
     $(function(){
@@ -132,6 +132,7 @@
                placeholder="Enter up to 20 characters" type="text">
         <span><button class="buttons" id="preview" type="submit">Preview</button></span>
         <span class="warning" id="personal_message_warning"></span>
+
 
         <h3>
             {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}

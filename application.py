@@ -19,6 +19,7 @@ def get_product_by_id():
     wood_type = wood.get_wood()
     wood_design = wood.get_design()
     default_image = preview.show_preview(result['model_id'], 1, 6, "")
+
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
                            wood_design=wood_design, default_image=default_image)
 
@@ -157,7 +158,6 @@ def load_cart_page():
         return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
     else:
         return render_template('cart.html', product_len=0), 200
-
 
 @application.route('/removeCart', methods=['GET'])
 def remove_from_cart_page():
@@ -326,6 +326,7 @@ def show_message_preview():
     design_id = request.args.get('design_id')
     message = request.args.get('message')
     preview_image = preview.show_preview(model_id, wood_id, design_id, message)
+
     return jsonify({
         "preview_image": preview_image.decode('utf-8')
     })
