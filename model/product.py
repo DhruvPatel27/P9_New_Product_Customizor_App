@@ -2,7 +2,8 @@ import model.db_connection as db_connection
 import model.utils as utils
 from PIL import Image
 
-#API to get all products from the database
+
+# API to get all products from the database
 def get_products():
     connection = db_connection.get_connection()
     try:
@@ -15,7 +16,8 @@ def get_products():
         cursor.close()
 
     return result
-    
+
+
 # API to get the product details for the specified product id
 def get_product_details(product_id):
     connection = db_connection.get_connection()
@@ -29,13 +31,14 @@ def get_product_details(product_id):
         cursor.close()
     return result
 
-#API to get products by occasion
+
+# API to get products by occasion
 def get_products_by_occasion(occasion):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from PRODUCT where occasion like %s"
-            cursor.execute(sql, '%'+occasion+'%')
+            cursor.execute(sql, '%' + occasion + '%')
             result = cursor.fetchall()
     finally:
         connection.close()
@@ -43,7 +46,8 @@ def get_products_by_occasion(occasion):
 
     return result
 
-#API to get products by category
+
+# API to get products by category
 def get_products_by_category(category):
     connection = db_connection.get_connection()
     try:
@@ -57,7 +61,8 @@ def get_products_by_category(category):
 
     return result
 
-#API to get product mask by Model id
+
+# API to get product mask by Model id
 def get_products_mask(model_id):
     connection = db_connection.get_connection()
     try:
@@ -77,7 +82,7 @@ def get_product_details_cart(product_id):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT Product_id, title, description, image, price from PRODUCT where `Product_id`=%s"
+            sql = "SELECT Product_id, title, price from PRODUCT where `Product_id`=%s"
             cursor.execute(sql, product_id)
             result = cursor.fetchone()
     finally:
@@ -85,13 +90,14 @@ def get_product_details_cart(product_id):
         cursor.close()
     return result
 
+
 # Method to add multiple products to the catalog
 def add_products(data_xls):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
             sql = "INSERT INTO PRODUCT(`Product_id`,`title`,`description`,`price`,`category`,`customizable`,`occasion`,`image`,`model_id`) VALUES(DEFAULT,%s,%s,%s,%s,%s,%s,%s,%s)"
-            for i,row in data_xls.iterrows():
+            for i, row in data_xls.iterrows():
                 img1 = "No File"
                 img2 = "No file"
                 img3 = "No File"
@@ -105,7 +111,7 @@ def add_products(data_xls):
                     Exception("Please specify correct path")
                 row['product_image'] = img1
                 modal_id = add_modal(img3, img2)
-                product = tuple(row[:7],) + (modal_id,)
+                product = tuple(row[:7], ) + (modal_id,)
                 cursor.execute(sql, product)
                 connection.commit()
     finally:
@@ -120,7 +126,7 @@ def add_modal(modal_mask, image_mask):
     try:
         with connection.cursor() as cursor:
             sql = "INSERT INTO MODAL VALUES(DEFAULT,%s,%s)"
-            mask = (modal_mask,image_mask)
+            mask = (modal_mask, image_mask)
             cursor.execute(sql, mask)
             connection.commit()
             return cursor.lastrowid

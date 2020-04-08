@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="static/css/checkout.css" rel="stylesheet" type="text/css">
+    <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+    <script>var __adobewebfontsappname__="dreamweaver"</script>
+    <script src="http://use.edgefonts.net/montserrat:n4:default;source-sans-pro:n2:default.js"
+            type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+	$(function(){
+	  $("#basic-layout").load("basic-layout.html");
+	});
+
+    </script>
+    <script>function getValue(cost){
+        document.getElementById('cost').value = cost;
+    }
+</script>
+</head>
+<body>
+<div id="basic-layout"></div>
+{% set url = request.url_root ~ "checkout-success"%}
+
+
+<form action={{url}} method="POST">
+    <input type="hidden" id="cost" name="cost" value="0">
+    <script>getValue({{cost}})</script>
+    <h2>Total Cost to be paid: ${{cost}}</h2>
+    <h3 align="center">Billing address</h3>
+    <div id="mainWrapper">
+        <section id="login">
+            <div class="checkout">
+                <div class="label">Address:</div><span class="required"> *</span><input class="text" name="address" type="text" required>
+
+            <div class="label" style="margin-left: 5%">City:</div><span class="required"> *</span><input class="text" name="city" type="text" style="margin-left: 7.5%" required>
+        </div>
+        <div class="checkout">
+            <div class="label">State:</div><span class="required"> *</span><input class="text" name="state" type="text" style="margin-left: 7%" required>
+
+            <div class="label" style="margin-left: 5%">Zipcode:</div><span class="required"> *</span><input class="text" name="zipcode" type="text" required>
+        </div>
+    </section>
+</div>
+<h3 align="center">Payment Details</h3>
+<div id="mainWrapper">
+    <section id="login">
+        <div class="checkout">
+            <div class="label">Card Number:</div><span class="required"> *</span><input class="text" name="card" type="text" required>
+            <div class="label" style="margin-left: 5%">CVV:</div><span class="required"> *</span><input class="text" name="cvv" type="text" style="width: 5%" required>
+
+        </div>
+        <div class="checkout">
+
+            <div class="label">Expiry Date(YYYY-MM-DD):</div><span class="required"> *</span><input class="text" name="expiry" type="text" style="width: 15%" required>
+            <div class="label" style="margin-left: 5%">Contact Number:</div><span class="required"> *</span><input class="text" name="contact" type="text" required>
+        </div>
+    </section>
+</div>
+<div>
+            <input class="submit" type="submit" value="Place Order">
+            </div>
+</form>
+</body>
+</html>
