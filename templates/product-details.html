@@ -20,13 +20,15 @@
     <script>
         $(document).ready(function () {
             $("input[name='wood_type']").change(function(){
+                var design_id = 6;
+                var message = "";
+                design_id = $(".design_type:checked").val();
                 var wood_id = $(".wood_type:checked").val();
                 $.ajax({
-                    url : '/preview/wood?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id,
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
                         var image = "data:image/png;base64," + data['preview_image'];
                         document.getElementById('product_image').src = image
-                        document.getElementById('wood_type_message').innerHTML = "";
                     }
                 });
             });
@@ -35,14 +37,12 @@
     <script>
         $(document).ready(function () {
             $("input[name='design_type']").change(function(){
+                var design_id = 6;
+                var message = "";
                 var wood_id = $(".wood_type:checked").val();
-                var design_id = $(".design_type:checked").val();
-                if ($('input[name=wood_type]:checked').length <= 0) {
-                    document.getElementById('wood_type_message').innerHTML = "*Please select a wood type";
-                    return;
-                }
+                design_id = $(".design_type:checked").val();
                 $.ajax({
-                    url : '/preview/design?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id,
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
                         var image = "data:image/png;base64," + data['preview_image'];
                         document.getElementById('product_image').src = image
@@ -50,6 +50,25 @@
                 });
             });
         });
+    </script>
+    <script>
+        $(function () {
+            $('#preview').click(function() {
+                var design_id = 6;
+                var message = "";
+                var wood_id = $(".wood_type:checked").val();
+                design_id = $(".design_type:checked").val();
+                var message = $(".personal_message").val();
+                $.ajax({
+                    url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
+                    success: function(data) {
+                        var image = "data:image/png;base64," + data['preview_image'];
+                        document.getElementById('product_image').src = image
+                    }
+                });
+            })
+        });
+
     </script>
     <script>
     $(function(){
@@ -82,40 +101,37 @@
         <h3><strong>{{product['title']}}</strong></h3>
         <strong><h1> ${{product['price']}}</h1></strong>
         <p>{{product['description']}}</p>
-        <form action="{{url}}" id="preview_form" method="get">
-            <h3>Select Wood type</h3>
-            <label>
-                <input class="wood_type" name="wood_type" type="radio"  value={{wood_type[0]['ID']}} checked/>
-                <img alt={{wood_type[0]['name']}} title={{wood_type[0]['name']}} src="data:image/png;base64,{{wood_type[0]['image'].decode('utf-8')}}">
-            </label>
-            {%for i in range(1, 5)%}
-            <label>
-                <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}}>
-                <img alt={{wood_type[i]['name']}} title={{wood_type[i]['name']}} src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
-            </label>
-            {%endfor%}
 
-            <span class="warning" id="wood_type_message"></span>
-            <h3>Select image engraving</h3>
+        <h3>Select Wood type</h3>
+        <label>
+            <input class="wood_type" name="wood_type" type="radio"  value={{wood_type[0]['ID']}} checked/>
+            <img alt={{wood_type[0]['name']}} title={{wood_type[0]['name']}} src="data:image/png;base64,{{wood_type[0]['image'].decode('utf-8')}}">
+        </label>
+        {%for i in range(1, 5)%}
+        <label>
+            <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}}>
+            <img alt={{wood_type[i]['name']}} title={{wood_type[i]['name']}} src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
+        </label>
+        {%endfor%}
+        <span class="warning" id="wood_type_warning"></span>
 
-            <label>
-                <input class="design_type" name="design_type" type="radio" value={{wood_design[0]['ID']}} checked/>
-                <img alt="None" title="{{wood_design[0]['name']}}" src="data:image/png;base64,{{wood_design[0]['image'].decode('utf-8')}}">
-            </label>
-            {%for i in range(1, 6)%}
-            <label>
-                <input class="design_type" name="design_type" type="radio" value={{wood_design[i]['ID']}}/>
-                <img alt={{wood_design[i]['name']}} title="{{wood_design[i]['name']}}" src="data:image/png;base64,{{wood_design[i]['image'].decode('utf-8')}}">
-            </label>
-            {%endfor%}
+        <h3>Select image engraving</h3>
+        <label>
+            <input class="design_type" name="design_type" type="radio" value={{wood_design[0]['ID']}} checked/>
+            <img alt="None" title="{{wood_design[0]['name']}}" src="data:image/png;base64,{{wood_design[0]['image'].decode('utf-8')}}">
+        </label>
+        {%for i in range(1, 6)%}
+        <label>
+            <input class="design_type" name="design_type" type="radio" value={{wood_design[i]['ID']}}/>
+            <img alt={{wood_design[i]['name']}} title="{{wood_design[i]['name']}}" src="data:image/png;base64,{{wood_design[i]['image'].decode('utf-8')}}">
+        </label>
+        {%endfor%}
 
-            <h3>Enter personal message</h3>
-            <input class="personal_message" id="personal_message" maxlength="20 "
-                   placeholder="Enter up to 20 characters" type="text">
-            <span><button class="buttons" id="preview" type="submit">Preview</button></span>
-        </form>
-
-
+        <h3>Enter personal message</h3>
+        <input class="personal_message" id="personal_message" name="personal_message" maxlength="20"
+               placeholder="Enter up to 20 characters" type="text">
+        <span><button class="buttons" id="preview" type="submit">Preview</button></span>
+        <span class="warning" id="personal_message_warning"></span>
 
         <h3>
             {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}
