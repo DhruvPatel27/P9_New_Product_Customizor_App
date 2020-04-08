@@ -51,14 +51,13 @@
     <form name ="editproduct" action={{url_login}} method="POST">
     <h2 class="noDisplay">Main Content</h2>
     <aside class="left_article">
-        <div class="label">Edit image:</div>
         <img alt="" class="placeholder" height="200" id="product_image"
                                      src="data:image/png;base64,{{product['image'].decode('utf-8')}}"
                                      width="400"/>
-                                     <div class="warning" style="color:red;font-family:Roboto;font-size:14px;">* The picture shown here is for illustration purpose only. 
-                                     Actual product may vary due to product enhancement.</div>
+                                     <div class="warning" style="color:red;font-family:Roboto;font-size:14px;">* If you want to edit image, please create a new product.</div>
                                      </aside>
     <article class="right_article" style="padding-top: 10% ;">
+        <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
         <div class="label">Edit title:</div>
         <div>
             <textarea rows="4" cols="50" id="title" name="title">{{product['title']}}</textarea><br/><br/>

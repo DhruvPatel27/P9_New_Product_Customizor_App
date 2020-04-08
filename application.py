@@ -324,12 +324,20 @@ def remove_product():
     product.remove(product_id)
     return render_template("success.html")
 
-@application.route('/edit')
+@application.route('/edit', methods=['POST','GET'])
 def edit_product():
     if request.method == 'GET':
         id_name = request.args.get('id')
         result = product.get_product_details(id_name)
         return render_template('edit-product.html', product=result, len=len(result))
+    
+    if request.method == 'POST':
+        p_id = request.form['id']
+        title = request.form['title']
+        description = request.form['description']
+        price = request.form['price']
+        product.edit(p_id, title, description, price)
+        return render_template('success.html')
     
 
 if __name__ == '__main__':

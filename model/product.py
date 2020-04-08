@@ -143,3 +143,18 @@ def remove(product_id):
     finally:
         connection.close()
         cursor.close()
+
+# Edit product details
+def edit(product_id, title, description, price):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "UPDATE PRODUCT SET `title` = %s,`description` = %s,`price` = %s where `Product_id`=%s"
+            prod = (title, description, price, product_id)
+            cursor.execute(sql,prod)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
