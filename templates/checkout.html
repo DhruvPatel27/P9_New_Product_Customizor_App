@@ -23,7 +23,6 @@
 <body>
 <div id="basic-layout"></div>
 {% set url = request.url_root ~ "checkout-success"%}
-
 <form action={{url}} method="POST">
     <input type="hidden" id="cost" name="cost" value="0">
     <script>getValue({{cost}})</script>
@@ -61,6 +60,5 @@
             <input class="submit" type="submit" value="Place Order">
             </div>
 </form>
-
 </body>
 </html>

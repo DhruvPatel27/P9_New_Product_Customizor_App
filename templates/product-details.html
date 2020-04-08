@@ -80,6 +80,11 @@
          }
     </script>
     <script>
+        function saveImage() {
+            document.getElementById('image').value =  document.getElementById('product_image').src;
+         }
+    </script>
+    <script>
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
