@@ -2,6 +2,8 @@ import base64
 from io import BytesIO
 
 from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 
 import model.product as product
 import model.wood as wood
@@ -27,6 +29,12 @@ def show_preview(model_id, wood_id, design_id, message):
 
     for i in range(0, len(files)):
         result.paste(files[i], (0, 0), files[i])
+
+    if message:
+        draw = ImageDraw.Draw(result)
+        font = ImageFont.truetype("arial.ttf", 50)
+        w, h = draw.textsize(message, font=font)
+        draw.text(((width-w)/2, (height-h)/2), message, (110, 90, 60), font=font, align="right")
 
     img = BytesIO()
     result.save(img, format='PNG')

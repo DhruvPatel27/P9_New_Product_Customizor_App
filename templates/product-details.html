@@ -37,11 +37,11 @@
     <script>
         $(document).ready(function () {
             $("input[name='design_type']").change(function(){
-<<<<<<< HEAD
                 var design_id = 6;
                 var message = "";
                 var wood_id = $(".wood_type:checked").val();
                 design_id = $(".design_type:checked").val();
+                message = $(".personal_message").val();
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
