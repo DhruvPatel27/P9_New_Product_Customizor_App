@@ -318,11 +318,27 @@ def show_preview():
         "preview_image": preview_image.decode('utf-8')
     })
 
-@application.route('/remove', methods=['GET'])
+@application.route('/remove', methods=['POST'])
 def remove_product():
-    product_id = request.args.get('productid')
+    product_id = request.form['productid']
     product.remove(product_id)
     return render_template("success.html")
+
+@application.route('/edit', methods=['POST','GET'])
+def edit_product():
+    if request.method == 'GET':
+        id_name = request.args.get('id')
+        result = product.get_product_details(id_name)
+        return render_template('edit-product.html', product=result, len=len(result))
+    
+    if request.method == 'POST':
+        p_id = request.form['id']
+        title = request.form['title']
+        description = request.form['description']
+        price = request.form['price']
+        product.edit(p_id, title, description, price)
+        return render_template('success.html')
+    
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'

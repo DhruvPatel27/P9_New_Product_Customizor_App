@@ -5,7 +5,7 @@ def get_all_orders():
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * from `ORDER`"
+            sql = "SELECT * from `ORDERS`"
             cursor.execute(sql)
             result = cursor.fetchall()
     finally:

@@ -1,0 +1,42 @@
+.label {
+    display: inline;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 32px;
+    margin: 0;
+    width: 125px;
+    padding-bottom: 2px;
+}
+
+#edit {
+	font-family: 'Roboto';
+	clear: both;
+	background-color:white;
+	color: rgba(146,146,146,1.00);
+	
+	color:black;
+}
+
+input.submit{
+	background-color: #8C1D40;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0px 20px !important;
+    height: 36px;
+    line-height: 1;
+	margin-left:80px;
+}
+
+input.text
+{   width: 30%;
+	background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #000;
+    font-size: 14px;
+    height: 30px;
+    padding: 0 5px;
+}
