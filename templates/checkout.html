@@ -15,15 +15,25 @@
 	});
 
     </script>
+    <script>function getValue(cost){
+        document.getElementById('cost').value = cost;
+    }
+</script>
 </head>
 <body>
 <div id="basic-layout"></div>
+{% set url = request.url_root ~ "checkout-success"%}
 
-<h3 align="center">Billing address</h3>
-<div id="mainWrapper">
-    <section id="login">
-        <div class="checkout">
-            <div class="label">Address:</div><span class="required"> *</span><input class="text" name="address" type="text" required>
+
+<form action={{url}} method="POST">
+    <input type="hidden" id="cost" name="cost" value="0">
+    <script>getValue({{cost}})</script>
+    <h2>Total Cost to be paid: ${{cost}}</h2>
+    <h3 align="center">Billing address</h3>
+    <div id="mainWrapper">
+        <section id="login">
+            <div class="checkout">
+                <div class="label">Address:</div><span class="required"> *</span><input class="text" name="address" type="text" required>
 
             <div class="label" style="margin-left: 5%">City:</div><span class="required"> *</span><input class="text" name="city" type="text" style="margin-left: 7.5%" required>
         </div>
@@ -34,23 +44,24 @@
         </div>
     </section>
 </div>
-<h3 align="center">Payement Details</h3>
+<h3 align="center">Payment Details</h3>
 <div id="mainWrapper">
     <section id="login">
         <div class="checkout">
             <div class="label">Card Number:</div><span class="required"> *</span><input class="text" name="card" type="text" required>
+            <div class="label" style="margin-left: 5%">CVV:</div><span class="required"> *</span><input class="text" name="cvv" type="text" style="width: 5%" required>
 
-            <div class="label" style="margin-left: 5%">Expiry Date(MM/DD/YYYY):</div><span class="required"> *</span><input class="text" name="expiry" type="text" style="margin-left: 7.5%; width: 15%" required>
         </div>
         <div class="checkout">
-            <div class="label">CVV:</div><span class="required"> *</span><input class="text" name="cvv" type="text" style="width: 5%" required>
 
-            <div class="label" style="margin-left: 5%">Name on Card:</div><span class="required"> *</span><input class="text" name="cardName" type="text" required>
+            <div class="label">Expiry Date(YYYY-MM-DD):</div><span class="required"> *</span><input class="text" name="expiry" type="text" style="width: 15%" required>
+            <div class="label" style="margin-left: 5%">Contact Number:</div><span class="required"> *</span><input class="text" name="contact" type="text" required>
         </div>
     </section>
 </div>
 <div>
-            <input class="submit" type="submit" value="Signup">
+            <input class="submit" type="submit" value="Place Order">
             </div>
+</form>
 </body>
 </html>

@@ -38,19 +38,17 @@
 
     </script>
     <script>
+        function saveImage() {
+            document.getElementById('image').value =  document.getElementById('product_image').src;
+         }
+    </script>
+    <script>
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
 
     </script>
-    <script>
-        function saveImage(id) {
-            document.getElementById('image').value =  document.getElementById('product_image').src;
-            if (typeof(Storage) !== "undefined") {
-                localStorage.setItem(id, finalImage);
-            }
-         }
-    </script>
+
 </head>
 
 <body>
@@ -100,16 +98,15 @@
         </h3>
 
         <h3>
-            {% set url = request.url_root ~ "addToCart?id=" ~ product['Product_id']%}
+            {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
                 <input type="hidden" id="image" name="image" value="0">
                 <input type="hidden" id="wood" name="wood" value="0">
                 <input type="hidden" id="pattern" name="pattern" value="0">
                 <input type="number" name="quantity" value="1" min="1">
-                <button type="submit" onclick="saveImage({{product['Product_id']}})" class="buttons"><strong>Add to Cart</strong></button>
+                <button type="submit" onclick="saveImage()" class="buttons"><strong>Add to Cart</strong></button>
             </form>
-            <p id="demo"></p>
 
         </h3>
     </article>
