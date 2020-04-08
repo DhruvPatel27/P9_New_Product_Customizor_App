@@ -22,22 +22,27 @@
     </script>
     <script>
         var subTotal = 0;
+        var total = 0;
         function calculateSubTotal(totalCost){
             subTotal = subTotal + totalCost;
         }
+        var tax = 0;
         function displaySubTotal(){
-            var tax = subTotal * 0.08;
+            tax = subTotal * 0.08;
             document.getElementById("cart-tax").innerHTML = "$"+tax.toFixed(2);
             document.getElementById("cart-subtotal").innerHTML = "$"+subTotal.toFixed(2);
             document.getElementById("cart-total").innerHTML = "$"+(5.00 + subTotal + tax).toFixed(2);
         }
+        function getTotal(){
+            document.getElementById('total').value = (5.00 + subTotal + tax).toFixed(2);
+        }
     </script>
     <script>
     var num = 0;
-    function removeImage(id){
+    function removeProduct(id){
             $.ajax({
 	        type : "GET",
-	        url : '/removeCart?id=' + id,
+	        url : '/remove-cart?id=' + id,
 	        success: function (data) {
 	            var product = data['product'];
 	            var product_len = product.length;
@@ -65,7 +70,7 @@
 <div class="shopping-cart">
     <div class="product">
         <div class="product-image">
-            <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}" height="100" width="100"></div>
+            <div><img alt="sample" class="productImage" src="{{product[i]['image'].decode('utf-8')}}" height="100" width="100"></div>
         </div>
         <div class="product-details">
             <div class="product-title"><b>{{product[i]['title']}}</b></div>
@@ -74,7 +79,7 @@
         <div class="product-price">${{product[i]['price']}}</div>
         <div class="product-quantity">{{product[i]['quantity']}}</div>
         <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
-        <div class="delete"><button onclick="removeImage({{product[i]['Product_id']}})" class="deleteButton">-</button></div>
+        <div class="delete"><button onclick="removeProduct({{product[i]['Product_id']}})" class="deleteButton">-</button></div>
         <k id="product-line-price">${{product[i]['total_cost']}}</k>
         <script>calculateSubTotal({{product[i]['total_cost']}})</script>
   </div>
@@ -103,8 +108,12 @@
 {% if not session['user_name'] %}
 <div class="email-input"><div class="email">Email ID:</div><input class="text" name="username" type="text"></div>
 {% endif %}
-{%set url_checkout = url ~"checkout"%}
-<a href={{url_checkout}}><h3><button class="buttons" id="checkout">Checkout</button></h3></a>
+{%set url = request.url_root ~ "checkout"%}
+<form action={{url}} method="POST">
+    <input type="hidden" id="total" name="total" value="0">
+    <script>getTotal()</script>
+    <button type="submit" class="buttons" id="checkout">Checkout</button>
+</form>
 {%else%}
 <h2 id="empty">Cart Empty</h2>
 {% endif %}
