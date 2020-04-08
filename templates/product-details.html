@@ -16,9 +16,7 @@
             {
             window.location.href = pageURL;
             }
-
     </script>
-
     <script>
         $(document).ready(function () {
             $("input[name='wood_type']").change(function(){
@@ -33,7 +31,6 @@
                 });
             });
         });
-
     </script>
     <script>
         $(document).ready(function () {
@@ -53,15 +50,11 @@
                 });
             });
         });
-
-
     </script>
     <script>
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
-
-
     </script>
     <script>
         function saveImage(id) {
@@ -70,7 +63,6 @@
                 localStorage.setItem(id, finalImage);
             }
          }
-
     </script>
 </head>
 
@@ -79,7 +71,7 @@
 <section>
     <h2 class="noDisplay">Main Content</h2>
     <aside class="left_article"><img alt="" class="placeholder" height="200" id="product_image"
-                                     src="data:image/png;base64,{{product['image'].decode('utf-8')}}"
+                                     src="data:image/png;base64,{{default_image.decode('utf-8')}}"
                                      width="400"/>
         <div class="warning" style="color:red;font-family:Roboto;font-size:14px;">* The picture shown here is for
             illustration purpose only.
@@ -93,13 +85,13 @@
         <form action="{{url}}" id="preview_form" method="get">
             <h3>Select Wood type</h3>
             <label>
-                <input class="wood_type" name="wood_type" type="radio" value={{wood_type[0]['ID']}} checked/>
-                <img alt={{wood_type[0]['name']}} src="data:image/png;base64,{{wood_type[0]['image'].decode('utf-8')}}">
+                <input class="wood_type" name="wood_type" type="radio"  value={{wood_type[0]['ID']}} checked/>
+                <img alt={{wood_type[0]['name']}} title={{wood_type[0]['name']}} src="data:image/png;base64,{{wood_type[0]['image'].decode('utf-8')}}">
             </label>
             {%for i in range(1, 5)%}
             <label>
                 <input class="wood_type" name="wood_type" type="radio" value={{wood_type[i]['ID']}}>
-                <img alt={{wood_type[i]['name']}} src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
+                <img alt={{wood_type[i]['name']}} title={{wood_type[i]['name']}} src="data:image/png;base64,{{wood_type[i]['image'].decode('utf-8')}}">
             </label>
             {%endfor%}
 
@@ -108,12 +100,12 @@
 
             <label>
                 <input class="design_type" name="design_type" type="radio" value={{wood_design[0]['ID']}} checked/>
-                <img alt="None" src="data:image/png;base64,{{wood_design[0]['image'].decode('utf-8')}}">
+                <img alt="None" title="{{wood_design[0]['name']}}" src="data:image/png;base64,{{wood_design[0]['image'].decode('utf-8')}}">
             </label>
             {%for i in range(1, 6)%}
             <label>
                 <input class="design_type" name="design_type" type="radio" value={{wood_design[i]['ID']}}/>
-                <img alt={{wood_design[i]['name']}} src="data:image/png;base64,{{wood_design[i]['image'].decode('utf-8')}}">
+                <img alt={{wood_design[i]['name']}} title="{{wood_design[i]['name']}}" src="data:image/png;base64,{{wood_design[i]['image'].decode('utf-8')}}">
             </label>
             {%endfor%}
 

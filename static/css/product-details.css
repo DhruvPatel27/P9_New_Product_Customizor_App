@@ -215,8 +215,9 @@ footer{
   left: -9999px;
 }
 input[type=radio]:checked + img {
-  border: 1px solid #fff;
-  box-shadow: 0 0 3px 3px #FFC627;
+  box-shadow: 0 0 5px 5px #8c1d40;
+    width: 55px;
+  height: 55px;
 }
 input[type=radio] + img {
   border: 1px #444;

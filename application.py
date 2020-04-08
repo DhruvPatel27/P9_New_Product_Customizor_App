@@ -13,13 +13,13 @@ application = Flask(__name__)
 @application.route('/products', methods=['GET'])
 
 def get_product_by_id():
-    url = ""
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
     wood_design = wood.get_design()
+    default_image = preview.wood_preview(result['model_id'], 1)
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
-                           wood_design=wood_design)
+                           wood_design=wood_design, default_image=default_image)
 
 
 @application.route('/products/all', methods=['GET'])
@@ -154,21 +154,6 @@ def load_cart_page():
         return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
     else:
         return render_template('cart.html', product_len=0), 200
-
-
-# @application.route('/preview', methods=['GET'])
-# def show_preview():
-#     model_id = request.args.get('model_id')
-#     wood_id = request.args.get('wood_id')
-#     design_id = request.args.get('design_id')
-#     mask = product.get_products_mask(model_id)
-#     wood_type = wood.get_wood_by_id(wood_id)
-#     design_type = wood.get_design_by_id(design_id)
-#     preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
-#
-#     return jsonify({
-#         "preview_image": preview_image.decode('utf-8')
-#     })
 
 @application.route('/removeCart', methods=['GET'])
 def remove_from_cart_page():

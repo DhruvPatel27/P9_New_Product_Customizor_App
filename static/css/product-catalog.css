@@ -68,6 +68,7 @@
 	font-size: 14px;
 	text-transform: uppercase;
 	margin-top: 8px;
+	cursor: pointer;
 }
 .productImage{
 	height: 200px;
