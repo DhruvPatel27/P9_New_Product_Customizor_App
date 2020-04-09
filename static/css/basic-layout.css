@@ -74,6 +74,21 @@ header {
 	text-decoration: none;
 }
 
+#addbtn {
+	background-color: #353535;
+  	color: white;
+	font-family: 'Roboto';
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+  	font-size: 16px;
+	align-content: center;
+  	border: none;
+	height: 45px;
+	color: white;
+    text-decoration: none;
+}
+
 #categorybtn {
 	background-color: #353535;
   	color: white;
