@@ -215,14 +215,20 @@ footer{
   left: -9999px;
 }
 input[type=radio]:checked + img {
-  border: 1px solid #fff;
-  box-shadow: 0 0 3px 3px #FFC627;
+  box-shadow: 0 0 5px 5px #8c1d40;
+    width: 55px;
+  height: 55px;
 }
 input[type=radio] + img {
   border: 1px #444;
   width: 50px;
   height: 50px;
   cursor: pointer;
+}
+.warning {
+    color:red;
+    font-family:Roboto;
+    font-size: 12px;
 }
 button {
 	background-color: #8C1D40;
@@ -242,8 +248,9 @@ button {
     display:inline-block;
 }
 .personal_message {
-  width: 50%;
-  padding: 12px 20px;
+  width: 250 px;
+  height: 40 px;
+  padding: 15px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
@@ -251,7 +258,7 @@ button {
   box-sizing: border-box;
 }
 .quantity{
-	height: 49px;
+	padding: 15px 4px;
 }
 @media (max-width: 320px) {
 .secondary_header ul li {

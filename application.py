@@ -1,27 +1,28 @@
-from flask import Flask, render_template, request, session, jsonify
 import itertools
+
+import pandas as pd
+from flask import Flask, render_template, request, session, jsonify
+
+import model.customization as preview
+import model.order as order
 import model.product as product
 import model.user as user
-import model.order as order
-import model.customization as preview
 import model.wood as wood
-import pandas as pd
 
 
 application = Flask(__name__)
 
 
 @application.route('/products', methods=['GET'])
-
 def get_product_by_id():
-    url = ""
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
     wood_design = wood.get_design()
-    return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
-                           wood_design=wood_design)
+    default_image = preview.show_preview(result['model_id'], 1, 6, "")
 
+    return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
+                           wood_design=wood_design, default_image=default_image)
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -59,18 +60,20 @@ def render_static():
 @application.route('/product-catalog-manager.html')
 def product_catalog_manager():
     page = request.args.get('page')
-    
+
     result = product.get_products()
     url = ""
     total_pages = (int)(len(result) / 12) + 1
 
-    if(page == None or int(page) == 1):
+    if (page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))
-        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url, total_pages=total_pages)
+        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url,
+                               total_pages=total_pages)
     else:
         page = int(page)
-        result = result[12*(page-1):12*page]
-        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url, total_pages=total_pages)
+        result = result[12 * (page - 1):12 * page]
+        return render_template('product-catalog-manager.html', product=result, len=len(result), url=url,
+                               total_pages=total_pages)
 
 
 @application.route('/login', methods=['POST'])
@@ -341,22 +344,17 @@ def render_woodworker():
 
 
 @application.route('/preview', methods=['GET'])
-def show_preview():
+def show_message_preview():
     model_id = request.args.get('model_id')
     wood_id = request.args.get('wood_id')
     design_id = request.args.get('design_id')
+    message = request.args.get('message')
+    preview_image = preview.show_preview(model_id, wood_id, design_id, message)
 
-    mask = product.get_products_mask(model_id)
-    wood_type = wood.get_wood_by_id(wood_id)
-
-    if (design_id != 'undefined'):
-        design_type = wood.get_design_by_id(design_id)
-        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
-    else:
-        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
     return jsonify({
         "preview_image": preview_image.decode('utf-8')
     })
+
 
 @application.route('/remove', methods=['POST'])
 def remove_product():
@@ -364,13 +362,14 @@ def remove_product():
     product.remove(product_id)
     return render_template("success.html")
 
-@application.route('/edit', methods=['POST','GET'])
+
+@application.route('/edit', methods=['POST', 'GET'])
 def edit_product():
     if request.method == 'GET':
         id_name = request.args.get('id')
         result = product.get_product_details(id_name)
         return render_template('edit-product.html', product=result, len=len(result))
-    
+
     if request.method == 'POST':
         p_id = request.form['id']
         title = request.form['title']
@@ -378,7 +377,7 @@ def edit_product():
         price = request.form['price']
         product.edit(p_id, title, description, price)
         return render_template('success.html')
-    
+
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'

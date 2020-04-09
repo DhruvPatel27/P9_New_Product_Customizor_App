@@ -50,7 +50,7 @@ def get_design():
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * from WOOD_PATTERN"
+            sql = "SELECT * from WOOD_PATTERN ORDER BY ID DESC;"
             cursor.execute(sql)
             result = cursor.fetchall()
     finally:
