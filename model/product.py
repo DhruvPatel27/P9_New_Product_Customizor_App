@@ -1,5 +1,5 @@
-import model.db_connection as db_connection
-import model.utils as utils
+import Model.db_connection as db_connection
+import Model.utils as utils
 from PIL import Image
 
 #API to get all products from the database

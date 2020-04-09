@@ -41,17 +41,20 @@
             {%for i in range(0, len)%}
             <tr>
                 <td>
-                    {{orders[i]['ID']}}
+                    {{orders[i]['Order_Id']}}
                 </td>
                 <td>
                     {{orders[i]['order_date']}}
                 </td>
                 <td>
                     <img alt="" class="placeholder" height="200"
-                                     src="data:image/png;base64,{{orders[i]['customized_image'].decode('utf-8')}}"
+                                     src="{{orders[i]['image'].decode('utf-8')}}"
                                      width="400"/>
                 </td>
+                {% set url = request.url_root ~ "orderstatus?id=" ~ orders[i]['ID']%}
+                <form action={{url}} method="GET">
                 <td><input class="complete" type="submit" value="Track Order">
+                </form>
                 </td>
             </tr>
             {%endfor%}

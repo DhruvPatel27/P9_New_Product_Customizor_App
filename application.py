@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
-import model.product as product
-import model.user as user
-import model.order as order
-import model.customization as preview
-import model.wood as wood
+import Model.product as product
+import Model.user as user
+import Model.order as order
+import Model.customization as preview
+import Model.wood as wood
 import pandas as pd
 
 application = Flask(__name__)
@@ -299,6 +299,18 @@ def render_category():
 @application.route('/woodworker.html')
 def render_woodworker():
     return render_template('woodworker.html')
+
+@application.route('/orderstatus', methods=['GET'])
+
+def get_order_by_id():
+    url = ""
+    order_id = request.args.get('id')
+    result = order.get_order_details_by_id(order_id)
+    wood_type = wood.get_wood_by_id(result['woodtype_id'])
+    wood_design = wood.get_design_by_id(result['woodpattern_id'])
+    products=product.get_product_details(result['product_id'])
+    return render_template('order-status.html', url=url, product=products, orders=result, len=len(result),wood_type=wood_type, wood_design=wood_design),200
+
 
 @application.route('/preview', methods=['GET'])
 def show_preview():
