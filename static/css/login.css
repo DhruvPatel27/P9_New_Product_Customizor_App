@@ -109,6 +109,12 @@ input.text
     padding-top: 5%;
 }
 
+.is_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    width: 30%;
+}
+
 .email{
     font-family: 'Roboto';
     font-size: 15px;
