@@ -9,6 +9,7 @@ import model.product as product
 import model.user as user
 import model.wood as wood
 
+
 application = Flask(__name__)
 
 
@@ -22,7 +23,6 @@ def get_product_by_id():
 
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
                            wood_design=wood_design, default_image=default_image)
-
 
 @application.route('/products/all', methods=['GET'])
 def get_products():
@@ -147,73 +147,97 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
-    if 'product' in session or len(session['product']) > 0:
-        data = session['product']
-        product_result = []
-        for dic in data:
-            for prod_id, q in dic.items():
-                result = product.get_product_details_cart(prod_id)
-                result['quantity'] = q
-                product_result.append(result)
-        return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
-    else:
-        return render_template('cart.html', product_len=0), 200
+    user_name = session['user_name']
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry['product_id'])
+        entry['title'] = prod['title']
+        entry['price'] = prod['price']
+        wood_type = wood.get_wood_by_id(entry['woodtype_id'])
+        entry['wood_type'] = wood_type['name']
+        design_type = wood.get_design_by_id(entry['woodpattern_id'])
+        entry['wood_pattern'] = design_type['name']
+        product_result.append(entry)
+    return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
 
-@application.route('/removeCart', methods=['GET'])
+
+@application.route('/remove-cart', methods=['GET'])
 def remove_from_cart_page():
     id_name = request.args.get('id')
-    # if 'product' in session or len(session['product']) > 0:
-    if 'product' in session:
-        data = session['product']
-        product_result = []
-        for i in range(len(data)):
-            if id_name in data[i]:
-                del data[i]
-                break
-        session['product'] = data
-        product_result = []
-        for dic in data:
-            for prod_id, q in dic.items():
-                result = product.get_product_details_cart(prod_id)
-                res_img = result['image']
-                result['image'] = res_img.decode('utf-8')
-                result['quantity'] = q
-                product_result.append(result)
-        return jsonify({
-            "product": product_result
-        })
-    #     return render_template('cart.html', product=product_result, product_len=len(product_result)), 200
-    # else:
-    #     return render_template('cart.html', product_len=0), 200
+    user_name = session['user_name']
+    order.remove_cart(user_name, id_name)
+    return render_template("success.html")
+    # if 'product' in session:
+    #     data = session['product']
+    #     for i in range(len(data)):
+    #         if id_name in data[i]:
+    #             del data[i]
+    #             break
+    #     session['product'] = data
+    #     product_result = []
+    #     for dic in data:
+    #         for prod_id, q in dic.items():
+    #             result = product.get_product_details_cart(prod_id)
+    #             res_img = result['image']
+    #             result['image'] = res_img.decode('utf-8')
+    #             result['quantity'] = q[0]
+    #             product_result.append(result)
+    #     return jsonify({
+    #         "product": product_result
+    #         })
 
 
-@application.route('/addToCart', methods=['POST'])
+@application.route('/add-to-cart', methods=['POST'])
 def add_to_cart():
     id_name = request.args.get('id')
+    image = request.form['image']
     page = request.args.get('page')
     quantity = request.form['quantity']
-    if 'product' not in session.keys():
-        session['product'] = [{id_name: quantity}]
-    else:
-        data = session['product']
-        data.append({id_name: quantity})
-        session['product'] = data
-    url = ""
-    result = product.get_products()
-    total_pages = (int)(len(result) / 12) + 1
-    if (page == None or int(page) == 1):
-        result = list(itertools.islice(result, 0, 12, 1))
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                               total_pages=total_pages), 200
-    else:
-        page = int(page)
-        result = result[12 * (page - 1):12 * page]
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                               total_pages=total_pages), 200
+    wood_id = request.form['wood']
+    pattern_id = request.form['pattern']
+    user_name = session['user_name']
+    result = product.get_product_details_cart(id_name)
+    price = result['price']
+    total_cost = price * float(quantity)
+    cart_details = order.add_to_cart(id_name, image, quantity, wood_id, pattern_id, user_name, total_cost)
+    if (cart_details):
+        url = ""
+        result = product.get_products()
+
+        total_pages = (int)(len(result) / 12) + 1
+
+        if (page == None or int(page) == 1):
+            result = list(itertools.islice(result, 0, 12, 1))
+            return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                                   total_pages=total_pages), 200
+        else:
+            page = int(page)
+            result = result[12 * (page - 1):12 * page]
+            return render_template('product-catalog.html', product=result, len=len(result), url=url,
+                                   total_pages=total_pages), 200
 
 
-@application.route('/checkoutSuccess')
+@application.route('/checkout', methods=['POST'])
+def load_checkout():
+    cost = request.form['total']
+    return render_template('checkout.html', cost=cost), 200
+
+
+@application.route('/checkout-success', methods=['POST'])
 def load_checkout_success():
+    price = request.form['cost']
+    address = request.form['address']
+    city = request.form['city']
+    state = request.form['state']
+    zipcode = request.form['zipcode']
+    card_number = request.form['card']
+    expiry = request.form['expiry']
+    cvv = request.form['cvv']
+    contact = request.form['contact']
+    user_name = session['user_name']
+    address = (','.join([address, city, state]))
+    order.place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact)
     return render_template('checkout-success.html'), 200
 
 
