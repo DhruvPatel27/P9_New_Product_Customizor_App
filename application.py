@@ -200,7 +200,7 @@ def manage_products():
         new_products = request.files['new-products']
         data_xls = pd.read_excel(new_products)
         product.add_products(data_xls)
-        return render_template('success.html'), 200
+        return render_template('manager-success.html', success="Products added successfully"), 200
 
     return render_template('manage-products.html'), 200
 
@@ -257,13 +257,13 @@ def show_message_preview():
 def remove_product():
     product_id = request.form['productid']
     product.remove(product_id)
-    return render_template("success.html")
+    return render_template('manager-success.html', success="Product Removed"), 200
 
 
 @application.route('/edit', methods=['POST', 'GET'])
 def edit_product():
     if request.method == 'GET':
-        id_name = request.args.get('id')
+        id_name = request.args.get('productid')
         result = product.get_product_details(id_name)
         return render_template('edit-product.html', product=result, len=len(result))
 
@@ -273,7 +273,7 @@ def edit_product():
         description = request.form['description']
         price = request.form['price']
         product.edit(p_id, title, description, price)
-        return render_template('success.html')
+        return render_template('manager-success.html', success="Product Updated"),200
 
 # Returns results based on pages
 def get_pages(page, result):
