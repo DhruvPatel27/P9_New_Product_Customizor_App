@@ -42,7 +42,6 @@ def get_products():
 @application.route('/product-catalog.html')
 def render_static():
     page = request.args.get('page')
-
     result = product.get_products()
     url = ""
     total_pages = (int)(len(result) / 12) + 1
@@ -61,7 +60,6 @@ def render_static():
 @application.route('/product-catalog-manager.html')
 def product_catalog_manager():
     page = request.args.get('page')
-
     result = product.get_products()
     url = ""
     total_pages = (int)(len(result) / 12) + 1
@@ -215,6 +213,7 @@ def add_to_cart():
         result = result[12 * (page - 1):12 * page]
         return render_template('product-catalog.html', product=result, len=len(result), url=url,
                                    total_pages=total_pages), 200
+
 
 
 @application.route('/checkout', methods=['POST'])
