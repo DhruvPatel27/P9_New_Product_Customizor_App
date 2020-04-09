@@ -2,12 +2,11 @@ import base64
 from io import BytesIO
 
 from PIL import Image
-from PIL import ImageFont
 from PIL import ImageDraw
+from PIL import ImageFont
 
 import model.product as product
 import model.wood as wood
-
 
 def show_preview(model_id, wood_id, design_id, message):
     mask = product.get_products_mask(model_id)
@@ -32,7 +31,7 @@ def show_preview(model_id, wood_id, design_id, message):
 
     if message:
         draw = ImageDraw.Draw(result)
-        font = ImageFont.truetype("arial.ttf", 50)
+        font = ImageFont.truetype("static/fonts/Pacifico-Regular.ttf", 50)
         w, h = draw.textsize(message, font=font)
         draw.text(((width-w)/2, (height-h)/2), message, (110, 90, 60), font=font, align="right")
 
