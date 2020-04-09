@@ -188,6 +188,7 @@ def remove_from_cart_page():
 
 @application.route('/add-to-cart', methods=['POST'])
 def add_to_cart():
+    user_name = session['user_name']
     id_name = request.args.get('id')
     image = request.form['image']
     page = request.args.get('page')

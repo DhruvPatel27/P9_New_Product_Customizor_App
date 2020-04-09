@@ -111,9 +111,7 @@
     </div>
     <script>displaySubTotal()</script>
 </div>
-{% if not session['user_name'] %}
-<div class="email-input"><div class="email">Email ID:</div><input class="text" name="username" type="text"></div>
-{% endif %}
+
 {%set url = request.url_root ~ "checkout"%}
 <form action={{url}} method="POST">
     <input type="hidden" id="total" name="total" value="0">

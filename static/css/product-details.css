@@ -462,3 +462,12 @@ button {
 	padding-right: 25px;
 }
 }
+
+.quantity-input{
+    display: flex;
+    height: 2%;
+}
+
+.quantity-h4{
+    flex: 0 0 15%;
+}
