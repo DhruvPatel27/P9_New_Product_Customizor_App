@@ -1,7 +1,7 @@
 import itertools
 
 import pandas as pd
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request, session, jsonify, redirect
 
 import model.customization as preview
 import model.order as order
@@ -197,21 +197,7 @@ def add_to_cart():
     price = result['price']
     total_cost = price * float(quantity)
     cart_details = order.add_to_cart(id_name, image, quantity, wood_id, pattern_id, user_name, total_cost)
-    url = ""
-    result = product.get_products()
-
-    total_pages = (int)(len(result) / 12) + 1
-
-    if (page == None or int(page) == 1):
-        result = list(itertools.islice(result, 0, 12, 1))
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                                   total_pages=total_pages), 200
-    else:
-        page = int(page)
-        result = result[12 * (page - 1):12 * page]
-        return render_template('product-catalog.html', product=result, len=len(result), url=url,
-                                   total_pages=total_pages), 200
-
+    return redirect('/cart')
 
 
 @application.route('/checkout', methods=['POST'])
