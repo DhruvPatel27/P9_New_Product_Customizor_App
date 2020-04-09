@@ -1,7 +1,7 @@
 import itertools
 
 import pandas as pd
-from flask import Flask, render_template, request, session, jsonify, redirect
+from flask import Flask, render_template, request, session, jsonify, redirect, flash
 
 import model.customization as preview
 import model.order as order
@@ -62,7 +62,7 @@ def login():
             return render_template('manage-products.html'), 200
         return redirect(request.url_root)
     else:
-        return render_template('login.html'), 401
+        return render_template('login.html', error="Invalid credentials. Try again!!!"), 401
 
 
 @application.route('/signup', methods=['POST'])
