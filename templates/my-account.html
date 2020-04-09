@@ -53,8 +53,8 @@
             </tr>
             {%for i in range(order_len-1,-1,-1)%}
             <tr>
-                <td align="center">{{order[i]['ID']}}</td>
-                <td align="center" style="padding-left: 9%"><img src="data:image/png;base64,{{order[i]['customized_image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
+                <td align="center">{{order[i]['Order_Id']}}</td>
+                <td align="center" style="padding-left: 9%"><img src="{{order[i]['image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
                 <td align="center" style="padding-left: 9%">{{order[i]['order_date']}}</td>
                 <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
                 <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>

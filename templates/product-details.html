@@ -60,6 +60,8 @@
                 var wood_id = $(".wood_type:checked").val();
                 design_id = $(".design_type:checked").val();
                 var message = $(".personal_message").val();
+                document.getElementById('wood').value = wood_id;
+                document.getElementById('pattern').value = design_id;
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
@@ -73,6 +75,8 @@
     <script>
         function saveImage() {
             document.getElementById('image').value =  document.getElementById('product_image').src;
+            document.getElementById('wood').value = $(".wood_type:checked").val();
+            document.getElementById('pattern').value = $(".design_type:checked").val();
          }
     </script>
     <script>
@@ -131,19 +135,18 @@
         <span><button class="buttons" id="preview" type="submit">Preview</button></span>
         <span class="warning" id="personal_message_warning"></span>
 
-
-        <h3>
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
-                <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
                 <input type="hidden" id="image" name="image" value="0">
                 <input type="hidden" id="wood" name="wood" value="0">
                 <input type="hidden" id="pattern" name="pattern" value="0">
-                <input type="number" name="quantity" value="1" min="1">
-                <button type="submit" onclick="saveImage()" class="buttons"><strong>Add to Cart</strong></button>
+                <div class="quantity-input"><h4 class="quantity-h4">Quantity</h4><input type="number" name="quantity" value="1" min="1" style="height:5%; margin-top:3%"></div>
+                <h3>
+                <button type="submit" onclick="saveImage()" class="buttons" style="margin-top:-3%">Add to Cart</button>
+                    </h3>
             </form>
 
-        </h3>
+
     </article>
 </section>
 </body>
