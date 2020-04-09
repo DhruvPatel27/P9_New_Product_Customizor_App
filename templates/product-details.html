@@ -80,11 +80,6 @@
          }
     </script>
     <script>
-        function saveImage() {
-            document.getElementById('image').value =  document.getElementById('product_image').src;
-         }
-    </script>
-    <script>
     $(function(){
       $("#basic-layout").load("basic-layout.html");
     });
@@ -139,6 +134,7 @@
                placeholder="Enter up to 20 characters" type="text">
         <span><button class="buttons" id="preview" type="submit">Preview</button></span>
         <span class="warning" id="personal_message_warning"></span>
+
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="image" name="image" value="0">

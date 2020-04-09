@@ -193,8 +193,6 @@ def add_to_cart():
     quantity = request.form['quantity']
     wood_id = request.form['wood']
     pattern_id = request.form['pattern']
-    print(pattern_id)
-    user_name = session['user_name']
     result = product.get_product_details_cart(id_name)
     price = result['price']
     total_cost = price * float(quantity)
