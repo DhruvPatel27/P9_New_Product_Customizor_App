@@ -80,7 +80,6 @@
       $("#basic-layout").load("basic-layout.html");
     });
     </script>
-
 </head>
 
 <body>
@@ -131,7 +130,6 @@
         <span><button class="buttons" id="preview" type="submit">Preview</button></span>
         <span class="warning" id="personal_message_warning"></span>
 
-
         <h3>
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
@@ -142,7 +140,6 @@
                 <input type="number" name="quantity" value="1" min="1">
                 <button type="submit" onclick="saveImage()" class="buttons"><strong>Add to Cart</strong></button>
             </form>
-
         </h3>
     </article>
 </section>
