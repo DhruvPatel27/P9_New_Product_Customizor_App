@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session, jsonify, url_for, redirect
 import itertools
-import model.product as product
-import model.user as user
-import model.order as order
-import model.customization as preview
-import model.wood as wood
+import Model.product as product
+import Model.user as user
+import Model.order as order
+import Model.customization as preview
+import Model.wood as wood
 import pandas as pd
 
 application = Flask(__name__)
@@ -300,6 +300,26 @@ def render_category():
 def render_woodworker():
     return render_template('woodworker.html')
 
+@application.route('/orderstatus', methods=['GET'])
+def show_order_status():
+    url = ""
+    order_id = request.args.get('id')
+    result = order.get_order_details_by_id(order_id)
+    wood_type = wood.get_wood_by_id(result['woodtype_id'])
+    wood_design = wood.get_design_by_id(result['woodpattern_id'])
+    products=product.get_product_details(result['product_id'])
+    return render_template('order-status.html', url=url, orders=result,len=len(result), product=products, wood_type=wood_type, wood_design=wood_design),200
+
+@application.route('/orderstatus/update', methods=['GET'])
+def update_order_status():
+    order_id = request.args.get('order_id')
+    status = request.args.get('status')
+    order.update_order_status_for_order(status, order_id)
+    return jsonify({
+        "status": status
+    })
+
+
 @application.route('/preview', methods=['GET'])
 def show_preview():
     model_id = request.args.get('model_id')
@@ -313,7 +333,7 @@ def show_preview():
         design_type = wood.get_design_by_id(design_id)
         preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'], design_type['mask'])
     else:
-        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'])
+        preview_image = preview.mask_loop(mask[0]['model_mask'], wood_type['image'],0)
     return jsonify({
         "preview_image": preview_image.decode('utf-8')
     })
@@ -344,3 +364,4 @@ if __name__ == '__main__':
     application.secret_key = 'super secret key'
     application.debug = True
     application.run()
+   

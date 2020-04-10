@@ -1,4 +1,4 @@
-import model.db_connection as db_connection
+import Model.db_connection as db_connection
 
 
 # API to get wood images by id from the database
