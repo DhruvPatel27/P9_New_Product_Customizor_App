@@ -112,7 +112,7 @@ input.text
 .is_error {
     color: #D8000C;
     background-color: #FFD2D2;
-    width: 30%;
+    width: fit-content;
 }
 
 .email{

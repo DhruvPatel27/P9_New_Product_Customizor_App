@@ -18,3 +18,9 @@
 #mainWrapper {
 	width: 100%;
 }
+
+.is_success {
+    color: rgb(86, 138, 5);
+	background-color: rgb(210, 255, 227);
+	width: fit-content;
+}

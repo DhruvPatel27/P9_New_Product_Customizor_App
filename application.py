@@ -32,19 +32,14 @@ def render_static():
     return render_template('product-catalog.html', product=details[0], len=len(details[0]), url="",
                                total_pages=details[1])
 
-
-@application.route('/product-catalog-manager.html')
-def product_catalog_manager():
-    page = request.args.get('page')
-    result = product.get_products()
-    details = get_pages(page, result)
-    return render_template('product-catalog-manager.html', product=details[0], len=len(details[0]), url="",
-                               total_pages=details[1])
-
-
 @application.route('/login', methods=['POST'])
 def login():
-    session.clear()
+    if 'customer' in session and session['customer']:
+        return redirect(request.url_root)
+    elif 'manager' in session and session['manager']:
+        return redirect(request.url_root+"manager")
+    else:
+        session.clear()
     page = request.args.get('page')
     if not request.form or not 'username' in request.form or not 'password' in request.form:
         return render_template('login.html'), 400
@@ -55,15 +50,28 @@ def login():
         session['fname'] = user_details['FirstName']
         session['lname'] = user_details['LastName']
         if user_details['Role'] == "Carpenter":
+            session['carpenter'] = True
             orders = order.get_all_orders()
             return render_template('woodworker.html', orders=orders, len=len(orders), url=url), 200
         elif user_details['Role'] == "Admin":
-            orders = order.get_all_orders()
-            return render_template('manage-products.html'), 200
-        return redirect(request.url_root)
+            session['manager'] = True
+            return redirect(request.url_root+"manager")
+        else:
+            session['customer'] = True
+            return redirect(request.url_root)
     else:
         return render_template('login.html', error="Invalid credentials. Try again!!!"), 401
 
+@application.route('/manager', methods=['GET'])
+def display_home_manager():
+    if session and session['manager']:
+        page = request.args.get('page')
+        result = product.get_products()
+        details = get_pages(page, result)
+        return render_template('product-catalog-manager.html', product=details[0], len=len(details[0]), url="",
+                               total_pages=details[1]),200
+    else:
+        return render_template('error.html', error="You are not authorized to access this page!!"), 401
 
 @application.route('/signup', methods=['POST'])
 def signup():
@@ -181,14 +189,18 @@ def render_about_us():
 def render_basic_layout():
     return render_template('basic-layout.html')
 
+@application.route('/basic-layout-manager.html')
+def render_basic_layout_manager():
+    return render_template('basic-layout-manager.html')
 
-@application.route('/manage-products', methods=['POST', 'GET'])
+
+@application.route('/add-products', methods=['POST', 'GET'])
 def manage_products():
     if request.method == 'POST':
         new_products = request.files['new-products']
         data_xls = pd.read_excel(new_products)
         product.add_products(data_xls)
-        return render_template('success.html'), 200
+        return render_template('manager-success.html', success="Products added successfully"), 200
 
     return render_template('manage-products.html'), 200
 
@@ -245,13 +257,13 @@ def show_message_preview():
 def remove_product():
     product_id = request.form['productid']
     product.remove(product_id)
-    return render_template("success.html")
+    return render_template('manager-success.html', success="Product Removed"), 200
 
 
 @application.route('/edit', methods=['POST', 'GET'])
 def edit_product():
     if request.method == 'GET':
-        id_name = request.args.get('id')
+        id_name = request.args.get('productid')
         result = product.get_product_details(id_name)
         return render_template('edit-product.html', product=result, len=len(result))
 
@@ -261,7 +273,7 @@ def edit_product():
         description = request.form['description']
         price = request.form['price']
         product.edit(p_id, title, description, price)
-        return render_template('success.html')
+        return render_template('manager-success.html', success="Product Updated"),200
 
 # Returns results based on pages
 def get_pages(page, result):
