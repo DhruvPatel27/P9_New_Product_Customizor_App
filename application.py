@@ -301,15 +301,23 @@ def render_woodworker():
     return render_template('woodworker.html')
 
 @application.route('/orderstatus', methods=['GET'])
-
-def get_order_by_id():
+def show_order_status():
     url = ""
     order_id = request.args.get('id')
     result = order.get_order_details_by_id(order_id)
     wood_type = wood.get_wood_by_id(result['woodtype_id'])
     wood_design = wood.get_design_by_id(result['woodpattern_id'])
     products=product.get_product_details(result['product_id'])
-    return render_template('order-status.html', url=url, product=products, orders=result, len=len(result),wood_type=wood_type, wood_design=wood_design),200
+    return render_template('order-status.html', url=url, orders=result,len=len(result), product=products, wood_type=wood_type, wood_design=wood_design),200
+
+@application.route('/orderstatus/update', methods=['GET'])
+def update_order_status():
+    order_id = request.args.get('order_id')
+    status = request.args.get('status')
+    order.update_order_status_for_order(status, order_id)
+    return jsonify({
+        "status": status
+    })
 
 
 @application.route('/preview', methods=['GET'])

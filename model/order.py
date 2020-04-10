@@ -31,13 +31,13 @@ def get_order_details_for_user(user_name):
         
     return result
 
-<<<<<<< HEAD
 # API to get order details based on order id
 def get_order_details_by_id(order_id):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from `CUSTOMER_ORDER` where `ID`=%s"
+            
             cursor.execute(sql,order_id)
             result = cursor.fetchone()
     finally:
@@ -51,7 +51,7 @@ def update_order_status_for_order(order_status,order_id):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "UPDATE `ORDER` SET `state` = %s where `ID` = %s"
+            sql = "UPDATE `CUSTOMER_ORDER` SET `state` = %s where `ID` = %s"
             cursor.execute(sql,(order_status,order_id))
             connection.commit()            
     finally:

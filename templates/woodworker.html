@@ -53,9 +53,11 @@
                 </td>
                 {% set url = request.url_root ~ "orderstatus?id=" ~ orders[i]['ID']%}
                 <form action={{url}} method="GET">
-                <td><input class="complete" type="submit" value="Track Order">
+                    <td>
+                        <input type="hidden" id="id" name="id" value={{orders[i]['ID']}}>
+                        <input class="complete" type="submit" value="Track Order">
+                    </td>
                 </form>
-                </td>
             </tr>
             {%endfor%}
         </table>
