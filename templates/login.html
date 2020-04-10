@@ -27,14 +27,17 @@
         {% set url = request.url_root%}
         {% set url_login = request.url_root ~"login"%}
         {% set url_signup = request.url_root ~"signup"%}
+        {% if error %}
+            <p class="is_error"><strong>Error:</strong> {{ error }} </p>
+        {% endif %}
         <form name ="loginDetails" action={{url_login}} method="POST">
             <div class="label">Email ID:</div>
             <div>
-                <input class="text" name="username" type="text"><br/>
+                <input class="text" name="username" type="text" required><br/>
             </div>
             <div class="label">Password:</div>
             <div>
-                <input class="text" name="password" type="password"><br/><br/>
+                <input class="text" name="password" type="password" required><br/><br/>
             </div>
             <div>
                 <input class="submit" type="submit" value="Login">
