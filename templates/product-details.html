@@ -138,8 +138,8 @@
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="image" name="image" value="0">
-                <input type="hidden" id="wood" name="wood" value="0">
-                <input type="hidden" id="pattern" name="pattern" value="0">
+                <input type="hidden" id="wood" name="wood" value="1">
+                <input type="hidden" id="pattern" name="pattern" value="6">
                 <div class="quantity-input"><h4 class="quantity-h4">Quantity</h4><input type="number" name="quantity" value="1" min="1" style="height:5%; margin-top:3%"></div>
                 <h3>
                 <button type="submit" onclick="saveImage()" class="buttons" style="margin-top:-3%">Add to Cart</button>
