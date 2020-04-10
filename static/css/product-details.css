@@ -119,7 +119,7 @@ footer{
 	padding-left: 5%;
 	padding-right: 5%;
 	margin-top: 5%;
-    color: #000000;
+    	color: #000000;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -207,28 +207,28 @@ footer{
 	padding-bottom: 25px;
 }
 .wood_type {
-  position: absolute;
-  left: -9999px;
+  	position: absolute;
+  	left: -9999px;
 }
 .design_type {
-  position: absolute;
-  left: -9999px;
+  	position: absolute;
+ 	left: -9999px;
 }
 input[type=radio]:checked + img {
-  box-shadow: 0 0 5px 5px #8c1d40;
-    width: 55px;
-  height: 55px;
+  	box-shadow: 0 0 5px 5px #8c1d40;
+    	width: 55px;
+  	height: 55px;
 }
 input[type=radio] + img {
-  border: 1px #444;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
+  	border: 1px #444;
+ 	width: 50px;
+ 	height: 50px;
+ 	cursor: pointer;
 }
 .warning {
-    color:red;
-    font-family:Roboto;
-    font-size: 12px;
+	color:red;
+	font-family:Roboto;
+	font-size: 12px;
 }
 button {
 	background-color: #8C1D40;
@@ -243,19 +243,19 @@ button {
 	font-size: 16px;
 }
 .divider{
-    width:5px;
-    height:auto;
-    display:inline-block;
+	width:5px;
+	height:auto;
+	display:inline-block;
 }
 .personal_message {
-  width: 250 px;
-  height: 40 px;
-  padding: 15px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+	width: 250 px;
+	height: 40 px;
+	padding: 15px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 .quantity{
 	padding: 15px 4px;
