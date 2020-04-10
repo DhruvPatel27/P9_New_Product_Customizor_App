@@ -66,17 +66,19 @@
       </div>
         <div class="productRow"><!-- Each product row contains info of 3 elements -->
             {%for i in range(0, len)%}
+                {% set url = request.url_root ~ "products?id=" ~ product[i]['Product_id']%}
+                <a href={{url}}>
+                    <article class="productInfo"><!-- Each individual product description -->
+                        <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}"></div>
+                        <p class="price">${{product[i]['price']}}</p>
+                        <p class="productContent">{{product[i]['title']}}</p>
 
-                <article class="productInfo"><!-- Each individual product description -->
-                    <div><img alt="sample" class="productImage" src="data:image/png;base64,{{product[i]['image'].decode('utf-8')}}"></div>
-                    <p class="price">${{product[i]['price']}}</p>
-                    <p class="productContent">{{product[i]['title']}}</p>
-                    {% set url = request.url_root ~ "products?id=" ~ product[i]['Product_id']%}
-                    <form action={{url}} method="GET">
-                        <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
-                        <input class="buyButton" type="submit" value="Customize">
-                    </form>
-                </article>
+                        <form action={{url}} method="GET">
+                            <input type="hidden" id="id" name="id" value={{product[i]['Product_id']}}>
+                            <input class="buyButton" type="submit" value="Customize">
+                        </form>
+                    </article>
+                </a>
             {%endfor%}
 
         </div>

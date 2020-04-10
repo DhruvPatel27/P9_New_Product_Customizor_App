@@ -23,28 +23,10 @@
 <div id="mainWrapper">
     <section id="login">
         <!-- The offer section displays a banner text for promotions -->
-        <h2>Customer Login</h2>
-        {% set url = request.url_root%}
-        {% set url_login = request.url_root ~"login"%}
-        {% set url_signup = request.url_root ~"signup"%}
+        <h2>Error</h2>
         {% if error %}
             <p class="is_error"><strong>Error:</strong> {{ error }} </p>
         {% endif %}
-        <form name ="loginDetails" action={{url_login}} method="POST">
-            <div class="label">Email ID:</div>
-            <div>
-                <input class="text" name="username" type="text" required><br/>
-            </div>
-            <div class="label">Password:</div>
-            <div>
-                <input class="text" name="password" type="password" required><br/><br/>
-            </div>
-            <div>
-                <input class="submit" type="submit" value="Login">
-            </div>
-            <br/>
-            <div> New Customer? <a class="link" href={{url_signup}}>Signup</a></div>
-        </form>
     </section>
     <div id="content"></div>
 </div>
