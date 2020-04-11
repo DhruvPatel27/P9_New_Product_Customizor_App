@@ -76,3 +76,28 @@ Delivered static UI for Home, product details, occasion, login, signup, order de
 2. Linked the frontend with backend to show data dynamically.
 3. Created masks for images.
 
+### Sprint 3:
+
+1. User session management: Login/Register, order details
+2. Woodworker’s Login Register and Order Management
+3. Preview different wood type on the products in real-time
+4. Pagination for product catalog page (9 products per page)
+
+### Sprint 4:
+
+1. Implement different types of customization for products.
+2. Provide add to cart functionality for the user to make an order.
+3. Provide filters for products based on a particular occasion or category.
+4. Fixes for AWS hosting.
+5. Provide inventory management functionality for the manager.
+6. Visibility of Logged in user name on the top bar of the web application.
+
+### Sprint 5:
+
+1. Carpenter should be able to track orders and change the status of the order.
+2. Manager should be able to remove added products
+3. Manager should be able to edit the existing products
+4. Fix minor UI issues
+5. Customer should be able to place order
+6. Implement text customization on the product
+
