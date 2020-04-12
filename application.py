@@ -111,8 +111,8 @@ def load_cart_page():
 @application.route('/remove-cart', methods=['GET'])
 def remove_from_cart_page():
     id_name = request.args.get('id')
+    order.remove_cart(id_name)
     user_name = session['user_name']
-    order.remove_cart(user_name, id_name)
     result = order.load_cart(user_name)
     product_result = []
     for entry in result:
