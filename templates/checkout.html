@@ -26,36 +26,30 @@
 <form action={{url}} method="POST">
     <input type="hidden" id="cost" name="cost" value="0">
     <script>getValue({{cost}})</script>
-    <h2>Total Cost to be paid: ${{cost}}</h2>
-    <h3 align="center">Billing address</h3>
-    <div id="mainWrapper">
-        <section id="login">
-            <div class="checkout">
-                <div class="label">Address:</div><span class="required"> *</span><input class="text" name="address" type="text" required>
-            <div class="label" style="margin-left: 5%">City:</div><span class="required"> *</span><input class="text" name="city" type="text" style="margin-left: 7.5%" required>
-        </div>
-        <div class="checkout">
-            <div class="label">State:</div><span class="required"> *</span><input class="text" name="state" type="text" style="margin-left: 7%" required>
+    <h2 align="center">Total Cost to be paid: ${{cost}}</h2>
+    <h3 align="center">Address Details</h3>
+    <table width="90%" align="center">
+        <tr>
+            <td><input class="text" name="address" type="text" placeholder="Address" style="margin-left: 25%" required></td>
+            <td><input class="text" name="city" type="text" placeholder="City" required></td>
+        </tr>
+        <tr>
+            <td><input class="text" name="state" type="text" placeholder="State" style="margin-left: 25%" required></td>
+            <td><input class="text" name="zipcode" type="text" placeholder="Zipcode" required></td>
+        </tr>
+    </table>
+    <h3 align="center">Payment Details</h3>
+    <table width="90%" align="center">
+        <tr>
+            <td><input class="text" name="card" type="text" placeholder="Card Number" style="margin-left: 25%" required></td>
+            <td><input class="text" name="expiry" type="text" placeholder="Expiry Date (YYYY-MM-DD)" required></td>
+        </tr>
+        <tr>
+            <td><input class="text" name="cvv" type="password" style="margin-left: 25%" placeholder="CVV" required></td>
 
-            <div class="label" style="margin-left: 5%">Zipcode:</div><span class="required"> *</span><input class="text" name="zipcode" type="text" required>
-        </div>
-    </section>
-</div>
-<h3 align="center">Payment Details</h3>
-<div id="mainWrapper">
-    <section id="login">
-        <div class="checkout">
-            <div class="label">Card Number:</div><span class="required"> *</span><input class="text" name="card" type="text" required>
-            <div class="label" style="margin-left: 5%">CVV:</div><span class="required"> *</span><input class="text" name="cvv" type="password" style="width: 5%" required>
-
-        </div>
-        <div class="checkout">
-
-            <div class="label">Expiry Date(YYYY-MM-DD):</div><span class="required"> *</span><input class="text" name="expiry" type="text" style="width: 15%" required>
-            <div class="label" style="margin-left: 5%">Contact Number:</div><span class="required"> *</span><input class="text" name="contact" type="text" required>
-        </div>
-    </section>
-</div>
+            <td><input class="text" name="contact" type="text" placeholder="Contact Number" required></td>
+        </tr>
+    </table>
 <div>
             <input class="submit" type="submit" value="Place Order">
             </div>
