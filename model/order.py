@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import Model.db_connection as db_connection
-=======
 import model.db_connection as db_connection
 from flask import jsonify
 from datetime import datetime
->>>>>>> 6e3ef02356c8fc643a2cbc479af4bf331c8e668c
 
 # API to get all orders from the database for woodworker
 def get_all_orders():
@@ -105,13 +101,12 @@ def update_order_status_for_order(order_status,order_id):
     return
 
 # API to remove from cart
-def remove_cart(user_name, product_id):
+def remove_cart(product_id):
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "DELETE from CUSTOMER_ORDER where `email_id`=%s AND `state`=%s AND `product_id`=%s"
-            cart_details = (user_name, 'InCart', product_id)
-            cursor.execute(sql, cart_details)
+            sql = "DELETE from CUSTOMER_ORDER where `ID`=%s"
+            cursor.execute(sql, product_id)
             connection.commit()
     except Exception as e:
         print(e)

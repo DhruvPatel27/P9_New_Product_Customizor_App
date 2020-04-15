@@ -1,20 +1,10 @@
-#mainWrapper {
-	width: 100%;
-
+body{
+    font-family: 'Roboto';
 }
 
-#login {
-
-	font-family: 'Roboto';
-	clear: both;
-	padding-left: 10%;
-	padding-top: 2%;
-	padding-bottom: 3%;
-	color:black;
-}
 
 input.text
-{   width: 30%;
+{   width: 70%;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
@@ -23,26 +13,10 @@ input.text
     margin-bottom: 2%;
 }
 
-.label {
-    display: inline;
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 32px;
-    margin: 0;
-    width: 125px;
-    padding-bottom: 2px;
-    flex: 0 0 20%;
-}
 
 .required{
 	color: red;
   }
-
-#checkout{
-    width: 100%;
-    display: flex;
-    margin-left: 30%;
-}
 
 input.submit{
 	background-color: #8C1D40;
@@ -53,12 +27,18 @@ input.submit{
     padding: 0px 20px !important;
     height: 36px;
     line-height: 1;
-	margin-left:47%;
+	margin-left:45%;
 	margin-bottom: 5%;
 }
 
 h2{
-    margin-left: 40%;
-    padding-bottom: 5%;
     padding-top: 2%;
+}
+
+h3{
+    padding-bottom: 2%;
+}
+
+table{
+    padding-bottom: 2%;
 }
