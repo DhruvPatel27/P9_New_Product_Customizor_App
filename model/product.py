@@ -212,3 +212,17 @@ def isfloat(value):
     return True
   except ValueError:
     return False
+
+# Search and retrieve products by name
+def search_product_by_name(name):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = "SELECT * from PRODUCT where `title`=%s"
+            cursor.execute(sql,name)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
