@@ -2,6 +2,7 @@ import itertools
 
 
 import pandas as pd
+import numpy as np
 from flask import Flask, render_template, request, session, jsonify, redirect
 
 import model.customization as preview
@@ -198,9 +199,13 @@ def render_basic_layout_manager():
 def manage_products():
     if request.method == 'POST':
         new_products = request.files['new-products']
-        data_xls = pd.read_excel(new_products)
-        product.add_products(data_xls)
-        return render_template('manager-success.html', success="Products added successfully"), 200
+        data_xls_1 = pd.read_excel(new_products)
+        data_xls = data_xls_1.replace(np.nan,'',regex=True)
+        invalid = product.add_products(data_xls)
+        if not invalid:
+            return render_template('manager-success.html', success="Products added successfully"), 200
+        else:
+            return render_template('manager-success.html', success="Some products are added successfully. Please correct the details for the following products.", error=invalid), 200
 
     return render_template('manage-products.html'), 200
 

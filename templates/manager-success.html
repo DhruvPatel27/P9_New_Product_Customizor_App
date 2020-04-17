@@ -28,6 +28,9 @@
         {% if success %}
             <p class="is_success"><strong>Success:</strong> {{ success }} </p>
         {% endif %}
+        {% for key in error%}
+            <p>{{key}} <br/><br/>{{error[key]}}</p>
+        {%endfor%}
     </section>
 </div>
 </body>
