@@ -59,13 +59,13 @@
                 <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
                 <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>
                 {% if order[i]['state'] == 'Recieved' %}
-                <td align="center" style="padding-left: 9%">Order Received</td>
+                <td align="center" style="padding-left: 9%">Order Placed</td>
                 {% elif order[i]['state'] == 'OrderWood' %}
-                <td align="center" style="padding-left: 9%">Wood is on it's way</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'CutWood' %}
-                <td align="center" style="padding-left: 9%">Wood is cut</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'Engraved' %}
-                <td align="center" style="padding-left: 9%">Finished Engraving</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'Finish' %}
                 <td align="center" style="padding-left: 9%">Ready to ship</td>
                 {% elif order[i]['state'] == 'Ship' %}
