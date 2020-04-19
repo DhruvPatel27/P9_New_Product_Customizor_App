@@ -145,8 +145,11 @@ input.text
 
 #orders{
     padding-top: 5%;
+    width: 80%;
 }
 
-
+.line{
+    border-bottom: 1px solid #ccc;
+}
 
 
