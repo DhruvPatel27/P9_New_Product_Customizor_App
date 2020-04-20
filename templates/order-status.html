@@ -67,7 +67,7 @@ function selectvalue()
                     </tr>
                     <tr> 
                     <td>Product Price</td>
-                        <td>{{orders['total_cost']}}</td>
+                        <td>$ {{orders['total_cost']}}</td>
                     </tr>
                 <tr> 
                     <td>Wood Type</td>
@@ -84,7 +84,7 @@ function selectvalue()
                             </td>
                     </tr>
                 <tr> 
-                    <td>Order Id</td>
+                    <td>Order ID</td>
                         <td>{{orders['Order_Id']}}
                             </td>
                     </tr>
@@ -101,12 +101,12 @@ function selectvalue()
                 </table>
 <select id="dropdown" class="drop" onchange=selectvalue()>
   <option selected disabled hidden>Change Order Status</option>
-  <option class="optionitem" value="Recieved">Order Received</option>
-  <option class="optionitem" value="OrderWood">Order Wood</option>
-  <option class="optionitem" value="CutWood">Cut Wood</option>
-  <option class="optionitem" value="Engaved">Engaved Wood</option>
-  <option class="optionitem" value="Finish">Finished</option>
-  <option class="optionitem" value="Ship">Ship Order</option>
+  <option class="optionitem" value="Order Received">Order Received</option>
+  <option class="optionitem" value="Order Wood">Order Wood</option>
+  <option class="optionitem" value="Cut Wood">Cut Wood</option>
+  <option class="optionitem" value="Product Engraved">Engraved Wood</option>
+  <option class="optionitem" value="Order Finished">Order Finished</option>
+  <option class="optionitem" value="Order Shipped">Order Shipped</option>
   
 </select><div id="message"></div>
     </article>
