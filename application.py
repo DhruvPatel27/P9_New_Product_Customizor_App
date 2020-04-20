@@ -20,7 +20,7 @@ def get_product_by_id():
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
     wood_design = wood.get_design()
-    default_image = preview.show_preview(result['model_id'], 1, 6, "")
+    default_image = preview.show_default_preview(result['model_id'], 1)
 
     return render_template('product-details.html', product=result, len=len(result), wood_type=wood_type,
                            wood_design=wood_design, default_image=default_image)
