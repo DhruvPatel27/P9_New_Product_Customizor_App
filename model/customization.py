@@ -8,6 +8,7 @@ from PIL import ImageFont
 import model.product as product
 import model.wood as wood
 
+
 def show_preview(model_id, wood_id, design_id, message):
     mask = product.get_products_mask(model_id)
     mask = Image.open(BytesIO(base64.b64decode(mask[0]['model_mask'].decode('utf-8'))))
@@ -23,7 +24,6 @@ def show_preview(model_id, wood_id, design_id, message):
     design_type = design_type.convert("RGBA")
 
     files = [wood_type, design_type, mask]
-
     result = Image.new("RGBA", (width, height))
 
     for i in range(0, len(files)):
@@ -33,10 +33,13 @@ def show_preview(model_id, wood_id, design_id, message):
         draw = ImageDraw.Draw(result)
         font = ImageFont.truetype("static/fonts/Pacifico-Regular.ttf", 50)
         w, h = draw.textsize(message, font=font)
-        draw.text(((width-w)/2, (height-h)/2), message, (110, 90, 60), font=font, align="right")
+        message_background = wood_type.crop((0, 0, w, h))
+        result.paste(message_background, (int(((width - w) / 2)), int(((height - h) / 2))), message_background)
+        draw.text(((width - w) / 2, (height - h) / 2), message, (110, 90, 60), font=font, align="right")
 
     img = BytesIO()
     result.save(img, format='PNG')
     img = img.getvalue()
     result_encoded = base64.b64encode(img)
     return result_encoded
+
