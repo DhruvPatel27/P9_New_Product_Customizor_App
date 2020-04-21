@@ -93,9 +93,10 @@ def get_user_by_id():
     fname = session['fname']
     lname = session['lname']
     order_result = order.get_order_details_for_user(user_name)
-    for orders in order_result:
-        orders['order_date'] = orders['order_date'].strftime('%m-%d-%Y')
-    order_result.reverse()
+    if len(order_result) > 0:
+        for orders in order_result:
+            orders['order_date'] = orders['order_date'].strftime('%m-%d-%Y')
+        order_result.reverse()
     return render_template('my-account.html', email=user_name, fname=fname, lname=lname, order=order_result, order_len=len(order_result)), 200
 
 
