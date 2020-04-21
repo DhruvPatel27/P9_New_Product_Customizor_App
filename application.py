@@ -1,6 +1,6 @@
 import itertools
 
-
+import datetime
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, session, jsonify, redirect
@@ -33,6 +33,7 @@ def render_static():
     return render_template('product-catalog.html', product=details[0], len=len(details[0]), url="",
                                total_pages=details[1])
 
+
 @application.route('/login', methods=['POST'])
 def login():
     if 'customer' in session and session['customer']:
@@ -63,6 +64,7 @@ def login():
     else:
         return render_template('login.html', error="Invalid credentials. Try again!!!"), 401
 
+
 @application.route('/manager', methods=['GET'])
 def display_home_manager():
     if session and session['manager']:
@@ -74,6 +76,7 @@ def display_home_manager():
     else:
         return render_template('error.html', error="You are not authorized to access this page!!"), 401
 
+
 @application.route('/signup', methods=['POST'])
 def signup():
     page = request.args.get('page')
@@ -84,12 +87,17 @@ def signup():
                                    request.form['password'])
         return redirect(request.url_root)
 
+
 @application.route('/account', methods=['GET'])
 def get_user_by_id():
     user_name = session['user_name']
-    user_result = user.get_user_details(user_name)
+    fname = session['fname']
+    lname = session['lname']
     order_result = order.get_order_details_for_user(user_name)
-    return render_template('my-account.html', user=user_result, order=order_result, order_len=len(order_result)), 200
+    for orders in order_result:
+        orders['order_date'] = orders['order_date'].strftime('%m-%d-%Y')
+    order_result.reverse()
+    return render_template('my-account.html', email=user_name, fname=fname, lname=lname, order=order_result, order_len=len(order_result)), 200
 
 
 @application.route('/cart', methods=['GET'])
@@ -162,7 +170,8 @@ def load_checkout_success():
     state = request.form['state']
     zipcode = request.form['zipcode']
     card_number = request.form['card']
-    expiry = request.form['expiry']
+    expiry = datetime.datetime.strptime(request.form['expiry'], "%m/%d/%Y").strftime("%Y-%m-%d")
+    print(expiry)
     cvv = request.form['cvv']
     contact = request.form['contact']
     user_name = session['user_name']
