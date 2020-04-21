@@ -309,6 +309,16 @@ def edit_product():
         product.edit(p_id, title, description, price)
         return render_template('manager-success.html', success="Product Updated"),200
 
+
+@application.route('/search', methods=['GET'])
+def get_product_by_name():
+    page = request.args.get('page')
+    product_name = request.args.get('product_name')
+    result = product.search_product_by_name(product_name)
+    details = get_pages(page, result)
+    return render_template('product-catalog.html', product=details[0], len=len(details[0]), url="",
+                               total_pages=details[1])
+
 # Returns results based on pages
 def get_pages(page, result):
     total_pages = (int)(len(result) / 12) + 1
@@ -319,6 +329,7 @@ def get_pages(page, result):
         result = result[12 * (page - 1):12 * page]
     
     return (result,total_pages)
+
 
 if __name__ == '__main__':
     application.secret_key = 'super secret key'
