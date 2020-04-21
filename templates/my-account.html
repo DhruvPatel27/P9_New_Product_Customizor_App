@@ -15,6 +15,15 @@
 	});
 
     </script>
+    <script>
+        function setI(i,j){
+            console.log("HELLO");
+            console.log(i);
+            console.log(j);
+            i=j;
+            console.log(i);
+        }
+    </script>
 </head>
 
 
@@ -27,14 +36,14 @@
         <table id="profile" align="center">
             <tr>
                 <td id="name-td">
-                    <div class="name"><strong>Name</strong> <br/> {{user['FirstName']}} {{user['LastName']}}</div>
+                    <div class="name"><strong>Name</strong> <br/> {{fname}} {{lname}}</div>
                 </td>
 
                 <td>
                     <div id="vertLine"/>
                 </td>
                 <td  id="email-td">
-                    <div class="email"><b>Email Address</b> <br/> {{user['Email']}}</div>
+                    <div class="email"><b>Email Address</b> <br/> {{email}}</div>
                 </td>
             </tr>
         </table>
@@ -51,27 +60,43 @@
                 <th align="center" style="padding-left: 8%">Cost</th>
                 <th align="center" style="padding-left: 8%">Shipment Status</th>
             </tr>
-            {%for i in range(order_len-1,-1,-1)%}
+            {%for i in range(0, order_len)%}
+                {% if order[i]['Order_Id'] != order[i-1]['Order_Id']%}
+                <tr>
+                    <td class="line"></td>
+                    <td class="line"></td>
+                    <td class="line"></td>
+                    <td class="line"></td>
+                    <td class="line"></td>
+                    <td class="line"></td>
+                </tr>
+
             <tr>
                 <td align="center">{{order[i]['Order_Id']}}</td>
+                {% else %}
+                <tr>
+                <td align="center"></td>
+                {% endif %}
                 <td align="center" style="padding-left: 9%"><img src="{{order[i]['image'].decode('utf-8')}}" alt="product" height="145" width="145"></td>
                 <td align="center" style="padding-left: 9%">{{order[i]['order_date']}}</td>
                 <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
                 <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>
                 {% if order[i]['state'] == 'Recieved' %}
-                <td align="center" style="padding-left: 9%">Order Received</td>
+                <td align="center" style="padding-left: 9%">Order Placed</td>
                 {% elif order[i]['state'] == 'OrderWood' %}
-                <td align="center" style="padding-left: 9%">Wood is on it's way</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'CutWood' %}
-                <td align="center" style="padding-left: 9%">Wood is cut</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'Engraved' %}
-                <td align="center" style="padding-left: 9%">Finished Engraving</td>
+                <td align="center" style="padding-left: 9%">In Progress</td>
                 {% elif order[i]['state'] == 'Finish' %}
                 <td align="center" style="padding-left: 9%">Ready to ship</td>
                 {% elif order[i]['state'] == 'Ship' %}
                 <td align="center" style="padding-left: 9%">Shipped</td>
                 {% endif %}
+
             </tr>
+
             {%endfor%}
         </table>
         {% else %}
