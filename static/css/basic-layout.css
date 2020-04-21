@@ -44,7 +44,7 @@ header {
 #filterBar{
 	background-color: #353535;
 	align-items: center;
-	width: 100%;
+	width: inherit;
 }
 
 #dropdown a{
@@ -67,7 +67,7 @@ header {
 .home {
   	position: relative;
   	display: inline-block;
-	left: 25%;
+	left: 15%;
 }
 
 .home a{
@@ -116,13 +116,21 @@ header {
 .occasions {
   	position: relative;
   	display: inline-block;
-	left: 55%;
+	left: 45%;
 }
 
 .categories {
   	position: relative;
   	display: inline-block;
-	left: 40%;
+	left: 30%;
+}
+
+.searchbox {
+	margin-top: 10px;
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
 }
 
 .dropdown-categories {
