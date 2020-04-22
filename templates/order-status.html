@@ -44,9 +44,31 @@ function selectvalue()
 }
 </script>
 </head>
-
+<header>
+    {% set url = request.url_root%}
+     {%set url_login = url ~"login"%}
+    {%set url_about = url ~"about"%}
+    {%set url_logout = url ~"logout"%}
+    {%set url_account = url ~"account"%}
+    {%set url_cart = url ~"cart"%}
+    <div id="mainWrapper">
+        <!-- This is the header content. It contains Logo and links -->
+		<div onclick="openPage('product-catalog.html');" id="logo"><img src="/static/logo/logo.png" style="height:50px ;margin-top:-21px; width:100px;"/></div>
+        {% if session['user_name'] %}
+                <div class="headerLinks">
+                    <a href={{url_account}}>{{session['fname']}} {{session['lname']}}</a>
+                    <a href={{url_cart}}>Cart</a>
+                    <a href={{url_logout}}>Logout</a>
+                </div>
+            {% endif %}
+            {% if not session['user_name'] %}
+        <div class="headerLinks">
+            <a href={{url_login}}>Login/SignUp</a>
+        </div>
+        {% endif %}  
+    </div>  
+</header>
 <body>
-<div id="basic-layout"></div>
 <section>
     <h2 class="noDisplay">Main Content</h2>
     <aside class="left_article"><img alt="" class="placeholder" height="200" id="product_image"
