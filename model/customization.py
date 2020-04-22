@@ -53,7 +53,7 @@ def show_preview(model_id, wood_id, design_id, message):
 
     if message:
         draw = ImageDraw.Draw(result)
-        font = ImageFont.truetype("static/fonts/Pacifico-Regular.ttf", 50)
+        font = ImageFont.truetype("static/fonts/Pacifico-Regular.ttf", 50, encoding='unic')
         w, h = draw.textsize(message, font=font)
         message_background = wood_type.crop((0, 0, w, h))
         result.paste(message_background, (int(((width - w) / 2)), int(((height - h) / 2))), message_background)
@@ -64,4 +64,3 @@ def show_preview(model_id, wood_id, design_id, message):
     img = img.getvalue()
     result_encoded = base64.b64encode(img)
     return result_encoded
-
