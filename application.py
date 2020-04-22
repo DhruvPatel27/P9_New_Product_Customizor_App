@@ -35,7 +35,6 @@ def render_static():
                            total_pages=details[1])
 
 
-
 @application.route('/login', methods=['POST'])
 def login():
     if 'customer' in session and session['customer']:
@@ -321,7 +320,6 @@ def edit_product():
         return render_template('manager-success.html', success="Product Updated"), 200
 
 
-
 @application.route('/search', methods=['GET'])
 def get_product_by_name():
     page = request.args.get('page')
@@ -341,7 +339,6 @@ def get_pages(page, result):
         result = result[12 * (page - 1):12 * page]
 
     return (result, total_pages)
-
 
 
 if __name__ == '__main__':

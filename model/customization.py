@@ -63,4 +63,5 @@ def show_preview(model_id, wood_id, design_id, message):
     result.save(img, format='PNG')
     img = img.getvalue()
     result_encoded = base64.b64encode(img)
+
     return result_encoded
