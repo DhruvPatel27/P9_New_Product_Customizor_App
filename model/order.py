@@ -79,7 +79,6 @@ def get_order_details_by_id(order_id):
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from `CUSTOMER_ORDER` where `ID`=%s"
-
             cursor.execute(sql, order_id)
             result = cursor.fetchone()
     finally:
