@@ -24,7 +24,7 @@ def get_order_details_for_user(user_name):
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`<>%s"
-            cart_details = (user_name, 'InCart')
+            cart_details = (user_name, 'In Cart')
             cursor.execute(sql, cart_details)
             result = cursor.fetchall()
     finally:
@@ -39,10 +39,11 @@ def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, tot
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
+            order_date = datetime.today().strftime('%Y-%m-%d')
             sql = "INSERT INTO CUSTOMER_ORDER(`product_id`,`user_id`,`email_id`,`woodtype_id`,`woodpattern_id`," \
                   "`total_cost`,`state`,`order_date`,`quantity`,`Order_Id`,`image`) VALUES(%s, null, %s, %s, %s, %s," \
-                  "'InCart', '', %s, null, %s) "
-            cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, quantity, image)
+                  "'In Cart', %s, %s, null, %s) "
+            cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
             cursor.execute(sql, cart_details)
             connection.commit()
             response = jsonify('Product added successfully!')
@@ -63,7 +64,7 @@ def load_cart(user_name):
     try:
         with connection.cursor() as cursor:
             sql = "SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`=%s"
-            cart_details = (user_name, 'InCart')
+            cart_details = (user_name, 'In Cart')
             cursor.execute(sql, cart_details)
             result = cursor.fetchall()
     finally:
@@ -131,12 +132,12 @@ def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, co
 
             order_id = cursor.lastrowid
             sql1 = "UPDATE CUSTOMER_ORDER SET `Order_Id`=%s where `email_id`=%s AND `state`=%s"
-            id_update = (order_id, user_name, 'InCart')
+            id_update = (order_id, user_name, 'In Cart')
             cursor.execute(sql1, id_update)
             connection.commit()
 
             sql2 = "UPDATE CUSTOMER_ORDER SET `state`=%s where `Order_Id`=%s"
-            order_update = ('Recieved', order_id)
+            order_update = ('Order Received', order_id)
             cursor.execute(sql2, order_update)
             connection.commit()
 
