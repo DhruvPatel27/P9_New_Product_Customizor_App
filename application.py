@@ -172,7 +172,6 @@ def load_checkout_success():
     zipcode = request.form['zipcode']
     card_number = request.form['card']
     expiry = datetime.datetime.strptime(request.form['expiry'], "%m/%d/%Y").strftime("%Y-%m-%d")
-    print(expiry)
     cvv = request.form['cvv']
     contact = request.form['contact']
     user_name = session['user_name']
