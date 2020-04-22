@@ -12,16 +12,17 @@ table{
 table th{
 	background-color: black;
   color: white;
+  padding:10px;
 }
 table tr:nth-child(even) {
-  background-color: #eee;
+  background-color: #fff;
 }
 table tr:nth-child(odd) {
  background-color: #fff;
 }
 table, th, td {
 margin: 5px;
-padding: 15px;
+padding: 5px;
 border: 1px solid black;
 border-collapse: collapse;
 text-align: center;
@@ -34,9 +35,9 @@ text-align: center;
 	background-color:white;
 	color: black;
 	padding-left: 30px;
-	padding-top: 57px;
 	padding-bottom: 57px;
 	padding-right: 30px;
+	padding-top:5px;
 }
 
 /*heading of the page*/
