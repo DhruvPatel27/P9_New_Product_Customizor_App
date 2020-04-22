@@ -1,11 +1,13 @@
 import pymysql.cursors
+import model.config as config
 
 def get_connection():
     # Connect to the database
-    connection = pymysql.connect(host='database-1.cmuesaxglt7o.us-west-1.rds.amazonaws.com',
-                            user='admin',
-                            password='adminpassword',
-                            db='db4',
+    con = config.get_config()
+    connection = pymysql.connect(host=con['host'],
+                            user=con['user'],
+                            password=con['password'],
+                            db=con['dbname'],
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
     return connection
