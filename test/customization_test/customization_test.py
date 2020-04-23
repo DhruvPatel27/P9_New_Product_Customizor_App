@@ -56,3 +56,6 @@ class CustomizationTestCase(unittest.TestCase):
         known_result = base64.b64encode(img)
 
         self.assertEqual(result, known_result)
+
+if __name__ == '__main__':
+    unittest.main()
