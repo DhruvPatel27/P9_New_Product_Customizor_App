@@ -1,5 +1,4 @@
 import model.db_connection as db_connection
-from flask import jsonify
 from datetime import datetime
 
 
@@ -43,12 +42,10 @@ def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, tot
             sql = "INSERT INTO CUSTOMER_ORDER(`product_id`,`user_id`,`email_id`,`woodtype_id`,`woodpattern_id`," \
                   "`total_cost`,`state`,`order_date`,`quantity`,`Order_Id`,`image`) VALUES(%s, null, %s, %s, %s, %s," \
                   "'In Cart', %s, %s, null, %s) "
-            cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
+            result = cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
             cursor.execute(sql, cart_details)
             connection.commit()
-            response = jsonify('Product added successfully!')
-            response.status_code = 200
-            return response
+            return result
 
     except Exception as e:
         print(e)
