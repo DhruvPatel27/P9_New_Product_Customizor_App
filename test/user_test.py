@@ -1,5 +1,6 @@
 import unittest
 import model.user as user
+import model.db_connection as db_connection
 
 
 class UserTestCase(unittest.TestCase):
@@ -16,9 +17,17 @@ class UserTestCase(unittest.TestCase):
         result = user.login('test1@gmail.com', 'password')
         self.assertEqual(result, None)
 
+    def tearDown_for_signup(self, user_id):
+        connection = db_connection.get_connection()
+        with connection.cursor() as cursor:
+            sql = "DELETE from USER where `ID`=%s"
+            cursor.execute(sql, user_id)
+            connection.commit()
+
     def test_correct_signup(self):
-        result = user.signup('test1', 'test1', 'testcustomer1@gmail.com', 'password')
+        result, user_id = user.signup('test1', 'test1', 'testcustomer1@gmail.com', 'password')
         self.assertEqual(result, 1)
+        self.tearDown_for_signup(user_id)
 
 
 if __name__ == '__main__':

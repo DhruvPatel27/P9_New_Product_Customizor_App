@@ -25,7 +25,9 @@ def signup(lastname, firstname, email, password):
             sql = "INSERT INTO USER VALUES(DEFAULT,%s,%s,%s,%s,'Customer')"
             signup_details = (lastname, firstname, email, password)
             result = cursor.execute(sql, signup_details)
-            return result
+            user_id = cursor.lastrowid
+            connection.commit()
+            return result, user_id
 
     except Exception as e:
         print(e)
