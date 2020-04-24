@@ -24,7 +24,7 @@
     {%set url_search= url ~"search"%}
     <div id="mainWrapper">
         <!-- This is the header content. It contains Logo and links -->
-		<div id="logo"><a href={{url}}>Woods Engraved</a></div>
+		<div id="logo"><a href={{url}}><img src="/static/logo/logo.png" style="height:80px ;margin-left:-1px; width:158px;"/></a></div>
             {% if session['user_name'] %}
                 <div class="headerLinks">
                     <a href={{url_logout}}>Logout</a>
