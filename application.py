@@ -55,8 +55,12 @@ def login():
         session['lname'] = user_details['LastName']
         if user_details['Role'] == "Carpenter":
             session['carpenter'] = True
-            orders = order.get_all_orders()
-            return render_template('woodworker.html', orders=orders, len=len(orders), url=url), 200
+            result = order.get_all_orders()
+            if len(result) > 0:
+                for orders in result:
+                    orders['order_date'] = orders['order_date'].strftime('%m-%d-%Y')
+                    result.reverse()
+            return render_template('woodworker.html', orders=result, len=len(orders), url=url), 200
         elif user_details['Role'] == "Admin":
             session['manager'] = True
             return redirect(request.url_root + "manager")
@@ -267,6 +271,7 @@ def show_order_status():
     url = ""
     order_id = request.args.get('id')
     result = order.get_order_details_by_id(order_id)
+    result['order_date'] = result['order_date'].strftime('%m-%d-%Y')
     wood_type = wood.get_wood_by_id(result['woodtype_id'])
     wood_design = wood.get_design_by_id(result['woodpattern_id'])
     products = product.get_product_details(result['product_id'])
