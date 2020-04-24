@@ -14,28 +14,28 @@ h1{
 .column_price{
     color: #aaa;
     float: right;
-    margin-right: 7%;
+    margin-right: 6.5%;
     margin-top: 60px;
 }
 
 .column_quantity{
     color: #aaa;
     float: right;
-    margin-right: 4%;
+    margin-right: 5%;
     margin-top: 60px;
 }
 
 .column_remove{
     color: #aaa;
     float: right;
-    margin-right: 4%;
+    margin-right: 5%;
     margin-top: 60px;
 }
 
 .column_total{
     color: #aaa;
     float: right;
-    margin-right: 3%;
+    margin-right: 4.5%;
     margin-top: 60px;
 }
 
@@ -104,6 +104,7 @@ k{
     font-family: 'Montserrat', sans-serif;
     float: left;
     margin-top: 55px;
+    padding-left: 1%;
 }
 
 .totals{
