@@ -51,7 +51,7 @@
                 <th align="center" style="padding-left: 8%">Shipment Status</th>
             </tr>
             {%for i in range(0, order_len)%}
-                {% if order[i]['Order_Id'] != order[i-1]['Order_Id']%}
+                {% if order[i]['Order_Id'] != order[i-1]['Order_Id'] or order_len == 1%}
                 <tr>
                     <td class="line"></td>
                     <td class="line"></td>

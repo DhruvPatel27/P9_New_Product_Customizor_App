@@ -1,5 +1,4 @@
 import model.db_connection as db_connection
-from flask import jsonify
 from datetime import datetime
 
 
@@ -44,11 +43,10 @@ def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, tot
                   "`total_cost`,`state`,`order_date`,`quantity`,`Order_Id`,`image`) VALUES(%s, null, %s, %s, %s, %s," \
                   "'In Cart', %s, %s, null, %s) "
             cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
-            cursor.execute(sql, cart_details)
+            result = cursor.execute(sql, cart_details)
+            order_id = cursor.lastrowid
             connection.commit()
-            response = jsonify('Product added successfully!')
-            response.status_code = 200
-            return response
+            return result, order_id
 
     except Exception as e:
         print(e)
@@ -95,13 +93,13 @@ def update_order_status_for_order(order_status, order_id):
     try:
         with connection.cursor() as cursor:
             sql = "UPDATE `CUSTOMER_ORDER` SET `state` = %s where `ID` = %s"
-            cursor.execute(sql, (order_status, order_id))
+            result = cursor.execute(sql, (order_status, order_id))
             connection.commit()
     finally:
         connection.close()
         cursor.close()
 
-    return
+    return result
 
 
 # API to remove from cart
@@ -110,13 +108,15 @@ def remove_cart(product_id):
     try:
         with connection.cursor() as cursor:
             sql = "DELETE from CUSTOMER_ORDER where `ID`=%s"
-            cursor.execute(sql, product_id)
+            result = cursor.execute(sql, product_id)
             connection.commit()
     except Exception as e:
         print(e)
     finally:
         connection.close()
         cursor.close()
+
+    return result
 
 
 # API to place order
@@ -127,7 +127,7 @@ def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, co
             sql = "INSERT INTO ORDERS(`Address`,`Pincode`,`Contact_No`,`Card_No`,`cvv`,`expiry_date`,`total_price`) " \
                   "VALUES(%s, %s, %s, %s, %s, %s, %s) "
             cart_details = (address, zipcode, contact, card_number, cvv, expiry, price)
-            cursor.execute(sql, cart_details)
+            result = cursor.execute(sql, cart_details)
             connection.commit()
 
             order_id = cursor.lastrowid
@@ -152,3 +152,5 @@ def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, co
     finally:
         connection.close()
         cursor.close()
+
+    return result, order_id
