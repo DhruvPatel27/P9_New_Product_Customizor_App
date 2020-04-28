@@ -133,6 +133,7 @@
         <span class="warning" id="personal_message_warning"></span>
 
         <h3>
+            {% if session['user_name'] %}
             {% set url = request.url_root ~ "add-to-cart?id=" ~ product['Product_id']%}
             <form action={{url}} method="POST">
                 <input type="hidden" id="id" name="id" value={{product['Product_id']}}>
@@ -144,6 +145,16 @@
                 <button type="submit" onclick="saveImage()" class="buttons" style="margin-top:-3%">Add to Cart</button>
                     </h3>
             </form>
+            {% endif %}
+            {% if not session['user_name'] %}
+            {%set url_login = url ~"login"%}
+            <form action={{url_login}} method="POST">
+                <div class="quantity-input"><h4 class="quantity-h4">Quantity</h4><input type="number" name="quantity" value="1" min="1" style="height:5%;"></div>
+            <h3>
+                <button type="submit" class="buttons" style="margin-top:-3%">Add to Cart</button>
+                    </h3>
+                </form>
+            {% endif %}
         </h3>
     </article>
 </section>
