@@ -20,10 +20,12 @@
     <script>
         $(document).ready(function () {
             $("input[name='wood_type']").change(function(){
+                document.getElementById('product_image').src = "static/logo/loading.gif"
                 var design_id = 6;
                 var message = "";
                 design_id = $(".design_type:checked").val();
                 var wood_id = $(".wood_type:checked").val();
+                message = $(".personal_message").val();
                 $.ajax({
                     url : '/preview?model_id=' + {{ product['model_id'] }} + '&wood_id=' + wood_id + '&design_id=' + design_id + '&message=' + message,
                     success: function(data) {
@@ -37,6 +39,7 @@
     <script>
         $(document).ready(function () {
             $("input[name='design_type']").change(function(){
+                document.getElementById('product_image').src = "static/logo/loading.gif"
                 var design_id = 6;
                 var message = "";
                 var wood_id = $(".wood_type:checked").val();
@@ -55,6 +58,7 @@
     <script>
         $(function () {
             $('#preview').click(function() {
+                document.getElementById('product_image').src = "static/logo/loading.gif"
                 var design_id = 6;
                 var message = "";
                 var wood_id = $(".wood_type:checked").val();
@@ -88,7 +92,8 @@
 <div id="basic-layout"></div>
 <section>
     <h2 class="noDisplay">Main Content</h2>
-    <aside class="left_article"><img alt="" class="placeholder" height="200" id="product_image"
+    <aside class="left_article">
+        <img alt="" class="placeholder" height="200" id="product_image"
                                      src="data:image/png;base64,{{default_image.decode('utf-8')}}"
                                      width="400"/>
         <div class="warning" style="color:red;font-family:Roboto;font-size:14px;">* The picture shown here is for
