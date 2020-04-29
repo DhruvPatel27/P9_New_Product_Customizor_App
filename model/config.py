@@ -1,5 +1,9 @@
 import sys
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 def get_config():
     DATABASE_CONFIG = {
         'host': 'database-1.cmuesaxglt7o.us-west-1.rds.amazonaws.com',

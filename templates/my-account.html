@@ -51,7 +51,7 @@
                 <th align="center" style="padding-left: 8%">Shipment Status</th>
             </tr>
             {%for i in range(0, order_len)%}
-                {% if order[i]['Order_Id'] != order[i-1]['Order_Id']%}
+                {% if order[i]['Order_Id'] != order[i-1]['Order_Id'] or order_len == 1%}
                 <tr>
                     <td class="line"></td>
                     <td class="line"></td>
@@ -71,15 +71,15 @@
                 <td align="center" style="padding-left: 9%">{{order[i]['order_date']}}</td>
                 <td align="center" style="padding-left: 9%">{{order[i]['quantity']}}</td>
                 <td align="center" style="padding-left: 9%">${{order[i]['total_cost']}}</td>
-                {% if order[i]['state'] == 'Recieved' %}
+                {% if order[i]['state'] == 'Order Received' %}
                 <td align="center" style="padding-left: 9%">Order Placed</td>
-                {% elif order[i]['state'] == 'OrderWood' %}
+                {% elif order[i]['state'] == 'Order Wood' %}
                 <td align="center" style="padding-left: 9%">In Progress</td>
-                {% elif order[i]['state'] == 'CutWood' %}
+                {% elif order[i]['state'] == 'Cut Wood' %}
                 <td align="center" style="padding-left: 9%">In Progress</td>
-                {% elif order[i]['state'] == 'Engraved' %}
+                {% elif order[i]['state'] == 'Product Engraved' %}
                 <td align="center" style="padding-left: 9%">In Progress</td>
-                {% elif order[i]['state'] == 'Finish' %}
+                {% elif order[i]['state'] == 'Order Finished' %}
                 <td align="center" style="padding-left: 9%">Ready to ship</td>
                 {% elif order[i]['state'] == 'Ship' %}
                 <td align="center" style="padding-left: 9%">Shipped</td>
