@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>model.product API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>model.product</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import model.db_connection as db_connection
+import model.utils as utils
+from PIL import Image
+import numpy as numpy
+
+
+# API to get all products from the database
+def get_products():
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT&#34;
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get the product details for the specified product id
+def get_product_details(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+    return result
+
+
+# API to get products by occasion
+def get_products_by_occasion(occasion):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where occasion like %s&#34;
+            cursor.execute(sql, &#39;%&#39; + occasion + &#39;%&#39;)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get products by category
+def get_products_by_category(category):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `category`=%s&#34;
+            cursor.execute(sql, category)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get product mask by Model id
+def get_products_mask(model_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from MODAL where `ID`=%s&#34;
+            cursor.execute(sql, model_id)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get the product title, description and price for the specified product id
+def get_product_details_cart(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT Product_id, title, price from PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+    return result
+
+
+# Method to add multiple products to the catalog
+def add_products(data_xls):
+    invalid_row = {}
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:  
+            sql = &#34;INSERT INTO PRODUCT(`Product_id`,`title`,`description`,`price`,`category`,`occasion`,`image`,`model_id`) VALUES(DEFAULT,%s,%s,%s,%s,%s,%s,%s)&#34;
+            for i, row in data_xls.iterrows():
+                img1 = &#34;No File&#34;
+                img2 = &#34;No file&#34;
+                img3 = &#34;No File&#34;
+                with open(tuple(row)[5], &#34;rb&#34;) as image_file:
+                    img1 = utils.image_encoding(image_file)
+                with open(tuple(row)[6], &#34;rb&#34;) as image_file:
+                    img2 = utils.image_encoding(image_file)
+                with open(tuple(row)[7], &#34;rb&#34;) as image_file:
+                    img3 = utils.image_encoding(image_file)
+                if img1 == &#34;No File&#34;:
+                    Exception(&#34;Please specify correct path&#34;)
+                valid, message = is_valid_product(row)
+                #print(i, message)
+                if valid:
+                   # print(row[i])
+                    row[&#39;product_image&#39;] = img1
+                    modal_id = add_modal(img3, img2)
+                    product = tuple(row[:6], ) + (modal_id,)
+                    cursor.execute(sql, product)
+                    connection.commit()
+                else:
+                    invalid_row[i] = message
+                    print(invalid_row[i])
+    finally:
+        connection.close()
+        cursor.close()
+    return invalid_row
+
+
+# Method to add mask and modal to database
+def add_modal(modal_mask, image_mask):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;INSERT INTO MODAL VALUES(DEFAULT,%s,%s)&#34;
+            mask = (modal_mask, image_mask)
+            cursor.execute(sql, mask)
+            connection.commit()
+            return cursor.lastrowid
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
+
+# Remove product from DB
+def remove(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;DELETE FROM PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
+
+# Edit product details
+def edit(product_id, title, description, price):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;UPDATE PRODUCT SET `title` = %s,`description` = %s,`price` = %s where `Product_id`=%s&#34;
+            prod = (title, description, price, product_id)
+            cursor.execute(sql,prod)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
+
+
+# Valid product details
+def is_valid_product(product):
+    message = &#34;&#34;
+    flag = True
+    if product[&#39;product_title&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product title.\n&#34;
+        flag = False
+    if product[&#39;product_description&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product description.\n&#34;
+        flag = False
+    if product[&#39;product_price&#39;]==&#34;&#34; or not isfloat(product[&#39;product_price&#39;]):
+        message += &#34;Error in Product price.\n&#34;
+        flag = False
+    if product[&#39;product_category&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product category.\n&#34;
+        flag = False
+    if product[&#39;occasion&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in Product occasion.\n&#34;
+        flag = False
+    if product[&#39;product_image&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in Product image.\n&#34;
+        flag = False
+    if product[&#39;text_mask&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in text mask.\n&#34;
+        flag = False
+    if product[&#39;modal_mask&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in modal mask.\n&#34;
+        flag = False
+                        
+    return flag, message
+
+def isfloat(value):
+  try:
+    float(value)
+    return True
+  except ValueError:
+    return False
+
+# Search and retrieve products by name
+def search_product_by_name(name):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `title`=%s&#34;
+            cursor.execute(sql,name)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="model.product.add_modal"><code class="name flex">
+<span>def <span class="ident">add_modal</span></span>(<span>modal_mask, image_mask)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_modal(modal_mask, image_mask):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;INSERT INTO MODAL VALUES(DEFAULT,%s,%s)&#34;
+            mask = (modal_mask, image_mask)
+            cursor.execute(sql, mask)
+            connection.commit()
+            return cursor.lastrowid
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()</code></pre>
+</details>
+</dd>
+<dt id="model.product.add_products"><code class="name flex">
+<span>def <span class="ident">add_products</span></span>(<span>data_xls)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_products(data_xls):
+    invalid_row = {}
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:  
+            sql = &#34;INSERT INTO PRODUCT(`Product_id`,`title`,`description`,`price`,`category`,`occasion`,`image`,`model_id`) VALUES(DEFAULT,%s,%s,%s,%s,%s,%s,%s)&#34;
+            for i, row in data_xls.iterrows():
+                img1 = &#34;No File&#34;
+                img2 = &#34;No file&#34;
+                img3 = &#34;No File&#34;
+                with open(tuple(row)[5], &#34;rb&#34;) as image_file:
+                    img1 = utils.image_encoding(image_file)
+                with open(tuple(row)[6], &#34;rb&#34;) as image_file:
+                    img2 = utils.image_encoding(image_file)
+                with open(tuple(row)[7], &#34;rb&#34;) as image_file:
+                    img3 = utils.image_encoding(image_file)
+                if img1 == &#34;No File&#34;:
+                    Exception(&#34;Please specify correct path&#34;)
+                valid, message = is_valid_product(row)
+                #print(i, message)
+                if valid:
+                   # print(row[i])
+                    row[&#39;product_image&#39;] = img1
+                    modal_id = add_modal(img3, img2)
+                    product = tuple(row[:6], ) + (modal_id,)
+                    cursor.execute(sql, product)
+                    connection.commit()
+                else:
+                    invalid_row[i] = message
+                    print(invalid_row[i])
+    finally:
+        connection.close()
+        cursor.close()
+    return invalid_row</code></pre>
+</details>
+</dd>
+<dt id="model.product.edit"><code class="name flex">
+<span>def <span class="ident">edit</span></span>(<span>product_id, title, description, price)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def edit(product_id, title, description, price):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;UPDATE PRODUCT SET `title` = %s,`description` = %s,`price` = %s where `Product_id`=%s&#34;
+            prod = (title, description, price, product_id)
+            cursor.execute(sql,prod)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_product_details"><code class="name flex">
+<span>def <span class="ident">get_product_details</span></span>(<span>product_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_product_details(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_product_details_cart"><code class="name flex">
+<span>def <span class="ident">get_product_details_cart</span></span>(<span>product_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_product_details_cart(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT Product_id, title, price from PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_products"><code class="name flex">
+<span>def <span class="ident">get_products</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_products():
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT&#34;
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_products_by_category"><code class="name flex">
+<span>def <span class="ident">get_products_by_category</span></span>(<span>category)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_products_by_category(category):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `category`=%s&#34;
+            cursor.execute(sql, category)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_products_by_occasion"><code class="name flex">
+<span>def <span class="ident">get_products_by_occasion</span></span>(<span>occasion)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_products_by_occasion(occasion):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where occasion like %s&#34;
+            cursor.execute(sql, &#39;%&#39; + occasion + &#39;%&#39;)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.get_products_mask"><code class="name flex">
+<span>def <span class="ident">get_products_mask</span></span>(<span>model_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_products_mask(model_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from MODAL where `ID`=%s&#34;
+            cursor.execute(sql, model_id)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.product.is_valid_product"><code class="name flex">
+<span>def <span class="ident">is_valid_product</span></span>(<span>product)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_valid_product(product):
+    message = &#34;&#34;
+    flag = True
+    if product[&#39;product_title&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product title.\n&#34;
+        flag = False
+    if product[&#39;product_description&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product description.\n&#34;
+        flag = False
+    if product[&#39;product_price&#39;]==&#34;&#34; or not isfloat(product[&#39;product_price&#39;]):
+        message += &#34;Error in Product price.\n&#34;
+        flag = False
+    if product[&#39;product_category&#39;].strip()==&#34;&#34;:
+        message += &#34;Error in Product category.\n&#34;
+        flag = False
+    if product[&#39;occasion&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in Product occasion.\n&#34;
+        flag = False
+    if product[&#39;product_image&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in Product image.\n&#34;
+        flag = False
+    if product[&#39;text_mask&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in text mask.\n&#34;
+        flag = False
+    if product[&#39;modal_mask&#39;].strip() == &#34;&#34;:
+        message += &#34;Error in modal mask.\n&#34;
+        flag = False
+                        
+    return flag, message</code></pre>
+</details>
+</dd>
+<dt id="model.product.isfloat"><code class="name flex">
+<span>def <span class="ident">isfloat</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def isfloat(value):
+  try:
+    float(value)
+    return True
+  except ValueError:
+    return False</code></pre>
+</details>
+</dd>
+<dt id="model.product.remove"><code class="name flex">
+<span>def <span class="ident">remove</span></span>(<span>product_id)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove(product_id):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;DELETE FROM PRODUCT where `Product_id`=%s&#34;
+            cursor.execute(sql, product_id)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()</code></pre>
+</details>
+</dd>
+<dt id="model.product.search_product_by_name"><code class="name flex">
+<span>def <span class="ident">search_product_by_name</span></span>(<span>name)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search_product_by_name(name):
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from PRODUCT where `title`=%s&#34;
+            cursor.execute(sql,name)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="model" href="index.html">model</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="model.product.add_modal" href="#model.product.add_modal">add_modal</a></code></li>
+<li><code><a title="model.product.add_products" href="#model.product.add_products">add_products</a></code></li>
+<li><code><a title="model.product.edit" href="#model.product.edit">edit</a></code></li>
+<li><code><a title="model.product.get_product_details" href="#model.product.get_product_details">get_product_details</a></code></li>
+<li><code><a title="model.product.get_product_details_cart" href="#model.product.get_product_details_cart">get_product_details_cart</a></code></li>
+<li><code><a title="model.product.get_products" href="#model.product.get_products">get_products</a></code></li>
+<li><code><a title="model.product.get_products_by_category" href="#model.product.get_products_by_category">get_products_by_category</a></code></li>
+<li><code><a title="model.product.get_products_by_occasion" href="#model.product.get_products_by_occasion">get_products_by_occasion</a></code></li>
+<li><code><a title="model.product.get_products_mask" href="#model.product.get_products_mask">get_products_mask</a></code></li>
+<li><code><a title="model.product.is_valid_product" href="#model.product.is_valid_product">is_valid_product</a></code></li>
+<li><code><a title="model.product.isfloat" href="#model.product.isfloat">isfloat</a></code></li>
+<li><code><a title="model.product.remove" href="#model.product.remove">remove</a></code></li>
+<li><code><a title="model.product.search_product_by_name" href="#model.product.search_product_by_name">search_product_by_name</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

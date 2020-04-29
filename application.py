@@ -1,11 +1,17 @@
-import itertools
+"""
+This is the application.py file which contains the routes to all the APIs.  To 
+launch the application please run the below command:
 
+    python3 application.py dev
+
+"""
+
+import itertools
 import datetime
 import numpy as np
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, session, jsonify, redirect
-
 import model.customization as preview
 import model.order as order
 import model.product as product
@@ -14,9 +20,17 @@ import model.wood as wood
 
 application = Flask(__name__)
 
-
 @application.route('/products', methods=['GET'])
 def get_product_by_id():
+    """Gets product by id
+
+    Returns:
+        product: product with the specified id
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    """
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
@@ -29,6 +43,13 @@ def get_product_by_id():
 
 @application.route('/')
 def render_static():
+    """Gets all the products available
+
+    Returns:
+        product: list of all the products
+        len: number of products returned
+        total_pages: return the number of page
+    """
     page = request.args.get('page')
     result = product.get_products()
     details = get_pages(page, result)
@@ -38,6 +59,13 @@ def render_static():
 
 @application.route('/login', methods=['POST'])
 def login():
+    """Logs in as a customer, manager or carpenter
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+    """
     if 'customer' in session and session['customer']:
         return redirect(request.url_root)
     elif 'manager' in session and session['manager']:
@@ -73,6 +101,14 @@ def login():
 
 @application.route('/manager', methods=['GET'])
 def display_home_manager():
+    """Retrieves manager UI
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    """
     if session and session['manager']:
         page = request.args.get('page')
         result = product.get_products()
@@ -85,6 +121,14 @@ def display_home_manager():
 
 @application.route('/signup', methods=['POST'])
 def signup():
+    """Creates a new customer
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    """
     page = request.args.get('page')
     if not request.form:
         return render_template('signup.html'), 400
@@ -96,6 +140,16 @@ def signup():
 
 @application.route('/account', methods=['GET'])
 def get_user_by_id():
+    """Gets account details
+
+    Returns:
+        template: the UI to be displayed
+        email: email id
+        fname: firstname of the user
+        lname: last name of the user
+        order: list of orders
+        order_len: length of order list
+    """
     user_name = session['user_name']
     fname = session['fname']
     lname = session['lname']
@@ -109,6 +163,13 @@ def get_user_by_id():
 
 @application.route('/cart', methods=['GET'])
 def load_cart_page():
+    """Gets cart products
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    """
     user_name = session['user_name']
     result = order.load_cart(user_name)
     product_result = []
@@ -126,6 +187,8 @@ def load_cart_page():
 
 @application.route('/remove-cart', methods=['GET'])
 def remove_from_cart_page():
+    """Remove product from cart
+    """
     id_name = request.args.get('id')
     order.remove_cart(id_name)
     user_name = session['user_name']
@@ -149,6 +212,13 @@ def remove_from_cart_page():
 
 @application.route('/add-to-cart', methods=['POST'])
 def add_to_cart():
+    """Adds the product to the cart
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    """
     user_name = session['user_name']
     id_name = request.args.get('id')
     image = request.form['image']
@@ -165,6 +235,7 @@ def add_to_cart():
 
 @application.route('/checkout', methods=['POST'])
 def load_checkout():
+    
     cost = request.form['total']
     return render_template('checkout.html', cost=cost), 200
 
@@ -188,31 +259,68 @@ def load_checkout_success():
 
 @application.route('/login')
 def load_login_page():
+    """Get the login page
+
+    Returns:
+        template: the UI for Login
+        code: 200
+    """
     return render_template('login.html'), 200
 
 
 @application.route('/signup')
 def render_signup():
+    """Get the signup page
+
+    Returns:
+        template: the UI for signup
+        code: 200
+    """
     return render_template('signup.html'), 200
 
 
 @application.route('/about')
 def render_about_us():
-    return render_template('about-us.html')
+    """Get the about us page
+
+    Returns:
+        template: the UI for about us
+        code: 200
+    """
+    return render_template('about-us.html'),200
 
 
 @application.route('/basic-layout.html')
 def render_basic_layout():
-    return render_template('basic-layout.html')
+    """Get the basic layout
+
+    Returns:
+        template: the UI for basic layout
+        code: 200
+    """
+    return render_template('basic-layout.html'),200
 
 
 @application.route('/basic-layout-manager.html')
 def render_basic_layout_manager():
+    """Get the basic layout for manager
+
+    Returns:
+        template: the UI for basic layout for manager
+        code: 200
+    """
     return render_template('basic-layout-manager.html')
 
 
 @application.route('/add-products', methods=['POST', 'GET'])
 def manage_products():
+    """Adds all the new products to the databse
+
+    Returns:
+        template: manager-success page
+        success: message
+        error: invalid products
+    """
     if request.method == 'POST':
         new_products = request.files['new-products']
         data_xls_1 = pd.read_excel(new_products)
@@ -230,17 +338,35 @@ def manage_products():
 
 @application.route('/prodct-details.html')
 def render_product_details():
-    return render_template('prodct-details.html')
+    """Get the product details page
+
+    Returns:
+        template: the UI for product details
+        code: 200
+    """
+    return render_template('prodct-details.html'),200
 
 
 @application.route('/logout')
 def render_logout():
+    """Logout as a user and clear the session
+
+    Returns:
+        template: the home page 
+    """
     session.clear()
     return redirect(request.url_root)
 
 
 @application.route('/occasions', methods=['GET'])
 def render_occasion():
+    """Gets all the products of a particular occasion
+
+    Returns:
+        product: list of all the products of a specific occasion
+        len: number of products returned
+        total_pages: return the number of page
+    """
     occasion = str(request.args.get('occasion'))
     page = request.args.get('page')
     result = product.get_products()
@@ -254,6 +380,13 @@ def render_occasion():
 
 @application.route('/categories', methods=['GET'])
 def render_category():
+    """Gets all the products of a particular category
+
+    Returns:
+        product: list of all the products of a specific category
+        len: number of products returned
+        total_pages: return the number of page
+    """
     category = str(request.args.get('category'))
     page = request.args.get('page')
     result = product.get_products()
@@ -281,6 +414,11 @@ def show_order_status():
 
 @application.route('/orderstatus/update', methods=['GET'])
 def update_order_status():
+    """Updates the order status
+
+    Returns:
+        status: new updated status
+    """
     order_id = request.args.get('order_id')
     status = request.args.get('status')
     order.update_order_status_for_order(status, order_id)
@@ -291,6 +429,11 @@ def update_order_status():
 
 @application.route('/preview', methods=['GET'])
 def show_preview():
+    """Loads the image by applying customizations
+
+    Returns:
+        preview_image: customized image
+    """
     model_id = request.args.get('model_id')
     wood_id = request.args.get('wood_id')
     design_id = request.args.get('design_id')
@@ -304,6 +447,11 @@ def show_preview():
 
 @application.route('/remove', methods=['POST'])
 def remove_product():
+    """Removes a product from the database
+
+    Returns:
+        success : Product Removed
+    """
     product_id = request.form['productid']
     product.remove(product_id)
     return render_template('manager-success.html', success="Product Removed"), 200
@@ -311,6 +459,13 @@ def remove_product():
 
 @application.route('/edit', methods=['POST', 'GET'])
 def edit_product():
+    """Gets: a the current details of the product
+    Posts new details of the product
+
+    Returns:
+        product: current product details
+        len: length of the product detais
+    """
     if request.method == 'GET':
         id_name = request.args.get('productid')
         result = product.get_product_details(id_name)
@@ -327,6 +482,15 @@ def edit_product():
 
 @application.route('/search', methods=['GET'])
 def get_product_by_name():
+    """Gets product by name
+
+    Returns:
+        product: product with the specified name
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    """
     page = request.args.get('page')
     product_name = request.args.get('product_name')
     result = product.search_product_by_name(product_name)
@@ -334,9 +498,13 @@ def get_product_by_name():
     return render_template('product-catalog.html', product=details[0], len=len(details[0]), url="",
                                total_pages=details[1])
 
-
 # Returns results based on pages
 def get_pages(page, result):
+    """Gets a list of products for the selected page number
+
+    Returns:
+        tuple : list of products on that page and the total number of pages
+    """
     total_pages = (int)(len(result) / 12) + 1
     if (page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))

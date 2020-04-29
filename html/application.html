@@ -1,0 +1,1564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>application API documentation</title>
+<meta name="description" content="This is the application.py file which contains the routes to all the APIs.
+To
+launch the application please run the below command: …" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>application</code></h1>
+</header>
+<section id="section-intro">
+<p>This is the application.py file which contains the routes to all the APIs.
+To
+launch the application please run the below command:</p>
+<pre><code>python3 application.py dev
+</code></pre>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+This is the application.py file which contains the routes to all the APIs.  To 
+launch the application please run the below command:
+
+    python3 application.py dev
+
+&#34;&#34;&#34;
+
+import itertools
+import datetime
+import numpy as np
+import pandas as pd
+import numpy as np
+from flask import Flask, render_template, request, session, jsonify, redirect
+import model.customization as preview
+import model.order as order
+import model.product as product
+import model.user as user
+import model.wood as wood
+
+application = Flask(__name__)
+
+@application.route(&#39;/products&#39;, methods=[&#39;GET&#39;])
+def get_product_by_id():
+    &#34;&#34;&#34;Gets product by id
+
+    Returns:
+        product: product with the specified id
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    &#34;&#34;&#34;
+    id_name = request.args.get(&#39;id&#39;)
+    result = product.get_product_details(id_name)
+    wood_type = wood.get_wood()
+    wood_design = wood.get_design()
+    default_image = preview.show_default_preview(result[&#39;model_id&#39;], 1)
+
+    return render_template(&#39;product-details.html&#39;, product=result, len=len(result), wood_type=wood_type,
+                           wood_design=wood_design, default_image=default_image)
+
+
+@application.route(&#39;/&#39;)
+def render_static():
+    &#34;&#34;&#34;Gets all the products available
+
+    Returns:
+        product: list of all the products
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])
+
+
+@application.route(&#39;/login&#39;, methods=[&#39;POST&#39;])
+def login():
+    &#34;&#34;&#34;Logs in as a customer, manager or carpenter
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+    &#34;&#34;&#34;
+    if &#39;customer&#39; in session and session[&#39;customer&#39;]:
+        return redirect(request.url_root)
+    elif &#39;manager&#39; in session and session[&#39;manager&#39;]:
+        return redirect(request.url_root + &#34;manager&#34;)
+    else:
+        session.clear()
+    page = request.args.get(&#39;page&#39;)
+    if not request.form or not &#39;username&#39; in request.form or not &#39;password&#39; in request.form:
+        return render_template(&#39;login.html&#39;), 400
+    user_details = user.login(request.form[&#39;username&#39;], request.form[&#39;password&#39;])
+    if (user_details):
+        url = &#34;&#34;
+        session[&#39;user_name&#39;] = request.form[&#39;username&#39;]
+        session[&#39;fname&#39;] = user_details[&#39;FirstName&#39;]
+        session[&#39;lname&#39;] = user_details[&#39;LastName&#39;]
+        if user_details[&#39;Role&#39;] == &#34;Carpenter&#34;:
+            session[&#39;carpenter&#39;] = True
+            result = order.get_all_orders()
+            if len(result) &gt; 0:
+                for orders in result:
+                    orders[&#39;order_date&#39;] = orders[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+                result.reverse()
+            return render_template(&#39;woodworker.html&#39;, orders=result, len=len(orders), url=url), 200
+        elif user_details[&#39;Role&#39;] == &#34;Admin&#34;:
+            session[&#39;manager&#39;] = True
+            return redirect(request.url_root + &#34;manager&#34;)
+        else:
+            session[&#39;customer&#39;] = True
+            return redirect(request.url_root)
+    else:
+        return render_template(&#39;login.html&#39;, error=&#34;Invalid credentials. Try again!!!&#34;), 401
+
+
+@application.route(&#39;/manager&#39;, methods=[&#39;GET&#39;])
+def display_home_manager():
+    &#34;&#34;&#34;Retrieves manager UI
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    &#34;&#34;&#34;
+    if session and session[&#39;manager&#39;]:
+        page = request.args.get(&#39;page&#39;)
+        result = product.get_products()
+        details = get_pages(page, result)
+        return render_template(&#39;product-catalog-manager.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                               total_pages=details[1]), 200
+    else:
+        return render_template(&#39;error.html&#39;, error=&#34;You are not authorized to access this page!!&#34;), 401
+
+
+@application.route(&#39;/signup&#39;, methods=[&#39;POST&#39;])
+def signup():
+    &#34;&#34;&#34;Creates a new customer
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    if not request.form:
+        return render_template(&#39;signup.html&#39;), 400
+    else:
+        user.signup(request.form[&#39;lastname&#39;], request.form[&#39;firstname&#39;], request.form[&#39;emailid&#39;],
+                    request.form[&#39;password&#39;])
+        return redirect(request.url_root)
+
+
+@application.route(&#39;/account&#39;, methods=[&#39;GET&#39;])
+def get_user_by_id():
+    &#34;&#34;&#34;Gets account details
+
+    Returns:
+        template: the UI to be displayed
+        email: email id
+        fname: firstname of the user
+        lname: last name of the user
+        order: list of orders
+        order_len: length of order list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    fname = session[&#39;fname&#39;]
+    lname = session[&#39;lname&#39;]
+    order_result = order.get_order_details_for_user(user_name)
+    if len(order_result) &gt; 0:
+        for orders in order_result:
+            orders[&#39;order_date&#39;] = orders[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+        order_result.reverse()
+    return render_template(&#39;my-account.html&#39;, email=user_name, fname=fname, lname=lname, order=order_result, order_len=len(order_result)), 200
+
+
+@application.route(&#39;/cart&#39;, methods=[&#39;GET&#39;])
+def load_cart_page():
+    &#34;&#34;&#34;Gets cart products
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry[&#39;product_id&#39;])
+        entry[&#39;title&#39;] = prod[&#39;title&#39;]
+        entry[&#39;price&#39;] = prod[&#39;price&#39;]
+        wood_type = wood.get_wood_by_id(entry[&#39;woodtype_id&#39;])
+        entry[&#39;wood_type&#39;] = wood_type[&#39;name&#39;]
+        design_type = wood.get_design_by_id(entry[&#39;woodpattern_id&#39;])
+        entry[&#39;wood_pattern&#39;] = design_type[&#39;name&#39;]
+        product_result.append(entry)
+    return render_template(&#39;cart.html&#39;, product=product_result, product_len=len(product_result)), 200
+
+
+@application.route(&#39;/remove-cart&#39;, methods=[&#39;GET&#39;])
+def remove_from_cart_page():
+    &#34;&#34;&#34;Remove product from cart
+    &#34;&#34;&#34;
+    id_name = request.args.get(&#39;id&#39;)
+    order.remove_cart(id_name)
+    user_name = session[&#39;user_name&#39;]
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry[&#39;product_id&#39;])
+        entry[&#39;title&#39;] = prod[&#39;title&#39;]
+        entry[&#39;price&#39;] = prod[&#39;price&#39;]
+        res_img = entry[&#39;image&#39;]
+        entry[&#39;image&#39;] = res_img.decode(&#39;utf-8&#39;)
+        wood_type = wood.get_wood_by_id(entry[&#39;woodtype_id&#39;])
+        entry[&#39;wood_type&#39;] = wood_type[&#39;name&#39;]
+        design_type = wood.get_design_by_id(entry[&#39;woodpattern_id&#39;])
+        entry[&#39;wood_pattern&#39;] = design_type[&#39;name&#39;]
+        product_result.append(entry)
+    return jsonify({
+        &#34;product&#34;: product_result
+    })
+
+
+@application.route(&#39;/add-to-cart&#39;, methods=[&#39;POST&#39;])
+def add_to_cart():
+    &#34;&#34;&#34;Adds the product to the cart
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    id_name = request.args.get(&#39;id&#39;)
+    image = request.form[&#39;image&#39;]
+    page = request.args.get(&#39;page&#39;)
+    quantity = request.form[&#39;quantity&#39;]
+    wood_id = request.form[&#39;wood&#39;]
+    pattern_id = request.form[&#39;pattern&#39;]
+    result = product.get_product_details_cart(id_name)
+    price = result[&#39;price&#39;]
+    total_cost = price * float(quantity)
+    cart_details = order.add_to_cart(id_name, image, quantity, wood_id, pattern_id, user_name, total_cost)
+    return redirect(&#39;/cart&#39;)
+
+
+@application.route(&#39;/checkout&#39;, methods=[&#39;POST&#39;])
+def load_checkout():
+    
+    cost = request.form[&#39;total&#39;]
+    return render_template(&#39;checkout.html&#39;, cost=cost), 200
+
+
+@application.route(&#39;/checkout-success&#39;, methods=[&#39;POST&#39;])
+def load_checkout_success():
+    price = request.form[&#39;cost&#39;]
+    address = request.form[&#39;address&#39;]
+    city = request.form[&#39;city&#39;]
+    state = request.form[&#39;state&#39;]
+    zipcode = request.form[&#39;zipcode&#39;]
+    card_number = request.form[&#39;card&#39;]
+    expiry = datetime.datetime.strptime(request.form[&#39;expiry&#39;], &#34;%m/%d/%Y&#34;).strftime(&#34;%Y-%m-%d&#34;)
+    cvv = request.form[&#39;cvv&#39;]
+    contact = request.form[&#39;contact&#39;]
+    user_name = session[&#39;user_name&#39;]
+    address = (&#39;,&#39;.join([address, city, state]))
+    order.place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact)
+    return render_template(&#39;checkout-success.html&#39;), 200
+
+
+@application.route(&#39;/login&#39;)
+def load_login_page():
+    &#34;&#34;&#34;Get the login page
+
+    Returns:
+        template: the UI for Login
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;login.html&#39;), 200
+
+
+@application.route(&#39;/signup&#39;)
+def render_signup():
+    &#34;&#34;&#34;Get the signup page
+
+    Returns:
+        template: the UI for signup
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;signup.html&#39;), 200
+
+
+@application.route(&#39;/about&#39;)
+def render_about_us():
+    &#34;&#34;&#34;Get the about us page
+
+    Returns:
+        template: the UI for about us
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;about-us.html&#39;),200
+
+
+@application.route(&#39;/basic-layout.html&#39;)
+def render_basic_layout():
+    &#34;&#34;&#34;Get the basic layout
+
+    Returns:
+        template: the UI for basic layout
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;basic-layout.html&#39;),200
+
+
+@application.route(&#39;/basic-layout-manager.html&#39;)
+def render_basic_layout_manager():
+    &#34;&#34;&#34;Get the basic layout for manager
+
+    Returns:
+        template: the UI for basic layout for manager
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;basic-layout-manager.html&#39;)
+
+
+@application.route(&#39;/add-products&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def manage_products():
+    &#34;&#34;&#34;Adds all the new products to the databse
+
+    Returns:
+        template: manager-success page
+        success: message
+        error: invalid products
+    &#34;&#34;&#34;
+    if request.method == &#39;POST&#39;:
+        new_products = request.files[&#39;new-products&#39;]
+        data_xls_1 = pd.read_excel(new_products)
+        data_xls = data_xls_1.replace(np.nan, &#39;&#39;, regex=True)
+        invalid = product.add_products(data_xls)
+        if not invalid:
+            return render_template(&#39;manager-success.html&#39;, success=&#34;Products added successfully&#34;), 200
+        else:
+            return render_template(&#39;manager-success.html&#39;,
+                                   success=&#34;Some products are added successfully. Please correct the details for the following products.&#34;,
+                                   error=invalid), 200
+
+    return render_template(&#39;manage-products.html&#39;), 200
+
+
+@application.route(&#39;/prodct-details.html&#39;)
+def render_product_details():
+    &#34;&#34;&#34;Get the product details page
+
+    Returns:
+        template: the UI for product details
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;prodct-details.html&#39;),200
+
+
+@application.route(&#39;/logout&#39;)
+def render_logout():
+    &#34;&#34;&#34;Logout as a user and clear the session
+
+    Returns:
+        template: the home page 
+    &#34;&#34;&#34;
+    session.clear()
+    return redirect(request.url_root)
+
+
+@application.route(&#39;/occasions&#39;, methods=[&#39;GET&#39;])
+def render_occasion():
+    &#34;&#34;&#34;Gets all the products of a particular occasion
+
+    Returns:
+        product: list of all the products of a specific occasion
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    occasion = str(request.args.get(&#39;occasion&#39;))
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    url = &#34;&#34;
+    if occasion:
+        result = product.get_products_by_occasion(occasion)
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])
+
+
+@application.route(&#39;/categories&#39;, methods=[&#39;GET&#39;])
+def render_category():
+    &#34;&#34;&#34;Gets all the products of a particular category
+
+    Returns:
+        product: list of all the products of a specific category
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    category = str(request.args.get(&#39;category&#39;))
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    url = &#34;&#34;
+    if category:
+        result = product.get_products_by_category(category)
+
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])
+
+
+@application.route(&#39;/orderstatus&#39;, methods=[&#39;GET&#39;])
+def show_order_status():
+    url = &#34;&#34;
+    order_id = request.args.get(&#39;id&#39;)
+    result = order.get_order_details_by_id(order_id)
+    result[&#39;order_date&#39;] = result[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+    wood_type = wood.get_wood_by_id(result[&#39;woodtype_id&#39;])
+    wood_design = wood.get_design_by_id(result[&#39;woodpattern_id&#39;])
+    products = product.get_product_details(result[&#39;product_id&#39;])
+    return render_template(&#39;order-status.html&#39;, url=url, orders=result, len=len(result), product=products,
+                           wood_type=wood_type, wood_design=wood_design), 200
+
+
+@application.route(&#39;/orderstatus/update&#39;, methods=[&#39;GET&#39;])
+def update_order_status():
+    &#34;&#34;&#34;Updates the order status
+
+    Returns:
+        status: new updated status
+    &#34;&#34;&#34;
+    order_id = request.args.get(&#39;order_id&#39;)
+    status = request.args.get(&#39;status&#39;)
+    order.update_order_status_for_order(status, order_id)
+    return jsonify({
+        &#34;status&#34;: status
+    })
+
+
+@application.route(&#39;/preview&#39;, methods=[&#39;GET&#39;])
+def show_preview():
+    &#34;&#34;&#34;Loads the image by applying customizations
+
+    Returns:
+        preview_image: customized image
+    &#34;&#34;&#34;
+    model_id = request.args.get(&#39;model_id&#39;)
+    wood_id = request.args.get(&#39;wood_id&#39;)
+    design_id = request.args.get(&#39;design_id&#39;)
+    message = request.args.get(&#39;message&#39;)
+    preview_image = preview.show_preview(model_id, wood_id, design_id, message)
+
+    return jsonify({
+        &#34;preview_image&#34;: preview_image.decode(&#39;utf-8&#39;)
+    })
+
+
+@application.route(&#39;/remove&#39;, methods=[&#39;POST&#39;])
+def remove_product():
+    &#34;&#34;&#34;Removes a product from the database
+
+    Returns:
+        success : Product Removed
+    &#34;&#34;&#34;
+    product_id = request.form[&#39;productid&#39;]
+    product.remove(product_id)
+    return render_template(&#39;manager-success.html&#39;, success=&#34;Product Removed&#34;), 200
+
+
+@application.route(&#39;/edit&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def edit_product():
+    &#34;&#34;&#34;Gets: a the current details of the product
+    Posts new details of the product
+
+    Returns:
+        product: current product details
+        len: length of the product detais
+    &#34;&#34;&#34;
+    if request.method == &#39;GET&#39;:
+        id_name = request.args.get(&#39;productid&#39;)
+        result = product.get_product_details(id_name)
+        return render_template(&#39;edit-product.html&#39;, product=result, len=len(result))
+
+    if request.method == &#39;POST&#39;:
+        p_id = request.form[&#39;id&#39;]
+        title = request.form[&#39;title&#39;]
+        description = request.form[&#39;description&#39;]
+        price = request.form[&#39;price&#39;]
+        product.edit(p_id, title, description, price)
+        return render_template(&#39;manager-success.html&#39;, success=&#34;Product Updated&#34;), 200
+
+
+@application.route(&#39;/search&#39;, methods=[&#39;GET&#39;])
+def get_product_by_name():
+    &#34;&#34;&#34;Gets product by name
+
+    Returns:
+        product: product with the specified name
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    product_name = request.args.get(&#39;product_name&#39;)
+    result = product.search_product_by_name(product_name)
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                               total_pages=details[1])
+
+# Returns results based on pages
+def get_pages(page, result):
+    &#34;&#34;&#34;Gets a list of products for the selected page number
+
+    Returns:
+        tuple : list of products on that page and the total number of pages
+    &#34;&#34;&#34;
+    total_pages = (int)(len(result) / 12) + 1
+    if (page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+    else:
+        page = int(page)
+        result = result[12 * (page - 1):12 * page]
+
+    return (result, total_pages)
+
+
+if __name__ == &#39;__main__&#39;:
+    application.secret_key = &#39;super secret key&#39;
+    application.debug = True
+    application.run()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="application.add_to_cart"><code class="name flex">
+<span>def <span class="ident">add_to_cart</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Adds the product to the cart</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI of the cart</dd>
+<dt><strong><code>product</code></strong></dt>
+<dd>list of products</dd>
+<dt><strong><code>product_len</code></strong></dt>
+<dd>length of product list</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/add-to-cart&#39;, methods=[&#39;POST&#39;])
+def add_to_cart():
+    &#34;&#34;&#34;Adds the product to the cart
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    id_name = request.args.get(&#39;id&#39;)
+    image = request.form[&#39;image&#39;]
+    page = request.args.get(&#39;page&#39;)
+    quantity = request.form[&#39;quantity&#39;]
+    wood_id = request.form[&#39;wood&#39;]
+    pattern_id = request.form[&#39;pattern&#39;]
+    result = product.get_product_details_cart(id_name)
+    price = result[&#39;price&#39;]
+    total_cost = price * float(quantity)
+    cart_details = order.add_to_cart(id_name, image, quantity, wood_id, pattern_id, user_name, total_cost)
+    return redirect(&#39;/cart&#39;)</code></pre>
+</details>
+</dd>
+<dt id="application.display_home_manager"><code class="name flex">
+<span>def <span class="ident">display_home_manager</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Retrieves manager UI</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI to be displayed</dd>
+<dt><strong><code>products</code></strong></dt>
+<dd>list of products</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products</dd>
+<dt><strong><code>total_pages</code></strong></dt>
+<dd>number of pages</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/manager&#39;, methods=[&#39;GET&#39;])
+def display_home_manager():
+    &#34;&#34;&#34;Retrieves manager UI
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    &#34;&#34;&#34;
+    if session and session[&#39;manager&#39;]:
+        page = request.args.get(&#39;page&#39;)
+        result = product.get_products()
+        details = get_pages(page, result)
+        return render_template(&#39;product-catalog-manager.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                               total_pages=details[1]), 200
+    else:
+        return render_template(&#39;error.html&#39;, error=&#34;You are not authorized to access this page!!&#34;), 401</code></pre>
+</details>
+</dd>
+<dt id="application.edit_product"><code class="name flex">
+<span>def <span class="ident">edit_product</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets: a the current details of the product
+Posts new details of the product</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>current product details</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>length of the product detais</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/edit&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def edit_product():
+    &#34;&#34;&#34;Gets: a the current details of the product
+    Posts new details of the product
+
+    Returns:
+        product: current product details
+        len: length of the product detais
+    &#34;&#34;&#34;
+    if request.method == &#39;GET&#39;:
+        id_name = request.args.get(&#39;productid&#39;)
+        result = product.get_product_details(id_name)
+        return render_template(&#39;edit-product.html&#39;, product=result, len=len(result))
+
+    if request.method == &#39;POST&#39;:
+        p_id = request.form[&#39;id&#39;]
+        title = request.form[&#39;title&#39;]
+        description = request.form[&#39;description&#39;]
+        price = request.form[&#39;price&#39;]
+        product.edit(p_id, title, description, price)
+        return render_template(&#39;manager-success.html&#39;, success=&#34;Product Updated&#34;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.get_pages"><code class="name flex">
+<span>def <span class="ident">get_pages</span></span>(<span>page, result)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets a list of products for the selected page number</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>tuple</code></strong> :&ensp;<code>list</code> of <code>products</code> <code>on</code> <code>that</code> <code>page</code> <code>and</code> <code>the</code> <code>total</code> <code>number</code> of <code>pages</code></dt>
+<dd>&nbsp;</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_pages(page, result):
+    &#34;&#34;&#34;Gets a list of products for the selected page number
+
+    Returns:
+        tuple : list of products on that page and the total number of pages
+    &#34;&#34;&#34;
+    total_pages = (int)(len(result) / 12) + 1
+    if (page == None or int(page) == 1):
+        result = list(itertools.islice(result, 0, 12, 1))
+    else:
+        page = int(page)
+        result = result[12 * (page - 1):12 * page]
+
+    return (result, total_pages)</code></pre>
+</details>
+</dd>
+<dt id="application.get_product_by_id"><code class="name flex">
+<span>def <span class="ident">get_product_by_id</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets product by id</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>product with the specified id</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>1 if product is available else 0</dd>
+<dt><strong><code>wood_type</code></strong></dt>
+<dd>return a list of wood types available for the product</dd>
+<dt><strong><code>wood_design</code></strong></dt>
+<dd>return a list of wood design available for the product</dd>
+<dt><strong><code>default_image</code></strong></dt>
+<dd>image with default customizations</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/products&#39;, methods=[&#39;GET&#39;])
+def get_product_by_id():
+    &#34;&#34;&#34;Gets product by id
+
+    Returns:
+        product: product with the specified id
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    &#34;&#34;&#34;
+    id_name = request.args.get(&#39;id&#39;)
+    result = product.get_product_details(id_name)
+    wood_type = wood.get_wood()
+    wood_design = wood.get_design()
+    default_image = preview.show_default_preview(result[&#39;model_id&#39;], 1)
+
+    return render_template(&#39;product-details.html&#39;, product=result, len=len(result), wood_type=wood_type,
+                           wood_design=wood_design, default_image=default_image)</code></pre>
+</details>
+</dd>
+<dt id="application.get_product_by_name"><code class="name flex">
+<span>def <span class="ident">get_product_by_name</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets product by name</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>product with the specified name</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>1 if product is available else 0</dd>
+<dt><strong><code>wood_type</code></strong></dt>
+<dd>return a list of wood types available for the product</dd>
+<dt><strong><code>wood_design</code></strong></dt>
+<dd>return a list of wood design available for the product</dd>
+<dt><strong><code>default_image</code></strong></dt>
+<dd>image with default customizations</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/search&#39;, methods=[&#39;GET&#39;])
+def get_product_by_name():
+    &#34;&#34;&#34;Gets product by name
+
+    Returns:
+        product: product with the specified name
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    product_name = request.args.get(&#39;product_name&#39;)
+    result = product.search_product_by_name(product_name)
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                               total_pages=details[1])</code></pre>
+</details>
+</dd>
+<dt id="application.get_user_by_id"><code class="name flex">
+<span>def <span class="ident">get_user_by_id</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets account details</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI to be displayed</dd>
+<dt><strong><code>email</code></strong></dt>
+<dd>email id</dd>
+<dt><strong><code>fname</code></strong></dt>
+<dd>firstname of the user</dd>
+<dt><strong><code>lname</code></strong></dt>
+<dd>last name of the user</dd>
+<dt><strong><code>order</code></strong></dt>
+<dd>list of orders</dd>
+<dt><strong><code>order_len</code></strong></dt>
+<dd>length of order list</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/account&#39;, methods=[&#39;GET&#39;])
+def get_user_by_id():
+    &#34;&#34;&#34;Gets account details
+
+    Returns:
+        template: the UI to be displayed
+        email: email id
+        fname: firstname of the user
+        lname: last name of the user
+        order: list of orders
+        order_len: length of order list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    fname = session[&#39;fname&#39;]
+    lname = session[&#39;lname&#39;]
+    order_result = order.get_order_details_for_user(user_name)
+    if len(order_result) &gt; 0:
+        for orders in order_result:
+            orders[&#39;order_date&#39;] = orders[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+        order_result.reverse()
+    return render_template(&#39;my-account.html&#39;, email=user_name, fname=fname, lname=lname, order=order_result, order_len=len(order_result)), 200</code></pre>
+</details>
+</dd>
+<dt id="application.load_cart_page"><code class="name flex">
+<span>def <span class="ident">load_cart_page</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets cart products</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI of the cart</dd>
+<dt><strong><code>product</code></strong></dt>
+<dd>list of products</dd>
+<dt><strong><code>product_len</code></strong></dt>
+<dd>length of product list</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/cart&#39;, methods=[&#39;GET&#39;])
+def load_cart_page():
+    &#34;&#34;&#34;Gets cart products
+
+    Returns:
+        template: the UI of the cart
+        product: list of products
+        product_len: length of product list
+    &#34;&#34;&#34;
+    user_name = session[&#39;user_name&#39;]
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry[&#39;product_id&#39;])
+        entry[&#39;title&#39;] = prod[&#39;title&#39;]
+        entry[&#39;price&#39;] = prod[&#39;price&#39;]
+        wood_type = wood.get_wood_by_id(entry[&#39;woodtype_id&#39;])
+        entry[&#39;wood_type&#39;] = wood_type[&#39;name&#39;]
+        design_type = wood.get_design_by_id(entry[&#39;woodpattern_id&#39;])
+        entry[&#39;wood_pattern&#39;] = design_type[&#39;name&#39;]
+        product_result.append(entry)
+    return render_template(&#39;cart.html&#39;, product=product_result, product_len=len(product_result)), 200</code></pre>
+</details>
+</dd>
+<dt id="application.load_checkout"><code class="name flex">
+<span>def <span class="ident">load_checkout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/checkout&#39;, methods=[&#39;POST&#39;])
+def load_checkout():
+    
+    cost = request.form[&#39;total&#39;]
+    return render_template(&#39;checkout.html&#39;, cost=cost), 200</code></pre>
+</details>
+</dd>
+<dt id="application.load_checkout_success"><code class="name flex">
+<span>def <span class="ident">load_checkout_success</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/checkout-success&#39;, methods=[&#39;POST&#39;])
+def load_checkout_success():
+    price = request.form[&#39;cost&#39;]
+    address = request.form[&#39;address&#39;]
+    city = request.form[&#39;city&#39;]
+    state = request.form[&#39;state&#39;]
+    zipcode = request.form[&#39;zipcode&#39;]
+    card_number = request.form[&#39;card&#39;]
+    expiry = datetime.datetime.strptime(request.form[&#39;expiry&#39;], &#34;%m/%d/%Y&#34;).strftime(&#34;%Y-%m-%d&#34;)
+    cvv = request.form[&#39;cvv&#39;]
+    contact = request.form[&#39;contact&#39;]
+    user_name = session[&#39;user_name&#39;]
+    address = (&#39;,&#39;.join([address, city, state]))
+    order.place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact)
+    return render_template(&#39;checkout-success.html&#39;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.load_login_page"><code class="name flex">
+<span>def <span class="ident">load_login_page</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the login page</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for Login</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/login&#39;)
+def load_login_page():
+    &#34;&#34;&#34;Get the login page
+
+    Returns:
+        template: the UI for Login
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;login.html&#39;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.login"><code class="name flex">
+<span>def <span class="ident">login</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Logs in as a customer, manager or carpenter</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI to be displayed</dd>
+<dt><strong><code>products</code></strong></dt>
+<dd>list of products</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/login&#39;, methods=[&#39;POST&#39;])
+def login():
+    &#34;&#34;&#34;Logs in as a customer, manager or carpenter
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+    &#34;&#34;&#34;
+    if &#39;customer&#39; in session and session[&#39;customer&#39;]:
+        return redirect(request.url_root)
+    elif &#39;manager&#39; in session and session[&#39;manager&#39;]:
+        return redirect(request.url_root + &#34;manager&#34;)
+    else:
+        session.clear()
+    page = request.args.get(&#39;page&#39;)
+    if not request.form or not &#39;username&#39; in request.form or not &#39;password&#39; in request.form:
+        return render_template(&#39;login.html&#39;), 400
+    user_details = user.login(request.form[&#39;username&#39;], request.form[&#39;password&#39;])
+    if (user_details):
+        url = &#34;&#34;
+        session[&#39;user_name&#39;] = request.form[&#39;username&#39;]
+        session[&#39;fname&#39;] = user_details[&#39;FirstName&#39;]
+        session[&#39;lname&#39;] = user_details[&#39;LastName&#39;]
+        if user_details[&#39;Role&#39;] == &#34;Carpenter&#34;:
+            session[&#39;carpenter&#39;] = True
+            result = order.get_all_orders()
+            if len(result) &gt; 0:
+                for orders in result:
+                    orders[&#39;order_date&#39;] = orders[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+                result.reverse()
+            return render_template(&#39;woodworker.html&#39;, orders=result, len=len(orders), url=url), 200
+        elif user_details[&#39;Role&#39;] == &#34;Admin&#34;:
+            session[&#39;manager&#39;] = True
+            return redirect(request.url_root + &#34;manager&#34;)
+        else:
+            session[&#39;customer&#39;] = True
+            return redirect(request.url_root)
+    else:
+        return render_template(&#39;login.html&#39;, error=&#34;Invalid credentials. Try again!!!&#34;), 401</code></pre>
+</details>
+</dd>
+<dt id="application.manage_products"><code class="name flex">
+<span>def <span class="ident">manage_products</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Adds all the new products to the databse</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>manager-success page</dd>
+<dt><strong><code>success</code></strong></dt>
+<dd>message</dd>
+<dt><strong><code>error</code></strong></dt>
+<dd>invalid products</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/add-products&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def manage_products():
+    &#34;&#34;&#34;Adds all the new products to the databse
+
+    Returns:
+        template: manager-success page
+        success: message
+        error: invalid products
+    &#34;&#34;&#34;
+    if request.method == &#39;POST&#39;:
+        new_products = request.files[&#39;new-products&#39;]
+        data_xls_1 = pd.read_excel(new_products)
+        data_xls = data_xls_1.replace(np.nan, &#39;&#39;, regex=True)
+        invalid = product.add_products(data_xls)
+        if not invalid:
+            return render_template(&#39;manager-success.html&#39;, success=&#34;Products added successfully&#34;), 200
+        else:
+            return render_template(&#39;manager-success.html&#39;,
+                                   success=&#34;Some products are added successfully. Please correct the details for the following products.&#34;,
+                                   error=invalid), 200
+
+    return render_template(&#39;manage-products.html&#39;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.remove_from_cart_page"><code class="name flex">
+<span>def <span class="ident">remove_from_cart_page</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Remove product from cart</p></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/remove-cart&#39;, methods=[&#39;GET&#39;])
+def remove_from_cart_page():
+    &#34;&#34;&#34;Remove product from cart
+    &#34;&#34;&#34;
+    id_name = request.args.get(&#39;id&#39;)
+    order.remove_cart(id_name)
+    user_name = session[&#39;user_name&#39;]
+    result = order.load_cart(user_name)
+    product_result = []
+    for entry in result:
+        prod = product.get_product_details_cart(entry[&#39;product_id&#39;])
+        entry[&#39;title&#39;] = prod[&#39;title&#39;]
+        entry[&#39;price&#39;] = prod[&#39;price&#39;]
+        res_img = entry[&#39;image&#39;]
+        entry[&#39;image&#39;] = res_img.decode(&#39;utf-8&#39;)
+        wood_type = wood.get_wood_by_id(entry[&#39;woodtype_id&#39;])
+        entry[&#39;wood_type&#39;] = wood_type[&#39;name&#39;]
+        design_type = wood.get_design_by_id(entry[&#39;woodpattern_id&#39;])
+        entry[&#39;wood_pattern&#39;] = design_type[&#39;name&#39;]
+        product_result.append(entry)
+    return jsonify({
+        &#34;product&#34;: product_result
+    })</code></pre>
+</details>
+</dd>
+<dt id="application.remove_product"><code class="name flex">
+<span>def <span class="ident">remove_product</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Removes a product from the database</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>success</code></strong> :&ensp;<code>Product</code> <code>Removed</code></dt>
+<dd>&nbsp;</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/remove&#39;, methods=[&#39;POST&#39;])
+def remove_product():
+    &#34;&#34;&#34;Removes a product from the database
+
+    Returns:
+        success : Product Removed
+    &#34;&#34;&#34;
+    product_id = request.form[&#39;productid&#39;]
+    product.remove(product_id)
+    return render_template(&#39;manager-success.html&#39;, success=&#34;Product Removed&#34;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.render_about_us"><code class="name flex">
+<span>def <span class="ident">render_about_us</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the about us page</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for about us</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/about&#39;)
+def render_about_us():
+    &#34;&#34;&#34;Get the about us page
+
+    Returns:
+        template: the UI for about us
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;about-us.html&#39;),200</code></pre>
+</details>
+</dd>
+<dt id="application.render_basic_layout"><code class="name flex">
+<span>def <span class="ident">render_basic_layout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the basic layout</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for basic layout</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/basic-layout.html&#39;)
+def render_basic_layout():
+    &#34;&#34;&#34;Get the basic layout
+
+    Returns:
+        template: the UI for basic layout
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;basic-layout.html&#39;),200</code></pre>
+</details>
+</dd>
+<dt id="application.render_basic_layout_manager"><code class="name flex">
+<span>def <span class="ident">render_basic_layout_manager</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the basic layout for manager</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for basic layout for manager</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/basic-layout-manager.html&#39;)
+def render_basic_layout_manager():
+    &#34;&#34;&#34;Get the basic layout for manager
+
+    Returns:
+        template: the UI for basic layout for manager
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;basic-layout-manager.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="application.render_category"><code class="name flex">
+<span>def <span class="ident">render_category</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets all the products of a particular category</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>list of all the products of a specific category</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products returned</dd>
+<dt><strong><code>total_pages</code></strong></dt>
+<dd>return the number of page</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/categories&#39;, methods=[&#39;GET&#39;])
+def render_category():
+    &#34;&#34;&#34;Gets all the products of a particular category
+
+    Returns:
+        product: list of all the products of a specific category
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    category = str(request.args.get(&#39;category&#39;))
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    url = &#34;&#34;
+    if category:
+        result = product.get_products_by_category(category)
+
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])</code></pre>
+</details>
+</dd>
+<dt id="application.render_logout"><code class="name flex">
+<span>def <span class="ident">render_logout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Logout as a user and clear the session</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the home page</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/logout&#39;)
+def render_logout():
+    &#34;&#34;&#34;Logout as a user and clear the session
+
+    Returns:
+        template: the home page 
+    &#34;&#34;&#34;
+    session.clear()
+    return redirect(request.url_root)</code></pre>
+</details>
+</dd>
+<dt id="application.render_occasion"><code class="name flex">
+<span>def <span class="ident">render_occasion</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets all the products of a particular occasion</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>list of all the products of a specific occasion</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products returned</dd>
+<dt><strong><code>total_pages</code></strong></dt>
+<dd>return the number of page</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/occasions&#39;, methods=[&#39;GET&#39;])
+def render_occasion():
+    &#34;&#34;&#34;Gets all the products of a particular occasion
+
+    Returns:
+        product: list of all the products of a specific occasion
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    occasion = str(request.args.get(&#39;occasion&#39;))
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    url = &#34;&#34;
+    if occasion:
+        result = product.get_products_by_occasion(occasion)
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])</code></pre>
+</details>
+</dd>
+<dt id="application.render_product_details"><code class="name flex">
+<span>def <span class="ident">render_product_details</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the product details page</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for product details</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/prodct-details.html&#39;)
+def render_product_details():
+    &#34;&#34;&#34;Get the product details page
+
+    Returns:
+        template: the UI for product details
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;prodct-details.html&#39;),200</code></pre>
+</details>
+</dd>
+<dt id="application.render_signup"><code class="name flex">
+<span>def <span class="ident">render_signup</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get the signup page</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI for signup</dd>
+<dt><strong><code>code</code></strong></dt>
+<dd>200</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/signup&#39;)
+def render_signup():
+    &#34;&#34;&#34;Get the signup page
+
+    Returns:
+        template: the UI for signup
+        code: 200
+    &#34;&#34;&#34;
+    return render_template(&#39;signup.html&#39;), 200</code></pre>
+</details>
+</dd>
+<dt id="application.render_static"><code class="name flex">
+<span>def <span class="ident">render_static</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets all the products available</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>product</code></strong></dt>
+<dd>list of all the products</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products returned</dd>
+<dt><strong><code>total_pages</code></strong></dt>
+<dd>return the number of page</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/&#39;)
+def render_static():
+    &#34;&#34;&#34;Gets all the products available
+
+    Returns:
+        product: list of all the products
+        len: number of products returned
+        total_pages: return the number of page
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    result = product.get_products()
+    details = get_pages(page, result)
+    return render_template(&#39;product-catalog.html&#39;, product=details[0], len=len(details[0]), url=&#34;&#34;,
+                           total_pages=details[1])</code></pre>
+</details>
+</dd>
+<dt id="application.show_order_status"><code class="name flex">
+<span>def <span class="ident">show_order_status</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/orderstatus&#39;, methods=[&#39;GET&#39;])
+def show_order_status():
+    url = &#34;&#34;
+    order_id = request.args.get(&#39;id&#39;)
+    result = order.get_order_details_by_id(order_id)
+    result[&#39;order_date&#39;] = result[&#39;order_date&#39;].strftime(&#39;%m-%d-%Y&#39;)
+    wood_type = wood.get_wood_by_id(result[&#39;woodtype_id&#39;])
+    wood_design = wood.get_design_by_id(result[&#39;woodpattern_id&#39;])
+    products = product.get_product_details(result[&#39;product_id&#39;])
+    return render_template(&#39;order-status.html&#39;, url=url, orders=result, len=len(result), product=products,
+                           wood_type=wood_type, wood_design=wood_design), 200</code></pre>
+</details>
+</dd>
+<dt id="application.show_preview"><code class="name flex">
+<span>def <span class="ident">show_preview</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Loads the image by applying customizations</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>preview_image</code></strong></dt>
+<dd>customized image</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/preview&#39;, methods=[&#39;GET&#39;])
+def show_preview():
+    &#34;&#34;&#34;Loads the image by applying customizations
+
+    Returns:
+        preview_image: customized image
+    &#34;&#34;&#34;
+    model_id = request.args.get(&#39;model_id&#39;)
+    wood_id = request.args.get(&#39;wood_id&#39;)
+    design_id = request.args.get(&#39;design_id&#39;)
+    message = request.args.get(&#39;message&#39;)
+    preview_image = preview.show_preview(model_id, wood_id, design_id, message)
+
+    return jsonify({
+        &#34;preview_image&#34;: preview_image.decode(&#39;utf-8&#39;)
+    })</code></pre>
+</details>
+</dd>
+<dt id="application.signup"><code class="name flex">
+<span>def <span class="ident">signup</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Creates a new customer</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI to be displayed</dd>
+<dt><strong><code>products</code></strong></dt>
+<dd>list of products</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of products</dd>
+<dt><strong><code>total_pages</code></strong></dt>
+<dd>number of pages</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/signup&#39;, methods=[&#39;POST&#39;])
+def signup():
+    &#34;&#34;&#34;Creates a new customer
+
+    Returns:
+        template: the UI to be displayed
+        products: list of products
+        len: number of products
+        total_pages: number of pages
+    &#34;&#34;&#34;
+    page = request.args.get(&#39;page&#39;)
+    if not request.form:
+        return render_template(&#39;signup.html&#39;), 400
+    else:
+        user.signup(request.form[&#39;lastname&#39;], request.form[&#39;firstname&#39;], request.form[&#39;emailid&#39;],
+                    request.form[&#39;password&#39;])
+        return redirect(request.url_root)</code></pre>
+</details>
+</dd>
+<dt id="application.update_order_status"><code class="name flex">
+<span>def <span class="ident">update_order_status</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Updates the order status</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>status</code></strong></dt>
+<dd>new updated status</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@application.route(&#39;/orderstatus/update&#39;, methods=[&#39;GET&#39;])
+def update_order_status():
+    &#34;&#34;&#34;Updates the order status
+
+    Returns:
+        status: new updated status
+    &#34;&#34;&#34;
+    order_id = request.args.get(&#39;order_id&#39;)
+    status = request.args.get(&#39;status&#39;)
+    order.update_order_status_for_order(status, order_id)
+    return jsonify({
+        &#34;status&#34;: status
+    })</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="application.add_to_cart" href="#application.add_to_cart">add_to_cart</a></code></li>
+<li><code><a title="application.display_home_manager" href="#application.display_home_manager">display_home_manager</a></code></li>
+<li><code><a title="application.edit_product" href="#application.edit_product">edit_product</a></code></li>
+<li><code><a title="application.get_pages" href="#application.get_pages">get_pages</a></code></li>
+<li><code><a title="application.get_product_by_id" href="#application.get_product_by_id">get_product_by_id</a></code></li>
+<li><code><a title="application.get_product_by_name" href="#application.get_product_by_name">get_product_by_name</a></code></li>
+<li><code><a title="application.get_user_by_id" href="#application.get_user_by_id">get_user_by_id</a></code></li>
+<li><code><a title="application.load_cart_page" href="#application.load_cart_page">load_cart_page</a></code></li>
+<li><code><a title="application.load_checkout" href="#application.load_checkout">load_checkout</a></code></li>
+<li><code><a title="application.load_checkout_success" href="#application.load_checkout_success">load_checkout_success</a></code></li>
+<li><code><a title="application.load_login_page" href="#application.load_login_page">load_login_page</a></code></li>
+<li><code><a title="application.login" href="#application.login">login</a></code></li>
+<li><code><a title="application.manage_products" href="#application.manage_products">manage_products</a></code></li>
+<li><code><a title="application.remove_from_cart_page" href="#application.remove_from_cart_page">remove_from_cart_page</a></code></li>
+<li><code><a title="application.remove_product" href="#application.remove_product">remove_product</a></code></li>
+<li><code><a title="application.render_about_us" href="#application.render_about_us">render_about_us</a></code></li>
+<li><code><a title="application.render_basic_layout" href="#application.render_basic_layout">render_basic_layout</a></code></li>
+<li><code><a title="application.render_basic_layout_manager" href="#application.render_basic_layout_manager">render_basic_layout_manager</a></code></li>
+<li><code><a title="application.render_category" href="#application.render_category">render_category</a></code></li>
+<li><code><a title="application.render_logout" href="#application.render_logout">render_logout</a></code></li>
+<li><code><a title="application.render_occasion" href="#application.render_occasion">render_occasion</a></code></li>
+<li><code><a title="application.render_product_details" href="#application.render_product_details">render_product_details</a></code></li>
+<li><code><a title="application.render_signup" href="#application.render_signup">render_signup</a></code></li>
+<li><code><a title="application.render_static" href="#application.render_static">render_static</a></code></li>
+<li><code><a title="application.show_order_status" href="#application.show_order_status">show_order_status</a></code></li>
+<li><code><a title="application.show_preview" href="#application.show_preview">show_preview</a></code></li>
+<li><code><a title="application.signup" href="#application.signup">signup</a></code></li>
+<li><code><a title="application.update_order_status" href="#application.update_order_status">update_order_status</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
