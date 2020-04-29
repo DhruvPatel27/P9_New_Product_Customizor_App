@@ -1,11 +1,17 @@
-import itertools
+"""
+This is the application.py file which contains the routes to all the APIs.  To 
+launch the application please run the below command:
 
+    python3 application.py dev
+
+"""
+
+import itertools
 import datetime
 import numpy as np
 import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, session, jsonify, redirect
-
 import model.customization as preview
 import model.order as order
 import model.product as product
@@ -14,9 +20,17 @@ import model.wood as wood
 
 application = Flask(__name__)
 
-
 @application.route('/products', methods=['GET'])
 def get_product_by_id():
+    """Gets product by id
+
+    Returns:
+        product: product with the specified id
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    """
     id_name = request.args.get('id')
     result = product.get_product_details(id_name)
     wood_type = wood.get_wood()
@@ -29,6 +43,13 @@ def get_product_by_id():
 
 @application.route('/')
 def render_static():
+    """Gets all the products available
+
+    Returns:
+        product: list of all the products
+        len: number of products returned
+        total_pages: return the number of page
+    """
     page = request.args.get('page')
     result = product.get_products()
     details = get_pages(page, result)
@@ -38,6 +59,13 @@ def render_static():
 
 @application.route('/login', methods=['POST'])
 def login():
+    """Logs in as a customer, manager or carpenter
+
+    Redirects based on the user role:
+        manager home page: if role is manager
+        carpenter home page: if role is carpenter
+        customer home page: if role is customer
+    """
     if 'customer' in session and session['customer']:
         return redirect(request.url_root)
     elif 'manager' in session and session['manager']:
@@ -327,6 +355,15 @@ def edit_product():
 
 @application.route('/search', methods=['GET'])
 def get_product_by_name():
+    """Gets product by name
+
+    Returns:
+        product: product with the specified name
+        len: 1 if product is available else 0
+        wood_type: return a list of wood types available for the product
+        wood_design: return a list of wood design available for the product
+        default_image: image with default customizations
+    """
     page = request.args.get('page')
     product_name = request.args.get('product_name')
     result = product.search_product_by_name(product_name)
@@ -334,9 +371,13 @@ def get_product_by_name():
     return render_template('product-catalog.html', product=details[0], len=len(details[0]), url="",
                                total_pages=details[1])
 
-
 # Returns results based on pages
 def get_pages(page, result):
+    """Gets a list of products for the selected page number
+
+    Returns:
+        tuple : list of products on that page and the total number of pages
+    """
     total_pages = (int)(len(result) / 12) + 1
     if (page == None or int(page) == 1):
         result = list(itertools.islice(result, 0, 12, 1))

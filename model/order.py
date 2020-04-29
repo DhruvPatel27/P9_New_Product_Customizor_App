@@ -4,6 +4,12 @@ from datetime import datetime
 
 # API to get all orders from the database for woodworker
 def get_all_orders():
+    """Gets all the active orders
+
+    Returns:
+        result: collection of all the active orders 
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -19,6 +25,15 @@ def get_all_orders():
 
 # API to get the order details for the specified user id
 def get_order_details_for_user(user_name):
+    """Gets all the orders for a particular user
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        list: collection of all the orders for a user
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -35,6 +50,18 @@ def get_order_details_for_user(user_name):
 
 # API to update database on add to cart
 def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, total_cost):
+    """Creates a new order in the cart
+
+    Arguments:
+        product_id: product id
+        image: customized image
+        quantity: number of items
+        wood_id: selected wood type
+        pattern_id: selected wood pattern
+        user_name: name of the user
+        total_cost: cost of the final order
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -58,6 +85,15 @@ def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, tot
 
 # API to get the cart details
 def load_cart(user_name):
+    """Load products in the cart
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        result: list of products in the cart
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -74,6 +110,15 @@ def load_cart(user_name):
 
 # API to get order details based on order id
 def get_order_details_by_id(order_id):
+    """Get all the order deatils by order id
+
+    Arguments:
+        order_id: order id
+
+    Returns:
+        result: details of the order
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -89,6 +134,16 @@ def get_order_details_by_id(order_id):
 
 # API to change the order status for a specific order
 def update_order_status_for_order(order_status, order_id):
+    """Update the order status
+
+    Arguments:
+        order_id: order id
+        order_status: new order status
+
+    Returns:
+        result: updated order with updated status
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -104,6 +159,15 @@ def update_order_status_for_order(order_status, order_id):
 
 # API to remove from cart
 def remove_cart(product_id):
+    """Remove the product from cart
+
+    Arguments:
+        product_id: product id
+
+    Returns:
+        result: 1 if the product was removed successfully else 0
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
@@ -121,6 +185,23 @@ def remove_cart(product_id):
 
 # API to place order
 def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact):
+    """Place an order
+
+    Arguments:
+        user_name: name of the user
+        price: total payment amount
+        address: shipping address
+        zipcode: zipcode
+        card_number: encrypted card number
+        expiry: expiry date on the card
+        cvv: encrypted cvv
+        contact: contact numnber
+
+    Returns:
+        result: details of the order
+        order_id: new id for the order
+    
+    """
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
