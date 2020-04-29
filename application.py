@@ -59,7 +59,7 @@ def login():
             if len(result) > 0:
                 for orders in result:
                     orders['order_date'] = orders['order_date'].strftime('%m-%d-%Y')
-                    result.reverse()
+                result.reverse()
             return render_template('woodworker.html', orders=result, len=len(orders), url=url), 200
         elif user_details['Role'] == "Admin":
             session['manager'] = True
