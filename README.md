@@ -101,3 +101,10 @@ Delivered static UI for Home, product details, occasion, login, signup, order de
 5. Customer should be able to place order
 6. Implement text customization on the product
 
+### Sprint 6:
+1. Document the project
+2. Improve UI for the user
+3. Improve latency for customization preview
+4. Add search and sort functionality to the product catalog
+5. Implement Error handling to prevent a system breakdown
+
