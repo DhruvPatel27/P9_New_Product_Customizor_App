@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.7.5" />
+<title>model.order API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{font-weight:bold}#index h4 + ul{margin-bottom:.6em}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>model.order</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import model.db_connection as db_connection
+from datetime import datetime
+
+
+# API to get all orders from the database for woodworker
+def get_all_orders():
+    &#34;&#34;&#34;Gets all the active orders
+
+    Returns:
+        result: collection of all the active orders 
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from `CUSTOMER_ORDER`&#34;
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get the order details for the specified user id
+def get_order_details_for_user(user_name):
+    &#34;&#34;&#34;Gets all the orders for a particular user
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        list: collection of all the orders for a user
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`&lt;&gt;%s&#34;
+            cart_details = (user_name, &#39;In Cart&#39;)
+            cursor.execute(sql, cart_details)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to update database on add to cart
+def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, total_cost):
+    &#34;&#34;&#34;Creates a new order in the cart
+
+    Arguments:
+        product_id: product id
+        image: customized image
+        quantity: number of items
+        wood_id: selected wood type
+        pattern_id: selected wood pattern
+        user_name: name of the user
+        total_cost: cost of the final order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            order_date = datetime.today().strftime(&#39;%Y-%m-%d&#39;)
+            sql = &#34;INSERT INTO CUSTOMER_ORDER(`product_id`,`user_id`,`email_id`,`woodtype_id`,`woodpattern_id`,&#34; \
+                  &#34;`total_cost`,`state`,`order_date`,`quantity`,`Order_Id`,`image`) VALUES(%s, null, %s, %s, %s, %s,&#34; \
+                  &#34;&#39;In Cart&#39;, %s, %s, null, %s) &#34;
+            cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
+            result = cursor.execute(sql, cart_details)
+            order_id = cursor.lastrowid
+            connection.commit()
+            return result, order_id
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+        cursor.close()
+
+
+# API to get the cart details
+def load_cart(user_name):
+    &#34;&#34;&#34;Load products in the cart
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        result: list of products in the cart
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`=%s&#34;
+            cart_details = (user_name, &#39;In Cart&#39;)
+            cursor.execute(sql, cart_details)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to get order details based on order id
+def get_order_details_by_id(order_id):
+    &#34;&#34;&#34;Get all the order deatils by order id
+
+    Arguments:
+        order_id: order id
+
+    Returns:
+        result: details of the order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from `CUSTOMER_ORDER` where `ID`=%s&#34;
+            cursor.execute(sql, order_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to change the order status for a specific order
+def update_order_status_for_order(order_status, order_id):
+    &#34;&#34;&#34;Update the order status
+
+    Arguments:
+        order_id: order id
+        order_status: new order status
+
+    Returns:
+        result: updated order with updated status
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;UPDATE `CUSTOMER_ORDER` SET `state` = %s where `ID` = %s&#34;
+            result = cursor.execute(sql, (order_status, order_id))
+            connection.commit()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to remove from cart
+def remove_cart(product_id):
+    &#34;&#34;&#34;Remove the product from cart
+
+    Arguments:
+        product_id: product id
+
+    Returns:
+        result: 1 if the product was removed successfully else 0
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;DELETE from CUSTOMER_ORDER where `ID`=%s&#34;
+            result = cursor.execute(sql, product_id)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+# API to place order
+def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact):
+    &#34;&#34;&#34;Place an order
+
+    Arguments:
+        user_name: name of the user
+        price: total payment amount
+        address: shipping address
+        zipcode: zipcode
+        card_number: encrypted card number
+        expiry: expiry date on the card
+        cvv: encrypted cvv
+        contact: contact numnber
+
+    Returns:
+        result: details of the order
+        order_id: new id for the order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;INSERT INTO ORDERS(`Address`,`Pincode`,`Contact_No`,`Card_No`,`cvv`,`expiry_date`,`total_price`) &#34; \
+                  &#34;VALUES(%s, %s, %s, %s, %s, %s, %s) &#34;
+            cart_details = (address, zipcode, contact, card_number, cvv, expiry, price)
+            result = cursor.execute(sql, cart_details)
+            connection.commit()
+
+            order_id = cursor.lastrowid
+            sql1 = &#34;UPDATE CUSTOMER_ORDER SET `Order_Id`=%s where `email_id`=%s AND `state`=%s&#34;
+            id_update = (order_id, user_name, &#39;In Cart&#39;)
+            cursor.execute(sql1, id_update)
+            connection.commit()
+
+            sql2 = &#34;UPDATE CUSTOMER_ORDER SET `state`=%s where `Order_Id`=%s&#34;
+            order_update = (&#39;Order Received&#39;, order_id)
+            cursor.execute(sql2, order_update)
+            connection.commit()
+
+            order_date = datetime.today().strftime(&#39;%Y-%m-%d&#39;)
+            sql2 = &#34;UPDATE CUSTOMER_ORDER SET `order_date`=%s where `Order_Id`=%s&#34;
+            date_update = (order_date, order_id)
+            cursor.execute(sql2, date_update)
+            connection.commit()
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result, order_id</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="model.order.add_to_cart"><code class="name flex">
+<span>def <span class="ident">add_to_cart</span></span>(<span>product_id, image, quantity, wood_id, pattern_id, user_name, total_cost)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Creates a new order in the cart</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>product_id</code></strong></dt>
+<dd>product id</dd>
+<dt><strong><code>image</code></strong></dt>
+<dd>customized image</dd>
+<dt><strong><code>quantity</code></strong></dt>
+<dd>number of items</dd>
+<dt><strong><code>wood_id</code></strong></dt>
+<dd>selected wood type</dd>
+<dt><strong><code>pattern_id</code></strong></dt>
+<dd>selected wood pattern</dd>
+<dt><strong><code>user_name</code></strong></dt>
+<dd>name of the user</dd>
+<dt><strong><code>total_cost</code></strong></dt>
+<dd>cost of the final order</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def add_to_cart(product_id, image, quantity, wood_id, pattern_id, user_name, total_cost):
+    &#34;&#34;&#34;Creates a new order in the cart
+
+    Arguments:
+        product_id: product id
+        image: customized image
+        quantity: number of items
+        wood_id: selected wood type
+        pattern_id: selected wood pattern
+        user_name: name of the user
+        total_cost: cost of the final order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            order_date = datetime.today().strftime(&#39;%Y-%m-%d&#39;)
+            sql = &#34;INSERT INTO CUSTOMER_ORDER(`product_id`,`user_id`,`email_id`,`woodtype_id`,`woodpattern_id`,&#34; \
+                  &#34;`total_cost`,`state`,`order_date`,`quantity`,`Order_Id`,`image`) VALUES(%s, null, %s, %s, %s, %s,&#34; \
+                  &#34;&#39;In Cart&#39;, %s, %s, null, %s) &#34;
+            cart_details = (product_id, user_name, wood_id, pattern_id, total_cost, order_date, quantity, image)
+            result = cursor.execute(sql, cart_details)
+            order_id = cursor.lastrowid
+            connection.commit()
+            return result, order_id
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+        cursor.close()</code></pre>
+</details>
+</dd>
+<dt id="model.order.get_all_orders"><code class="name flex">
+<span>def <span class="ident">get_all_orders</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets all the active orders</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>collection of all the active orders</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_orders():
+    &#34;&#34;&#34;Gets all the active orders
+
+    Returns:
+        result: collection of all the active orders 
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from `CUSTOMER_ORDER`&#34;
+            cursor.execute(sql)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.order.get_order_details_by_id"><code class="name flex">
+<span>def <span class="ident">get_order_details_by_id</span></span>(<span>order_id)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Get all the order deatils by order id</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>order_id</code></strong></dt>
+<dd>order id</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>details of the order</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_order_details_by_id(order_id):
+    &#34;&#34;&#34;Get all the order deatils by order id
+
+    Arguments:
+        order_id: order id
+
+    Returns:
+        result: details of the order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from `CUSTOMER_ORDER` where `ID`=%s&#34;
+            cursor.execute(sql, order_id)
+            result = cursor.fetchone()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.order.get_order_details_for_user"><code class="name flex">
+<span>def <span class="ident">get_order_details_for_user</span></span>(<span>user_name)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Gets all the orders for a particular user</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>user_name</code></strong></dt>
+<dd>name of the user</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>list</code></strong></dt>
+<dd>collection of all the orders for a user</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_order_details_for_user(user_name):
+    &#34;&#34;&#34;Gets all the orders for a particular user
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        list: collection of all the orders for a user
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`&lt;&gt;%s&#34;
+            cart_details = (user_name, &#39;In Cart&#39;)
+            cursor.execute(sql, cart_details)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.order.load_cart"><code class="name flex">
+<span>def <span class="ident">load_cart</span></span>(<span>user_name)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Load products in the cart</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>user_name</code></strong></dt>
+<dd>name of the user</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>list of products in the cart</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_cart(user_name):
+    &#34;&#34;&#34;Load products in the cart
+
+    Arguments:
+        user_name: name of the user
+
+    Returns:
+        result: list of products in the cart
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;SELECT * from CUSTOMER_ORDER where `email_id`=%s AND `state`=%s&#34;
+            cart_details = (user_name, &#39;In Cart&#39;)
+            cursor.execute(sql, cart_details)
+            result = cursor.fetchall()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.order.place_order"><code class="name flex">
+<span>def <span class="ident">place_order</span></span>(<span>user_name, price, address, zipcode, card_number, expiry, cvv, contact)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Place an order</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>user_name</code></strong></dt>
+<dd>name of the user</dd>
+<dt><strong><code>price</code></strong></dt>
+<dd>total payment amount</dd>
+<dt><strong><code>address</code></strong></dt>
+<dd>shipping address</dd>
+<dt><strong><code>zipcode</code></strong></dt>
+<dd>zipcode</dd>
+<dt><strong><code>card_number</code></strong></dt>
+<dd>encrypted card number</dd>
+<dt><strong><code>expiry</code></strong></dt>
+<dd>expiry date on the card</dd>
+<dt><strong><code>cvv</code></strong></dt>
+<dd>encrypted cvv</dd>
+<dt><strong><code>contact</code></strong></dt>
+<dd>contact numnber</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>details of the order</dd>
+<dt><strong><code>order_id</code></strong></dt>
+<dd>new id for the order</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def place_order(user_name, price, address, zipcode, card_number, expiry, cvv, contact):
+    &#34;&#34;&#34;Place an order
+
+    Arguments:
+        user_name: name of the user
+        price: total payment amount
+        address: shipping address
+        zipcode: zipcode
+        card_number: encrypted card number
+        expiry: expiry date on the card
+        cvv: encrypted cvv
+        contact: contact numnber
+
+    Returns:
+        result: details of the order
+        order_id: new id for the order
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;INSERT INTO ORDERS(`Address`,`Pincode`,`Contact_No`,`Card_No`,`cvv`,`expiry_date`,`total_price`) &#34; \
+                  &#34;VALUES(%s, %s, %s, %s, %s, %s, %s) &#34;
+            cart_details = (address, zipcode, contact, card_number, cvv, expiry, price)
+            result = cursor.execute(sql, cart_details)
+            connection.commit()
+
+            order_id = cursor.lastrowid
+            sql1 = &#34;UPDATE CUSTOMER_ORDER SET `Order_Id`=%s where `email_id`=%s AND `state`=%s&#34;
+            id_update = (order_id, user_name, &#39;In Cart&#39;)
+            cursor.execute(sql1, id_update)
+            connection.commit()
+
+            sql2 = &#34;UPDATE CUSTOMER_ORDER SET `state`=%s where `Order_Id`=%s&#34;
+            order_update = (&#39;Order Received&#39;, order_id)
+            cursor.execute(sql2, order_update)
+            connection.commit()
+
+            order_date = datetime.today().strftime(&#39;%Y-%m-%d&#39;)
+            sql2 = &#34;UPDATE CUSTOMER_ORDER SET `order_date`=%s where `Order_Id`=%s&#34;
+            date_update = (order_date, order_id)
+            cursor.execute(sql2, date_update)
+            connection.commit()
+    except Exception as e:
+        print(e)
+
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result, order_id</code></pre>
+</details>
+</dd>
+<dt id="model.order.remove_cart"><code class="name flex">
+<span>def <span class="ident">remove_cart</span></span>(<span>product_id)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Remove the product from cart</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>product_id</code></strong></dt>
+<dd>product id</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>1 if the product was removed successfully else 0</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def remove_cart(product_id):
+    &#34;&#34;&#34;Remove the product from cart
+
+    Arguments:
+        product_id: product id
+
+    Returns:
+        result: 1 if the product was removed successfully else 0
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;DELETE from CUSTOMER_ORDER where `ID`=%s&#34;
+            result = cursor.execute(sql, product_id)
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="model.order.update_order_status_for_order"><code class="name flex">
+<span>def <span class="ident">update_order_status_for_order</span></span>(<span>order_status, order_id)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Update the order status</p>
+<h2 id="arguments">Arguments</h2>
+<dl>
+<dt><strong><code>order_id</code></strong></dt>
+<dd>order id</dd>
+<dt><strong><code>order_status</code></strong></dt>
+<dd>new order status</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>result</code></strong></dt>
+<dd>updated order with updated status</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_order_status_for_order(order_status, order_id):
+    &#34;&#34;&#34;Update the order status
+
+    Arguments:
+        order_id: order id
+        order_status: new order status
+
+    Returns:
+        result: updated order with updated status
+    
+    &#34;&#34;&#34;
+    connection = db_connection.get_connection()
+    try:
+        with connection.cursor() as cursor:
+            sql = &#34;UPDATE `CUSTOMER_ORDER` SET `state` = %s where `ID` = %s&#34;
+            result = cursor.execute(sql, (order_status, order_id))
+            connection.commit()
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="model" href="index.html">model</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="model.order.add_to_cart" href="#model.order.add_to_cart">add_to_cart</a></code></li>
+<li><code><a title="model.order.get_all_orders" href="#model.order.get_all_orders">get_all_orders</a></code></li>
+<li><code><a title="model.order.get_order_details_by_id" href="#model.order.get_order_details_by_id">get_order_details_by_id</a></code></li>
+<li><code><a title="model.order.get_order_details_for_user" href="#model.order.get_order_details_for_user">get_order_details_for_user</a></code></li>
+<li><code><a title="model.order.load_cart" href="#model.order.load_cart">load_cart</a></code></li>
+<li><code><a title="model.order.place_order" href="#model.order.place_order">place_order</a></code></li>
+<li><code><a title="model.order.remove_cart" href="#model.order.remove_cart">remove_cart</a></code></li>
+<li><code><a title="model.order.update_order_status_for_order" href="#model.order.update_order_status_for_order">update_order_status_for_order</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.7.5</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>
