@@ -13,7 +13,7 @@ source venv/bin/activate
 ```
 4. Run 
 ```
-python application.py
+python application.py dev
 ```
 5. Go to the local host server link provided in the terminal.
 6. **You are all set!!**
