@@ -411,6 +411,16 @@ def render_category():
 
 @application.route('/orderstatus', methods=['GET'])
 def show_order_status():
+    """Get order details of a particular order
+
+    Returns:
+        orders: details of the order
+        len: number of items in order details
+        product: product details for that order
+        wood_type: type of wood selected
+        wood_design: type of engraving selected
+        template: UI for order details
+    """
     url = ""
     order_id = request.args.get('id')
     result = order.get_order_details_by_id(order_id)
