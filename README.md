@@ -18,6 +18,14 @@ python application.py dev
 5. Go to the local host server link provided in the terminal.
 6. **You are all set!!**
 
+## Run Tests:
+
+1. Go to the location where you checked out P9_New_Product_Customizor_App.
+2. Run
+```
+ python -m unittest discover -s test -p '*_test.py'
+```
+
 ## Setup Database:
 
 ### Database Information
