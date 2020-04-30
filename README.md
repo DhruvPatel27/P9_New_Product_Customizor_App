@@ -25,6 +25,18 @@ python application.py dev
 ```
  python -m unittest discover -s test -p '*_test.py'
 ```
+## Generate coverage Report:
+
+1. Go to the location where you checked out P9_New_Product_Customizor_App.
+2. Run
+```
+coverage html -m unittest discover -s test -p '*_test.py'
+```
+3. Run
+```
+coverage html
+```
+
 
 ## Setup Database:
 
