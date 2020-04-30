@@ -7,9 +7,9 @@
 ```
 git clone https://github.com/DhruvPatel27/P9_New_Product_Customizor_App.git
 ```
-3. Run cd source 
+3. Run 
 ```
-venv/bin/activate
+source venv/bin/activate
 ```
 4. Run 
 ```
