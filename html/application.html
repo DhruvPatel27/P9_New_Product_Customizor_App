@@ -268,13 +268,23 @@ def add_to_cart():
 
 @application.route(&#39;/checkout&#39;, methods=[&#39;POST&#39;])
 def load_checkout():
-    
+    &#34;&#34;&#34;Gets the checkout page
+
+    Returns:
+        template: the UI of the checkout page
+        cost: total price of the cart
+    &#34;&#34;&#34;
     cost = request.form[&#39;total&#39;]
     return render_template(&#39;checkout.html&#39;, cost=cost), 200
 
 
 @application.route(&#39;/checkout-success&#39;, methods=[&#39;POST&#39;])
 def load_checkout_success():
+    &#34;&#34;&#34;Checks for the payment details
+
+    Returns:
+        template: success/error depending on the payment status
+    &#34;&#34;&#34;
     price = request.form[&#39;cost&#39;]
     address = request.form[&#39;address&#39;]
     city = request.form[&#39;city&#39;]
@@ -889,14 +899,26 @@ def load_cart_page():
 <span>def <span class="ident">load_checkout</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<section class="desc"><p>Gets the checkout page</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>the UI of the checkout page</dd>
+<dt><strong><code>cost</code></strong></dt>
+<dd>total price of the cart</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@application.route(&#39;/checkout&#39;, methods=[&#39;POST&#39;])
 def load_checkout():
-    
+    &#34;&#34;&#34;Gets the checkout page
+
+    Returns:
+        template: the UI of the checkout page
+        cost: total price of the cart
+    &#34;&#34;&#34;
     cost = request.form[&#39;total&#39;]
     return render_template(&#39;checkout.html&#39;, cost=cost), 200</code></pre>
 </details>
@@ -905,13 +927,23 @@ def load_checkout():
 <span>def <span class="ident">load_checkout_success</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<section class="desc"><p>Checks for the payment details</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>template</code></strong></dt>
+<dd>success/error depending on the payment status</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@application.route(&#39;/checkout-success&#39;, methods=[&#39;POST&#39;])
 def load_checkout_success():
+    &#34;&#34;&#34;Checks for the payment details
+
+    Returns:
+        template: success/error depending on the payment status
+    &#34;&#34;&#34;
     price = request.form[&#39;cost&#39;]
     address = request.form[&#39;address&#39;]
     city = request.form[&#39;city&#39;]
