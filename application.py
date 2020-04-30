@@ -235,13 +235,23 @@ def add_to_cart():
 
 @application.route('/checkout', methods=['POST'])
 def load_checkout():
-    
+    """Gets the checkout page
+
+    Returns:
+        template: the UI of the checkout page
+        cost: total price of the cart
+    """
     cost = request.form['total']
     return render_template('checkout.html', cost=cost), 200
 
 
 @application.route('/checkout-success', methods=['POST'])
 def load_checkout_success():
+    """Checks for the payment details
+
+    Returns:
+        template: success/error depending on the payment status
+    """
     price = request.form['cost']
     address = request.form['address']
     city = request.form['city']
