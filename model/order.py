@@ -13,8 +13,8 @@ def get_all_orders():
     connection = db_connection.get_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT * from `CUSTOMER_ORDER`"
-            cursor.execute(sql)
+            sql = "SELECT * from `CUSTOMER_ORDER` where `state`<>%s"
+            cursor.execute(sql,'In Cart')
             result = cursor.fetchall()
     finally:
         connection.close()
