@@ -18,7 +18,27 @@
     <script>function getValue(cost){
         document.getElementById('cost').value = cost;
     }
-</script>
+    </script>
+    <script>
+        function setTodayDate(){
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;
+            if(dd<10)
+            {
+                 dd='0'+dd;
+            }
+
+            if(mm<10)
+            {
+                 mm='0'+mm;
+            }
+            var yyyy = today.getFullYear();
+            todayDate = yyyy + "-" + mm + "-" + dd
+            document.getElementById('expiry').min = todayDate;
+            console.log(document.getElementById('expiry').min)
+        }
+    </script>
 </head>
 <body>
 <div id="basic-layout"></div>
@@ -41,13 +61,14 @@
     <h3 align="center">Payment Details</h3>
     <table width="90%" align="center">
         <tr>
-            <td><input class="text" name="card" type="text" placeholder="Card Number" style="margin-left: 25%" required></td>
-            <td><input class="text" name="expiry" type="text" placeholder="Expiry Date (MM/DD/YYYY)" required></td>
+            <td><input class="text" name="card" type="text" placeholder="Card Number" style="margin-left: 28%; width: 80%" required></td>
+            <td><div style="margin-left: 15%">Expiry Date<input type="date" id="expiry" name="expiry" style="margin-left: 2%; width: 60%; height: 20%" placeholder="Expiry Date (MM/DD/YYYY)" required></div></td>
+            <script>setTodayDate()</script>
         </tr>
         <tr>
-            <td><input class="text" name="cvv" type="password" style="margin-left: 25%" placeholder="CVV" required></td>
+            <td><input class="text" name="cvv" type="password" style="margin-left: 28%; width: 80%" placeholder="CVV" required></td>
 
-            <td><input class="text" name="contact" type="text" placeholder="Contact Number" required></td>
+            <td><input class="text" name="contact" type="text" style="margin-left: 15%; width: 63%" placeholder="Contact Number" required></td>
         </tr>
     </table>
 <div>
