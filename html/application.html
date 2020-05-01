@@ -444,6 +444,16 @@ def render_category():
 
 @application.route(&#39;/orderstatus&#39;, methods=[&#39;GET&#39;])
 def show_order_status():
+    &#34;&#34;&#34;Get order details of a particular order
+
+    Returns:
+        orders: details of the order
+        len: number of items in order details
+        product: product details for that order
+        wood_type: type of wood selected
+        wood_design: type of engraving selected
+        template: UI for order details
+    &#34;&#34;&#34;
     url = &#34;&#34;
     order_id = request.args.get(&#39;id&#39;)
     result = order.get_order_details_by_id(order_id)
@@ -1423,13 +1433,38 @@ def render_static():
 <span>def <span class="ident">show_order_status</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<section class="desc"></section>
+<section class="desc"><p>Get order details of a particular order</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>orders</code></strong></dt>
+<dd>details of the order</dd>
+<dt><strong><code>len</code></strong></dt>
+<dd>number of items in order details</dd>
+<dt><strong><code>product</code></strong></dt>
+<dd>product details for that order</dd>
+<dt><strong><code>wood_type</code></strong></dt>
+<dd>type of wood selected</dd>
+<dt><strong><code>wood_design</code></strong></dt>
+<dd>type of engraving selected</dd>
+<dt><strong><code>template</code></strong></dt>
+<dd>UI for order details</dd>
+</dl></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@application.route(&#39;/orderstatus&#39;, methods=[&#39;GET&#39;])
 def show_order_status():
+    &#34;&#34;&#34;Get order details of a particular order
+
+    Returns:
+        orders: details of the order
+        len: number of items in order details
+        product: product details for that order
+        wood_type: type of wood selected
+        wood_design: type of engraving selected
+        template: UI for order details
+    &#34;&#34;&#34;
     url = &#34;&#34;
     order_id = request.args.get(&#39;id&#39;)
     result = order.get_order_details_by_id(order_id)
